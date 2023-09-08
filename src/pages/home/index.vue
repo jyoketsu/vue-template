@@ -12,6 +12,7 @@ import { computed, onMounted, watch, watchEffect } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useStore } from "../../store";
 import Head from "./Head.vue";
+import { getCookie } from "../../utils/util";
 const router = useRouter();
 const route = useRoute();
 const store = useStore();
@@ -23,11 +24,11 @@ const handleClose = () => {
 };
 
 onMounted(() => {
-  const token = localStorage.getItem("auth_token");
+  const token = getCookie("token");
   if (token) {
-    store.dispatch("auth/getUserByToken", token);
-  } else if (!route.query.key) {
-    router.push("/welcome");
+    store.dispatch("auth/getUserByToken");
+  } else {
+    router.push("/login");
   }
 });
 </script>

@@ -1,24 +1,24 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Login from "../pages/login/index.vue";
-import Welcome from "../pages/welcome/index.vue";
 import Home from "../pages/home/index.vue";
-import Songoku from "../pages/home/songoku/index.vue";
-import Piccolo from "../pages/home/piccolo/index.vue";
-import Vegeta from "../pages/home/vegeta/index.vue";
+import Dashboard from "../pages/home/dashboard/index.vue";
+import User from "../pages/home/user/index.vue";
+import Ingredient from "../pages/home/ingredient/index.vue";
+import Recipe from "../pages/home/recipe/index.vue";
 
 const routes = [
   {
     path: "/",
     component: Home,
-    redirect: "songoku",
+    redirect: "dashboard",
     children: [
-      { path: "songoku", component: Songoku },
-      { path: "piccolo", component: Piccolo },
-      { path: "vegeta", component: Vegeta },
+      { path: "dashboard", component: Dashboard },
+      { path: "user", component: User },
+      { path: "ingredient", component: Ingredient },
+      { path: "recipe", component: Recipe },
     ],
   },
   { path: "/login", component: Login },
-  { path: "/welcome", component: Welcome },
 ];
 
 const router = createRouter({

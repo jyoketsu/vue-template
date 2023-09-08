@@ -1,5 +1,5 @@
 <template>
-  <div class="root"></div>
+  <div class="root">dashboard</div>
 </template>
 <script setup lang="ts"></script>
 <style scoped>
@@ -9,9 +9,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(/images/10021.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 </style>

@@ -10,6 +10,7 @@ const defaultLocale = getDefaultLanguage();
 // 实例化I18n
 const i18n = createI18n({
   locale: defaultLocale, // 初始化配置语言
+  legacy: false,
   messages: {
     "zh-CN": zhCn,
     "zh-TW": zhTw,

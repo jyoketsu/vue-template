@@ -20,7 +20,7 @@ onMounted(() => {
 
 watchEffect(() => {
   if (expired.value) {
-    router.push("/welcome");
+    router.push("/login");
     // window.location.reload();
   }
 });
@@ -49,6 +49,10 @@ body,
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--el-background-color-base);
   color: var(--el-text-color-primary);
+  box-sizing: border-box;
+}
+
+* {
   box-sizing: border-box;
 }
 

@@ -29,27 +29,33 @@ const mutations: MutationTree<AuthState> = {
 };
 
 const actions: ActionTree<AuthState, RootState> = {
-  // 获取用户信息
-  async getUserByToken({ commit }, token: string) {
-    const res: any = await api.auth.loginByToken(token);
-    if (res.statusCode === "200") {
-      api.setToken(token);
+  // 登录
+  async login(
+    { commit },
+    { username, password }: { username: string; password: string }
+  ) {
+    const res: any = await api.auth.login(username, password);
+    if (res.status === 200) {
       const user = res.result;
       commit("setUser", user);
     } else {
       commit("clearUser");
+      ElMessage.error(res.msg);
+    }
+  },
+  // 获取用户信息
+  async getUserByToken({ commit }) {
+    const res: any = await api.auth.loginByToken();
+    if (res.status === 200) {
+      const user = res.result;
+      commit("setUser", user);
+    } else {
+      commit("clearUser");
+      ElMessage.error(res.msg);
     }
   },
   logout({ commit }) {
     commit("clearUser");
-  },
-  async getUploadToken({ commit }) {
-    const res: any = await api.auth.getUptoken();
-    if (res.statusCode === "200") {
-      commit("setUploadToken", res.result);
-    } else {
-      ElMessage.error(i18n.global.t("message.qiniuFailed"));
-    }
   },
 };
 

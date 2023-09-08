@@ -1,13 +1,16 @@
 <template>
   <div class="head">
-    <div class="page-button" @click="changePage('songoku')">
-      {{ $t("example.songoku") }}
+    <div class="page-button" @click="changePage('dashboard')">
+      {{ $t("example.dashboard") }}
     </div>
-    <div class="page-button" @click="changePage('piccolo')">
-      {{ $t("example.piccolo") }}
+    <div class="page-button" @click="changePage('user')">
+      {{ $t("example.user") }}
     </div>
-    <div class="page-button" @click="changePage('vegeta')">
-      {{ $t("example.vegeta") }}
+    <div class="page-button" @click="changePage('ingredient')">
+      {{ $t("example.ingredient") }}
+    </div>
+    <div class="page-button" @click="changePage('recipe')">
+      {{ $t("example.recipe") }}
     </div>
     <span class="space"></span>
     <el-select
