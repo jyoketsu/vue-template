@@ -12,7 +12,10 @@
 
 ## 简介
 
-Vue3-example。使用`vite`，基于 `vue3 + TypeScript + vue-router + vuex + elementPlus` 开发。支持多语言和暗黑模式。
+vue-template。使用`vite`，基于 `vue3 + TypeScript + vue-router + vuex + elementPlus` 开发。支持多语言和暗黑模式。
+
+## 产品名
+今食（TodayEats），帮助用户决定今天吃什么。
 
 ## 使用技术
 
@@ -44,6 +47,10 @@ yarn dev
 ```
 yarn deploy
 ```
+
+## iconiFy
+
+http://icon-sets.iconify.design/mdi/
 
 ## 注意
 

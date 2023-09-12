@@ -1,33 +1,37 @@
 <template>
   <div class="head">
-    <div class="page-button" @click="changePage('dashboard')">
-      {{ $t("example.dashboard") }}
-    </div>
-    <div class="page-button" @click="changePage('user')">
-      {{ $t("example.user") }}
-    </div>
-    <div class="page-button" @click="changePage('ingredient')">
-      {{ $t("example.ingredient") }}
-    </div>
-    <div class="page-button" @click="changePage('recipe')">
-      {{ $t("example.recipe") }}
-    </div>
+    <IconButton
+      :icon="isCollapse ? 'mdi:menu-close' : 'mdi:menu-open'"
+      :icon-width="28"
+      type="text"
+      text
+      @click="emit('clickCollapse')"
+    />
     <span class="space"></span>
     <el-select
       v-model="currentLocale"
       @change="(val:string) => changeLocale(val)"
-      style="width: 100px"
+      style="width: 100px; margin-right: 8px"
     >
       <el-option label="简体中文" value="zh-CN" />
       <el-option label="繁體中文" value="zh-TW" />
       <el-option label="English" value="en" />
-      <el-option label="日本語" value="ja" />
     </el-select>
-    <Icon
-      :name="isDark ? 'icon-a-brightness1x' : 'icon-a-DarkMode1x'"
+
+    <IconButton
+      icon="mdi:theme-light-dark"
+      :icon-width="28"
+      type="text"
+      text
       @click="toggleDark"
     />
-    <Icon name="icon-a-Quit1x" @click="handleLogout" />
+    <IconButton
+      icon="mdi:logout"
+      :icon-width="28"
+      type="text"
+      text
+      @click="handleLogout"
+    />
   </div>
 </template>
 <script setup lang="ts">
@@ -35,8 +39,16 @@ import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import { useStore } from "../../store";
-import Icon from "../../components/Icon.vue";
 import setDark from "../../utils/dark";
+import IconButton from "../../components/IconButton.vue";
+
+defineProps<{
+  isCollapse: boolean;
+}>();
+
+const emit = defineEmits<{
+  (e: "clickCollapse"): void;
+}>();
 
 const { locale } = useI18n();
 const store = useStore();
@@ -48,9 +60,7 @@ function changeLocale(type: string) {
   locale.value = type;
   store.dispatch("common/changeLocale", type);
 }
-function changePage(path: string) {
-  router.push(path);
-}
+
 function toggleDark() {
   setDark(!isDark.value);
 }
