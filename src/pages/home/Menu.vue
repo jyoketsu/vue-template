@@ -7,19 +7,19 @@
   >
     <el-menu-item index="dashboard">
       <Icon icon="mdi:home" width="23" />
-      <span>{{ $t("menu.dashboard") }}</span>
+      <span v-if="!isCollapse">{{ $t("menu.dashboard") }}</span>
     </el-menu-item>
     <el-menu-item index="user">
       <Icon icon="mdi:account-details" width="23" />
-      <template #title>{{ $t("menu.user") }}</template>
+      <template v-if="!isCollapse" #title>{{ $t("menu.user") }}</template>
     </el-menu-item>
     <el-menu-item index="ingredient">
       <Icon icon="mdi:food-steak" width="23" />
-      <template #title>{{ $t("menu.ingredient") }}</template>
+      <template v-if="!isCollapse" #title>{{ $t("menu.ingredient") }}</template>
     </el-menu-item>
     <el-menu-item index="recipe">
       <Icon icon="mdi:silverware" width="23" />
-      <template #title>{{ $t("menu.recipe") }}</template>
+      <template v-if="!isCollapse" #title>{{ $t("menu.recipe") }}</template>
     </el-menu-item>
   </el-menu>
 </template>
@@ -60,5 +60,8 @@ onMounted(() => {
 }
 .el-menu-vertical:not(.el-menu--collapse) .iconify--mdi {
   margin-right: 8px;
+}
+.el-menu-item.is-active:hover {
+  color: var(--el-text-color-primary);
 }
 </style>

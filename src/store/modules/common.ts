@@ -6,7 +6,7 @@ import { getDefaultLanguage } from "../../utils/util";
 const state: CommonState = {
   locale: getDefaultLanguage(),
   dark: localStorage.getItem("DARK") ? true : false,
-  theme: localStorage.getItem("THEME") || "#409eff",
+  theme: "#86C166",
   menuVisible: false,
   loading: false,
 };

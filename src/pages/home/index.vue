@@ -6,22 +6,30 @@
           class="icon-logo"
           :style="`margin-right: ${isCollapse ? 0 : 8}px;`"
         />
-        <i v-if="!isCollapse" class="icon-text" />
+        <i
+          v-if="!isCollapse"
+          class="icon-text"
+          :style="`background-image: url('logo-title${
+            isDark ? `-dark` : ``
+          }.png');`"
+        />
       </div>
       <div class="menu-wrapper"><Menu :isCollapse="isCollapse" /></div>
     </div>
-    <div class="content">
+    <div class="right">
       <Head
         :isCollapse="isCollapse"
         @clickCollapse="isCollapse = !isCollapse"
       />
-      <router-view></router-view>
+      <div class="content">
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import { ElMessage } from "element-plus";
-import { computed, onMounted, ref, watch, watchEffect } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useStore } from "../../store";
 import Menu from "./Menu.vue";
@@ -33,7 +41,8 @@ const route = useRoute();
 const store = useStore();
 const menuVisible = computed(() => store.state.common.menuVisible);
 const user = computed(() => store.state.auth.user);
-const isCollapse = ref(false);
+const isDark = computed(() => store.state.common.dark);
+const isCollapse = ref(localStorage.getItem("isCollapse") ? true : false);
 
 const handleClose = () => {
   store.commit("common/setMenuVisible", false);
@@ -47,6 +56,14 @@ onMounted(() => {
     router.push("/login");
   }
 });
+
+watch(isCollapse, (newVal) => {
+  if (newVal) {
+    localStorage.setItem("isCollapse", "1");
+  } else {
+    localStorage.removeItem("isCollapse");
+  }
+});
 </script>
 
 <style scoped>
@@ -54,12 +71,12 @@ onMounted(() => {
   width: 100%;
   height: 100vh;
   display: flex;
+  overflow: hidden;
 }
 .left {
   display: flex;
   flex-direction: column;
   background-color: var(--el-menu-bg-color);
-  flex-shrink: 0;
 }
 .logo {
   height: 50px;
@@ -78,7 +95,6 @@ onMounted(() => {
 .icon-text {
   width: 100px;
   height: 45px;
-  background-image: url("logo-title.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -87,11 +103,15 @@ onMounted(() => {
   flex: 1;
   overflow: auto;
 }
-.content {
+.right {
   flex: 1;
   width: 100%;
   height: 100%;
-  display: grid;
-  grid-template-rows: 50px 1fr;
+  overflow: hidden;
+}
+.content {
+  width: 100%;
+  height: calc(100% - 50px);
+  overflow: auto;
 }
 </style>

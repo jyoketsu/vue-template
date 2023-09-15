@@ -18,6 +18,8 @@ declare module 'vue' {
     ElOption: typeof import('element-plus/es')['ElOption']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
+    ElTable: typeof import('element-plus/es')['ElTable']
+    ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     Icon: typeof import('./src/components/Icon.vue')['default']
     IconButton: typeof import('./src/components/IconButton.vue')['default']
     Iconfont: typeof import('./src/components/Iconfont.vue')['default']

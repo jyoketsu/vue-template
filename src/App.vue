@@ -38,6 +38,7 @@ body,
   width: 100%;
   min-height: 100vh;
   margin: unset;
+  overflow: hidden;
 }
 #app {
   font-family: "zh quote", -apple-system, BlinkMacSystemFont, "PingFang SC",

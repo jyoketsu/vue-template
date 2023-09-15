@@ -8,6 +8,7 @@ import {
 import { RootState } from "./types/RootState";
 import common from "./modules/common";
 import auth from "./modules/auth";
+import user from "./modules/user";
 
 export const key: InjectionKey<Store<RootState>> = Symbol();
 
@@ -15,6 +16,7 @@ const rootStore: StoreOptions<RootState> = {
   modules: {
     auth,
     common,
+    user,
   },
 };
 

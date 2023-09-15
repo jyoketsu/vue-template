@@ -1,6 +1,5 @@
 import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL;
-let token = localStorage.getItem("auth_token") || "";
 
 const request = {
   get(path: string, params?: object) {
@@ -63,7 +62,7 @@ const request = {
         const response = await axios({
           method: "delete",
           url: path,
-          data: params,
+          params,
           // headers: {
           //   token: token,
           // },
@@ -89,10 +88,25 @@ const auth = {
   },
 };
 
+const user = {
+  getUserList() {
+    return request.get(API_URL + "/user");
+  },
+  getUserDetail(_id: string) {
+    return request.get(API_URL + "/user/detail", { _id });
+  },
+  updateUser(_id: string, updater: object) {
+    return request.patch(API_URL + "/user/update", { _id, updater });
+  },
+  deleteUser(_id: string) {
+    return request.delete(API_URL + "/user/delete", { _id });
+  },
+  countUser() {
+    return request.get(API_URL + "/user/count");
+  },
+};
+
 export default {
   auth,
-  setToken: (_token: string) => {
-    localStorage.setItem("auth_token", _token);
-    token = _token;
-  },
+  user,
 };

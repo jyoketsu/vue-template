@@ -76,6 +76,7 @@ function handleLogout() {
   align-items: center;
   padding: 0 15px;
   box-sizing: border-box;
+  border-bottom: 1px solid var(--el-border-color);
 }
 .space {
   flex: 1;
