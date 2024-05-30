@@ -1,0 +1,79 @@
+<script setup lang="ts">
+// This starter template is using Vue 3 <script setup> SFCs
+// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
+import { computed, onMounted, watchEffect } from "vue";
+import { storeToRefs } from "pinia";
+import { useCommonStore } from "@/stores/common";
+import "element-plus/es/components/message/style/css";
+import { useRouter } from "vue-router";
+const router = useRouter();
+const store = useCommonStore();
+
+watchEffect(() => {
+  // if (expired.value) {
+  //   router.push("/login");
+  //   // window.location.reload();
+  // }
+});
+</script>
+
+<template>
+  <router-view></router-view>
+</template>
+
+<style>
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+#app {
+  font-family: "zh quote", -apple-system, BlinkMacSystemFont, "PingFang SC",
+    "Noto Sans", "Noto Sans CJK SC", "Microsoft YaHei UI", "Microsoft YaHei",
+    "WenQuanYi Micro Hei", sans-serif, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--el-background-color-base);
+  color: var(--el-text-color-primary);
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.el-popup-parent--hidden {
+  overflow: hidden;
+}
+::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 5px;
+  /*高宽分别对应横竖滚动条的尺寸*/
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
+  background: "#474747";
+}
+::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 2px;
+  background-color: var(--el-color-primary);
+}
+:focus {
+  outline: none;
+}
+.el-dialog {
+  max-width: 540px;
+}
+/* :root {
+  --el-color-primary: green;
+} */
+</style>
