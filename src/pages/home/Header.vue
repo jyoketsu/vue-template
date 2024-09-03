@@ -1,9 +1,8 @@
 <template>
   <div
-    class="w-full h-[56px] fixed left-0 top-0 bg-white dark:bg-zinc-700 bg-opacity-60 backdrop-blur-md z-50 flex items-center px-[16px] space-x-2 border-b dark:border-b-zinc-700"
+    class="w-full h-11 fixed left-60 top-0 bg-white dark:bg-zinc-700 bg-opacity-60 backdrop-blur-md z-50 flex items-center px-[16px] space-x-2 border-b dark:border-b-zinc-700"
   >
-    <i class="size-[44px] bg-[url('/logo.svg')] bg-contain bg-center"></i>
-    <span class="font-bold text-xl">Vue admin template</span>
+    <span>Head</span>
     <span class="flex-1"></span>
     <el-switch
       v-model="isDark"

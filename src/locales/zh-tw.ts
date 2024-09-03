@@ -2,8 +2,7 @@ export default {
   router: {
     dashboard: "儀表板",
     user: "用戶管理",
-    ingredient: "食材管理",
-    recipe: "菜譜管理",
+    editor: "編輯器",
   },
   menu: {
     edit: "編輯",

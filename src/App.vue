@@ -29,7 +29,7 @@ watchEffect(() => {
 html,
 body {
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 #app {
   font-family: "zh quote", -apple-system, BlinkMacSystemFont, "PingFang SC",
@@ -42,6 +42,7 @@ body {
   background-color: var(--el-background-color-base);
   color: var(--el-text-color-primary);
   box-sizing: border-box;
+  height: 100%;
 }
 
 * {
@@ -73,7 +74,7 @@ body {
 .el-dialog {
   max-width: 540px;
 }
-/* :root {
-  --el-color-primary: green;
-} */
+#nprogress .bar {
+  background: var(--el-color-primary) !important;
+}
 </style>

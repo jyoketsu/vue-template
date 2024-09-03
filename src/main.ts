@@ -1,12 +1,16 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import router from "./router";
+import { router } from "./router";
 import i18n from "./locales";
 import { ClickOutside } from "element-plus";
 import { createPinia } from "pinia";
+import component from "@/components/index";
 import "@/styles/dark/css-vars.css";
+import "@/styles/element/custom.css";
+import "./navigationGuards"
 
 const pinia = createPinia();
 const app = createApp(App);
 app.directive("clickoutside", ClickOutside);
+app.use(component);
 app.use(pinia).use(router).use(i18n).mount("#app");
