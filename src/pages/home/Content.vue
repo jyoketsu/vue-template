@@ -1,11 +1,8 @@
 <template>
-  <div class="size-full overflow-auto relative">
+  <div class="size-full overflow-hidden relative flex flex-col">
     <Header />
-    <div class="size-full flex flex-col">
-      <div class="w-full h-11 flex-shrink-0"></div>
-      <div class="flex-1">
-        <router-view></router-view>
-      </div>
+    <div class="flex-1 overflow-auto">
+      <router-view></router-view>
     </div>
   </div>
 </template>

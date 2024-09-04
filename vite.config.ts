@@ -3,8 +3,10 @@ import vue from "@vitejs/plugin-vue";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
+// @ts-ignore
 import ElementPlus from "unplugin-element-plus/vite";
 import { resolve } from "path";
+import { viteMockServe } from "vite-plugin-mock";
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {
@@ -34,6 +36,10 @@ export default ({ mode }) => {
       }),
       Components({
         resolvers: [ElementPlusResolver({ importStyle: "sass" })],
+      }),
+      viteMockServe({
+        mockPath: "./src/mock",
+        // localEnabled: true,
       }),
     ],
   });

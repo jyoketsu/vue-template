@@ -10,8 +10,6 @@ router.beforeEach(async (to, from, next) => {
   nprogress.start();
   const userStore = useAuthStore();
   const token = localStorage.getItem("auth_token");
-  console.log("------userStore.user---", userStore.user);
-
   if (token) {
     if (to.path !== "/login") {
       //判断有没有用户信息
@@ -28,7 +26,7 @@ router.beforeEach(async (to, from, next) => {
         next();
       }
     } else {
-      next({ path: "/" });
+      next();
     }
   } else {
     if (to.path !== "/login") {

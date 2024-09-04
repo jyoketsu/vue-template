@@ -7,7 +7,8 @@ import { createPinia } from "pinia";
 import component from "@/components/index";
 import "@/styles/dark/css-vars.css";
 import "@/styles/element/custom.css";
-import "./navigationGuards"
+import "./navigationGuards";
+import "./mock/index";
 
 const pinia = createPinia();
 const app = createApp(App);

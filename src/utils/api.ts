@@ -86,8 +86,8 @@ const auth = {
       password,
     });
   },
-  loginByToken() {
-    return request.get(API_URL + "/user");
+  loginByToken(token: string) {
+    return request.get(API_URL + "/user", { token });
   },
   getUptoken() {
     return request.get(API_URL + "/account/qiniuToken", {

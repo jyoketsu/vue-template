@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-60 h-full flex-shrink-0 flex flex-col overflow-hidden bg-neutral-50 border-r border-r-neutral-100 dark:border-r-zinc-700"
+    class="w-60 h-full flex-shrink-0 flex flex-col overflow-hidden bg-neutral-50 dark:bg-zinc-700 border-r border-r-neutral-100 dark:border-r-zinc-700"
   >
     <div class="w-full h-11 flex-shrink-0 flex items-center px-5 space-x-2">
       <i class="size-[39px] bg-[url('/logo.svg')] bg-contain bg-center"></i>

@@ -1,13 +1,6 @@
 <template>
   <div class="size-full flex justify-center items-center">
-    <el-form
-      class="w-80"
-      ref="formRef"
-      :model="loginForm"
-      label-position="left"
-      autocomplete="on"
-      :rules="rules"
-    >
+    <el-form class="w-80" ref="formRef" :model="loginForm" label-position="left" autocomplete="on" :rules="rules">
       <el-form-item prop="username">
         <el-input v-model="loginForm.username" placeholder="请输入用户名">
           <template #prefix>
@@ -16,22 +9,14 @@
         </el-input>
       </el-form-item>
       <el-form-item prop="password">
-        <el-input
-          v-model="loginForm.password"
-          type="password"
-          placeholder="请输入密码"
-        >
+        <el-input v-model="loginForm.password" type="password" placeholder="请输入密码">
           <template #prefix>
             <LockKeyholeIcon class="size-5" />
           </template>
         </el-input>
       </el-form-item>
       <el-form-item>
-        <el-button
-          type="primary"
-          style="width: 100%"
-          @click="onSubmit(formRef)"
-        >
+        <el-button type="primary" style="width: 100%" @click="onSubmit(formRef)">
           登录
         </el-button>
       </el-form-item>
@@ -83,9 +68,9 @@ const onSubmit = async (formEl?: FormInstance) => {
     if (!formEl) return;
     await formEl.validate(async (valid, fields) => {
       if (valid) {
-        const mes = await login(loginForm);
-        // notification(mes, "您好，欢迎回来!", "success")
-        router.push({ path: route.query.url as any });
+        await login(loginForm);
+        notification("登录成功", "您好，欢迎回来!", "success")
+        router.push({ path: (route.query.url as any) || '/' });
       } else {
         console.log("error submit!", fields);
       }
