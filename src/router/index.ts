@@ -8,13 +8,13 @@ export const routes = [
     redirect: "dashboard",
     children: [
       {
-        path: "dashboard",
+        path: "/dashboard",
         // icon需在@/components/index中全局注册
         meta: { title: "dashboard", icon: "LayoutDashboard", isShow: true },
         component: () => import("@/pages/home/dashboard/index.vue"),
       },
       {
-        path: "editor",
+        path: "/editor",
         meta: { title: "editor", icon: "FileText", isShow: true },
         component: () => import("@/pages/home/editor/index.vue"),
       },
