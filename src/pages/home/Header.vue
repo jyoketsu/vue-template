@@ -1,6 +1,9 @@
 <template>
-  <div
-    class="w-full h-11 flex-shrink-0 flex items-center px-[16px] space-x-2">
+  <div class="w-full h-11 flex-shrink-0 flex items-center px-4 space-x-2">
+    <div v-if="isCollapsed" class="text-zinc-700 hover:cursor-pointer" @click="toggleCollapse">
+      <ChevronsRightIcon v-if="isOpen" class="size-5" />
+      <MenuIcon v-else class="size-5" />
+    </div>
     <span>Head</span>
     <span class="flex-1 flex-shrink-0"></span>
     <el-switch v-model="isDark" :active-action-icon="MoonIcon" :inactive-action-icon="SunIcon" @change="toggleDark" />
@@ -21,14 +24,15 @@ import { useDark, useToggle } from "@vueuse/core";
 import { messageBox } from "@/Hooks/Element-plus";
 import { useAuthStore } from "@/stores/auth";
 import { useRoute, useRouter } from "vue-router";
+import { MenuIcon, ChevronsRightIcon } from "lucide-vue-next";
 
 const { locale } = useI18n();
 const router = useRouter();
 const route = useRoute();
-const store = useCommonStore();
+const commonStore = useCommonStore();
 const authStore = useAuthStore();
-const { currentLocale } = storeToRefs(store);
-const { setLocale } = store;
+const { currentLocale, isCollapsed, isOpen } = storeToRefs(commonStore);
+const { setLocale, toggleCollapse } = commonStore;
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 
