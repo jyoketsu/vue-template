@@ -41,6 +41,6 @@ const handleMouseMove = useThrottleFn((event: MouseEvent) => {
 
   // 更新上一次的鼠标X坐标
   lastX = currentX;
-}, 200)
+}, 100)
 </script>
 <style scoped></style>

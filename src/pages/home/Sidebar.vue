@@ -15,7 +15,7 @@
           <span class="font-bold">Vue Template</span>
           <div class="flex-1"></div>
           <ChevronsLeftIcon v-if="!isCollapsed"
-            class="size-5 text-zinc-400 hover:text-zinc-700 hover:cursor-pointer transition-opacity duration-200 ease-in"
+            class="size-5 text-zinc-400 hover:text-zinc-700 dark:text-zinc-300 dark:hover:text-zinc-50 hover:cursor-pointer transition-opacity duration-200 ease-in"
             :class="{ 'opacity-0': !hover }" @click="toggleCollapse" />
         </div>
         <div class="size-full overflow-auto">

@@ -1,25 +1,39 @@
 <template>
-  <div class="w-full h-11 flex-shrink-0 flex items-center px-4 space-x-2">
-    <div v-if="isCollapsed" class="text-zinc-700 hover:cursor-pointer" @click="toggleCollapse">
+  <div class="w-full h-11 flex-shrink-0 flex items-center px-4 space-x-4">
+    <div v-if="isCollapsed" class="hover:cursor-pointer" @click="toggleCollapse">
       <ChevronsRightIcon v-if="isOpen" class="size-5" />
       <MenuIcon v-else class="size-5" />
     </div>
     <span>Head</span>
     <span class="flex-1 flex-shrink-0"></span>
     <el-switch v-model="isDark" :active-action-icon="MoonIcon" :inactive-action-icon="SunIcon" @change="toggleDark" />
-    <el-select v-model="currentLocale" @change="(val: string) => changeLocale(val)"
-      style="width: 100px; margin-right: 8px">
-      <el-option label="简体中文" value="zh-CN" />
-      <el-option label="繁體中文" value="zh-TW" />
-    </el-select>
-    <el-button type="primary" @click="loginOut">退出登录</el-button>
+    <el-dropdown>
+      <LanguagesIcon class="size-5" />
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item @click="changeLocale('zh-CN')">简体中文</el-dropdown-item>
+          <el-dropdown-item @click="changeLocale('zh-TW')">繁體中文</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+    <el-dropdown>
+      <div class="h-full flex items-center space-x-1">
+        <el-avatar :size="28" :src="user?.avatar">{{ user?.username.substring(0, 1) }}</el-avatar>
+        <span>{{ user?.username }}</span>
+      </div>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item @click="loginOut">{{ $t('common.logout') }}</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
   </div>
 </template>
 <script setup lang="ts">
 import { useCommonStore } from "@/stores/common";
 import { useI18n } from "vue-i18n";
 import { storeToRefs } from "pinia";
-import { MoonIcon, SunIcon } from "lucide-vue-next";
+import { LanguagesIcon, MoonIcon, SunIcon } from "lucide-vue-next";
 import { useDark, useToggle } from "@vueuse/core";
 import { messageBox } from "@/Hooks/Element-plus";
 import { useAuthStore } from "@/stores/auth";
@@ -31,10 +45,12 @@ const router = useRouter();
 const route = useRoute();
 const commonStore = useCommonStore();
 const authStore = useAuthStore();
+const { user } = storeToRefs(authStore);
 const { currentLocale, isCollapsed, isOpen } = storeToRefs(commonStore);
 const { setLocale, toggleCollapse } = commonStore;
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
+const { t } = useI18n();
 
 
 function changeLocale(type: string) {
@@ -44,7 +60,7 @@ function changeLocale(type: string) {
 
 // 退出登录
 const loginOut = async () => {
-  await messageBox("提示", "您确定要退出登录吗？", "primary")
+  await messageBox(t("common.tip"), t("common.logoutConfirm"), "primary")
   authStore.logout()
   router.push({
     path: "/login",

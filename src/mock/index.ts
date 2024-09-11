@@ -6,12 +6,14 @@ const userInfo = [
     username: "admin",
     password: "123456",
     role: "admin",
+    avatar: "https://psnine.com/img/jyoketsu3-1703748121-s.jpg",
     token: "system_token",
   },
   {
     username: "user",
     password: "123456",
     role: "user",
+    avatar: "https://psnine.com/Upload/game/34992.png",
     token: "user_token",
   },
 ];

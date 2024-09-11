@@ -9,5 +9,5 @@ export default {
     },
   },
   plugins: [],
-  darkMode: "selector",
+  darkMode: "class",
 };
