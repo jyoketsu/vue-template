@@ -29,17 +29,12 @@ import { message, notification } from "@/Hooks/Element-plus";
 import { useAuthStore } from "@/stores/auth";
 import { FormInstance } from "element-plus";
 import { LockKeyholeIcon, UserIcon } from "lucide-vue-next";
-import { storeToRefs } from "pinia";
-import { computed, onMounted, reactive, ref, watch, watchEffect } from "vue";
+import { reactive, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 const router = useRouter();
 const route = useRoute();
-const query = route.query;
-const token = query.token;
-const redirectPath = query.redirectPath;
 const store = useAuthStore();
-const { user } = storeToRefs(store);
 const { login } = store;
 
 const formRef = ref<FormInstance>();

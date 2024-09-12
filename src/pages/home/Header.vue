@@ -31,12 +31,12 @@
 </template>
 <script setup lang="ts">
 import { useCommonStore } from "@/stores/common";
+import { useAuthStore } from "@/stores/auth";
 import { useI18n } from "vue-i18n";
 import { storeToRefs } from "pinia";
 import { LanguagesIcon, MoonIcon, SunIcon } from "lucide-vue-next";
 import { useDark, useToggle } from "@vueuse/core";
 import { messageBox } from "@/Hooks/Element-plus";
-import { useAuthStore } from "@/stores/auth";
 import { useRoute, useRouter } from "vue-router";
 import { MenuIcon, ChevronsRightIcon } from "lucide-vue-next";
 import Breadcrumb from './Breadcrumb.vue'
@@ -47,7 +47,7 @@ const route = useRoute();
 const commonStore = useCommonStore();
 const authStore = useAuthStore();
 const { user } = storeToRefs(authStore);
-const { currentLocale, isCollapsed, isOpen } = storeToRefs(commonStore);
+const { isCollapsed, isOpen } = storeToRefs(commonStore);
 const { setLocale, toggleCollapse } = commonStore;
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
