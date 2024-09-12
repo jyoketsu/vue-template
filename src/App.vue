@@ -27,7 +27,6 @@ body {
     "Noto Color Emoji";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--el-background-color-base);
   color: var(--el-text-color-primary);
   box-sizing: border-box;
   height: 100%;

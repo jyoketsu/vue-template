@@ -1,10 +1,10 @@
 <template>
-  <div class="w-full h-11 flex-shrink-0 flex items-center px-4 space-x-4">
+  <div class="w-full h-11 flex-shrink-0 flex items-center px-4 space-x-4 select-none">
     <div v-if="isCollapsed" class="hover:cursor-pointer" @click="toggleCollapse">
       <ChevronsRightIcon v-if="isOpen" class="size-5" />
       <MenuIcon v-else class="size-5" />
     </div>
-    <span>Head</span>
+    <breadcrumb />
     <span class="flex-1 flex-shrink-0"></span>
     <el-switch v-model="isDark" :active-action-icon="MoonIcon" :inactive-action-icon="SunIcon" @change="toggleDark" />
     <el-dropdown>
@@ -39,6 +39,7 @@ import { messageBox } from "@/Hooks/Element-plus";
 import { useAuthStore } from "@/stores/auth";
 import { useRoute, useRouter } from "vue-router";
 import { MenuIcon, ChevronsRightIcon } from "lucide-vue-next";
+import Breadcrumb from './Breadcrumb.vue'
 
 const { locale } = useI18n();
 const router = useRouter();
