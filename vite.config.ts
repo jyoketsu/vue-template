@@ -19,13 +19,6 @@ export default ({ mode }) => {
         "~/": `${resolve(__dirname, "src")}/`,
       },
     },
-    css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData: `@use "~/styles/element/index.scss" as *;`,
-        },
-      },
-    },
     plugins: [
       vue(),
       ElementPlus({

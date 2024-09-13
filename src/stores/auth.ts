@@ -1,6 +1,6 @@
 import { ApiResponse } from "@/interface/ApiResponse";
 import { User } from "@/interface/User";
-import api from "@/utils/api";
+import { login as loginApi, loginByToken } from "@/api/auth";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 
@@ -13,7 +13,7 @@ export const useAuthStore = defineStore("auth", () => {
     username: string;
     password: string;
   }) => {
-    const response = (await api.auth.login(
+    const response = (await loginApi(
       username,
       password
     )) as ApiResponse<string>;
@@ -24,7 +24,7 @@ export const useAuthStore = defineStore("auth", () => {
     }
   };
   const getUserInfoByToken = async (token: string) => {
-    const response = (await api.auth.loginByToken(token)) as ApiResponse<User>;
+    const response = (await loginByToken(token)) as ApiResponse<User>;
     if (response.code === 200) {
       user.value = { ...response.data };
     } else {

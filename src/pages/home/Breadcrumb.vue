@@ -3,7 +3,7 @@
 		<el-breadcrumb separator="/">
 			<el-breadcrumb-item v-for="(item, index) in routesComputed" v-show="item.meta.title" :key="index"
 				:to="{ path: item.path }">
-				{{ $t(`router.${item.meta.title}`) }}
+				{{ item.meta.title ? $t(`router.${item.meta.title}`) : '' }}
 			</el-breadcrumb-item>
 		</el-breadcrumb>
 	</div>

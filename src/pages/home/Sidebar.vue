@@ -1,9 +1,9 @@
 <template>
   <div
-    class="sidebar h-full relative flex-shrink-0 flex flex-col bg-neutral-50 dark:bg-zinc-700 border-r border-r-neutral-100 dark:border-r-zinc-700 transition-width duration-300 ease-in-out z-10"
+    class="sidebar h-full relative flex-shrink-0 flex flex-col transition-width duration-300 ease-in-out z-10"
     :class="isCollapsed ? 'w-0' : 'w-60'">
     <div class="content-wrapper absolute top-0 right-0 bottom-0 left-0 overflow-visible z-10">
-      <div class="sidebar-content w-60 flex flex-col transition-all duration-300 ease-in-out bg-neutral-50 dark:bg-zinc-700"
+      <div class="sidebar-content w-60 flex flex-col transition-all duration-300 ease-in-out bg-neutral-50 dark:bg-zinc-800"
         :class="{
           'translate-y-12 h-collapsed-menu-height shadow-xl border-r border-y dark:border-zinc-700 rounded-r-md': isCollapsed,
           'h-full': !isCollapsed,
@@ -69,9 +69,5 @@ const handleMouseOut = () => {
 
 .el-menu-item.is-active {
   background-color: var(--el-menu-hover-bg-color) !important;
-}
-
-.el-menu-item {
-  margin-bottom: 5px;
 }
 </style>

@@ -1,6 +1,5 @@
-import { User } from "@/interface/User";
 import { defineStore } from "pinia";
-import { computed, ref } from "vue";
+import { ref } from "vue";
 
 export const useCommonStore = defineStore("common", () => {
   const currentLocale = ref("zh-CN");

@@ -14,9 +14,31 @@ export const routes = [
         component: () => import("@/pages/home/dashboard/index.vue"),
       },
       {
-        path: "/editor",
-        meta: { title: "editor", icon: "FileText", isShow: true },
-        component: () => import("@/pages/home/editor/index.vue"),
+        path: "/tableForm",
+        meta: { title: "tableForm", icon: "Table", isShow: true },
+        component: () => import("@/pages/home/table/index.vue"),
+      },
+      {
+        path: "/tools",
+        meta: { title: "tools", icon: "Hammer", isShow: true },
+        component: () => import("@/pages/home/tools/index.vue"),
+      },
+      {
+        path: "/component",
+        meta: { title: "component", icon: "Component", isShow: true },
+        redirect: "editor",
+        children: [
+          {
+            path: "/editor",
+            meta: { title: "editor", icon: "FileText", isShow: true },
+            component: () => import("@/pages/home/editor/index.vue"),
+          },
+          {
+            path: "/chart",
+            meta: { title: "chart", icon: "LineChart", isShow: true },
+            component: () => import("@/pages/home/chart/index.vue"),
+          },
+        ],
       },
     ],
   },

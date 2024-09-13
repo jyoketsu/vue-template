@@ -2,10 +2,21 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import "element-plus/es/components/message/style/css";
+import { computed, onMounted } from "vue";
+import { useI18n } from "vue-i18n";
+
+const { messages, locale } = useI18n();
+
+// 获取全局 i18n
+const getGlobalI18n = computed(() => {
+  return messages.value[locale.value];
+});
 </script>
 
 <template>
-  <router-view></router-view>
+  <el-config-provider :locale="getGlobalI18n">
+    <router-view></router-view>
+  </el-config-provider>
 </template>
 
 <style>

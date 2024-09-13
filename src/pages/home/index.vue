@@ -1,5 +1,5 @@
 <template>
-  <div class="home size-full flex bg-white dark:bg-zinc-800" @mousemove="handleMouseMove">
+  <div class="home size-full flex bg-white dark:bg-zinc-700" @mousemove="handleMouseMove">
     <Sidebar />
     <Content />
   </div>

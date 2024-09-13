@@ -5,6 +5,7 @@ import i18n from "./locales";
 import { ClickOutside } from "element-plus";
 import { createPinia } from "pinia";
 import component from "@/components/index";
+import "@/styles/light/css-vars.css";
 import "@/styles/dark/css-vars.css";
 import "@/styles/element/custom.css";
 import "./navigationGuards";

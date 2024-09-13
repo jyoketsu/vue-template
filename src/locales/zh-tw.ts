@@ -2,7 +2,11 @@ export default {
   router: {
     dashboard: "首頁",
     user: "用戶管理",
+    component: "組件實例",
     editor: "編輯器",
+    chart: "圖表",
+    tableForm: "表格表單",
+    tools: "小功能",
   },
   common: {
     logout: "退出登錄",
@@ -33,5 +37,11 @@ export default {
       "Element Plus 是基於 Vue 3 的 UI 組件庫，提供豐富的高質量組件，幫助開發者快速構建現代化、響應式的網頁應用。",
     lucideDesc:
       "Lucide 是一個開源的圖標庫，提供簡潔、現代的線性圖標，靈活可定製，適用於網頁和移動端應用。Lucide 以 SVG 格式為主，易於集成和使用。",
+  },
+  tools: {
+    cilpboard: "復製到剪貼板",
+    fullscreen: "全屏",
+    qrcode: "二維碼",
+    pdf: "下載為PDF",
   },
 };

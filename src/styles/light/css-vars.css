@@ -1,0 +1,9 @@
+:root {
+  --el-color-primary: #41b882;
+  --el-color-primary-light-3: #6ec5a8; /* 比主色亮 30% */
+  --el-color-primary-light-5: #97d6bd; /* 比主色亮 50% */
+  --el-color-primary-light-7: #bfe6d1; /* 比主色亮 70% */
+  --el-color-primary-light-8: #d2ecd9; /* 比主色亮 80% */
+  --el-color-primary-light-9: #e5f3e8; /* 比主色亮 90% */
+  --el-color-primary-dark-2: #359e6d;
+}

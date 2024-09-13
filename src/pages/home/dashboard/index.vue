@@ -31,8 +31,8 @@
   </div>
 </template>
 <script setup lang="ts">
+import { getLocationInfo, getWeatherInfo } from "@/api/publicApi";
 import { useAuthStore } from "@/stores/auth";
-import api from "@/utils/api";
 import { useDark } from "@vueuse/core";
 import { storeToRefs } from "pinia";
 import { computed, onMounted, ref } from "vue";
@@ -107,9 +107,9 @@ const openLink = (url: string) => {
 
 onMounted(async () => {
   greeting.value = getGreeting();
-  const res: any = await api.openApi.locationInfo();
+  const res: any = await getLocationInfo();
   if (res.status === '1') {
-    const weather: any = await api.openApi.weatherInfo(res.adcode);
+    const weather: any = await getWeatherInfo(res.adcode);
     if (weather.status === '1' && weather.lives.length) {
       weatherInfo.value = weather.lives[0];
     }
