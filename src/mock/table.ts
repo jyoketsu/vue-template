@@ -5,34 +5,33 @@ import Mock from "mockjs";
 const API_URL = "http://localhost:3000";
 
 // 模拟的用户信息数据
-let tableData = [
-  {
-    id: "1111",
-    name: "测试",
-    price: 2000,
-    remoteContainerLimit: 2,
-    availableBandwidth: 1000,
-    supportedRemoteConnections: "SSH,VNC",
-    wechatPush: 1,
-    weight: 1,
-    status: 1,
+let tableData: any[] = [];
+
+// 生成随机数据
+for (let i = 1; i <= 10; i++) {
+  tableData.push({
+    id: `${i}${i}${i}${i}`,
+    name: `测试套餐${i}`,
+    price: Math.floor(Math.random() * 5000) + 500, // 随机价格
+    remoteContainerLimit: Math.floor(Math.random() * 5) + 1, // 随机容器限制
+    availableBandwidth: Math.floor(Math.random() * 2000) + 500, // 随机带宽
+    supportedRemoteConnections: ["SSH", "VNC", "Jupyter"]
+      .sort(() => 0.5 - Math.random())
+      .slice(0, Math.floor(Math.random() * 3) + 1)
+      .join(","), // 随机支持的远程连接
+    wechatPush: Math.random() > 0.5 ? 1 : 0, // 随机微信推送
+    weight: Math.floor(Math.random() * 5) + 1, // 随机权重
+    status: Math.random() > 0.5 ? 1 : 0, // 随机状态
     updateBy: "admin",
-    updateTime: "2024-09-12 09:15:45",
-  },
-  {
-    id: "2222",
-    name: "测试套餐",
-    price: 1000,
-    remoteContainerLimit: 2,
-    availableBandwidth: 1000,
-    supportedRemoteConnections: "SSH,Jupyter,VNC",
-    wechatPush: 0,
-    weight: 1,
-    status: 0,
-    updateBy: "admin",
-    updateTime: "2024-09-12 10:15:45",
-  },
-];
+    updateTime: `2024-09-12 ${Math.floor(Math.random() * 24)
+      .toString()
+      .padStart(2, "0")}:${Math.floor(Math.random() * 60)
+      .toString()
+      .padStart(2, "0")}:${Math.floor(Math.random() * 60)
+      .toString()
+      .padStart(2, "0")}`, // 随机时间
+  });
+}
 
 // Mock 处理
 const fetchList = (options: any) => {
@@ -55,7 +54,7 @@ const fetchList = (options: any) => {
     data: {
       current: 1,
       pages: 1,
-      total: 2,
+      total: 10,
       size: 10,
       records: data,
     },

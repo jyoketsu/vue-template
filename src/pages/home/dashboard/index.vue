@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex flex-col space-y-3">
-    <el-card>
+    <el-card class="flex-shrink-0">
       <div class="flex items-center space-x-4">
         <el-avatar :size="50" :src="user?.avatar" />
         <div class="space-y-1">
@@ -11,7 +11,7 @@
         </div>
       </div>
     </el-card>
-    <el-card>
+    <el-card class="!overflow-visible">
       <template #header>
         <div class="card-header">
           <span>{{ $t("dashboard.techStack") }}</span>

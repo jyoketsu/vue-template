@@ -1,6 +1,6 @@
 <template>
-	<div class="layout-padding">
-		<div class="layout-padding-auto layout-padding-view">
+	<div class="layout-padding h-full overflow-hidden">
+		<div class="layout-padding-auto layout-padding-view h-full overflow-hidden flex flex-col">
 			<!-- 查询条件区域 -->
 			<el-row class="ml10" v-show="showSearch">
 				<el-form :inline="true" :model="state.queryForm" @keyup.enter="getDataList" ref="queryRef">
@@ -39,7 +39,7 @@
 			<!-- 表格区域 -->
 			<el-table :data="state.dataList" @selection-change="handleSelectionChange" style="width: 100%" row-key="id"
 				v-loading="state.loading" border :cell-style="tableStyle.cellStyle"
-				:header-cell-style="tableStyle.headerCellStyle">
+				:header-cell-style="tableStyle.headerCellStyle" class="!overflow-hidden">
 				<el-table-column align="center" type="selection" width="40" />
 				<el-table-column :label="$t('table.index')" type="index" width="60" />
 				<el-table-column :label="$t('table.name')" prop="name" show-overflow-tooltip></el-table-column>
