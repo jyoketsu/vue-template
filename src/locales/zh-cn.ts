@@ -17,6 +17,7 @@ export default {
     queryBtn: "查询",
     resetBtn: "重置",
     addBtn: "新增",
+    editBtn: "编辑",
     delBtn: "删除",
     updateBy: "更新人",
     updateTime: "更新时间",
@@ -27,6 +28,10 @@ export default {
     refresh: "刷新",
     confirmButtonText: "确认",
     cancelButtonText: "取消",
+    delConfirmText: "此操作将永久删除",
+    editSuccessText: "编辑成功",
+    delSuccessText: "删除成功",
+    optSuccessText: "操作成功",
   },
   menu: {
     edit: "编辑",
@@ -68,8 +73,8 @@ export default {
     price: "价格(￥)",
     perYear: "/年",
     higherNumberPriority: "1-99，数字越大展示越靠前",
-    online: "上线",
-    offline: "下线",
+    online: "启用",
+    offline: "禁用",
   },
   tools: {
     cilpboard: "复制到剪贴板",
@@ -77,5 +82,10 @@ export default {
     qrcode: "二维码",
     pdf: "下载为PDF",
     downloadFile: "下载文件",
+  },
+  message: {
+    box: {
+      title: "系统提示",
+    },
   },
 };

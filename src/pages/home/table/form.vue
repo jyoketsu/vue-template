@@ -91,7 +91,7 @@ const dataForm = reactive({
 const dataRules = ref({
 	name: [
 		{ required: true, message: '不能为空', trigger: 'blur' },
-		{ min: 3, max: 20, message: '名称长度必须介于 3 和 20 之间', trigger: 'blur' },
+		{ min: 1, max: 20, message: '名称长度必须介于 1 和 20 之间', trigger: 'blur' },
 	],
 	remoteContainerLimit: [
 		{ required: true, message: '不能为空', trigger: 'blur' },

@@ -11,11 +11,11 @@ export function addObj(obj: any) {
 }
 
 export function getObj(id: string) {
-  return request.post(API_URL + "/table/detail", { id });
+  return request.get(API_URL + "/table/details/" + id);
 }
 
-export function delObj(ids?: object) {
-  return request.post(API_URL + "/table/delete", ids);
+export function delObj(ids: object) {
+  return request.delete(API_URL + "/table/delete", ids);
 }
 
 export function putObj(obj: any) {
@@ -23,7 +23,7 @@ export function putObj(obj: any) {
 }
 
 export function toggleStatus(id: string, status: string) {
-  return request.post(API_URL + "/table/edit", { id, status });
+  return request.patch(API_URL + "/table/status", { id, status });
 }
 
 export function validatePositiveInteger(rule: any, value: any, callback: any) {

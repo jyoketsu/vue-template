@@ -5,15 +5,13 @@
 			<el-row class="ml10" v-show="showSearch">
 				<el-form :inline="true" :model="state.queryForm" @keyup.enter="getDataList" ref="queryRef">
 					<el-form-item :label="$t('table.name')" prop="name">
-						<el-input :placeholder="$t('table.inputNameTip')" @keyup.enter="getDataList" clearable
+						<el-input class="!w-40" :placeholder="$t('table.inputNameTip')" @keyup.enter="getDataList" clearable
 							v-model="state.queryForm.name" />
 					</el-form-item>
 					<el-form-item :label="t('table.status')" prop="status">
-						<el-select v-model="state.queryForm.status" :placeholder="$t('table.status')" class="!w-60" clearable>
-							<el-option label="test" value="test">
+						<el-select class="!w-40" v-model="state.queryForm.status" :placeholder="$t('table.status')" clearable>
+							<el-option :key="item.value" :label="item.label" :value="item.value" v-for="item in STATUS_OPTIONS">
 							</el-option>
-							<!-- <el-option :key="item.value" :label="item.label" :value="item.value" v-for="item in active_status">
-							</el-option> -->
 						</el-select>
 					</el-form-item>
 					<el-form-item>
@@ -26,12 +24,11 @@
 			<!-- 操作按钮区域 -->
 			<el-row>
 				<div class="mb-4" style="width: 100%">
-					<el-button @click="formDialogRef.openDialog()" class="ml10" :icon="CirclePlusIcon" type="primary"
-						v-auth="'license_customer_add'">
+					<el-button @click="formDialogRef.openDialog()" class="ml10" :icon="CirclePlusIcon" type="primary">
 						{{ $t('common.addBtn') }}
 					</el-button>
 					<el-button plain :disabled="multiple" @click="handleDelete(selectObjs)" class="ml10" :icon="Trash2Icon"
-						type="primary" v-auth="'license_customer_del'">
+						type="primary">
 						{{ $t('common.delBtn') }}
 					</el-button>
 					<right-toolbar @queryTable="getDataList" class="ml10" style="float: right; margin-right: 20px"
@@ -46,7 +43,7 @@
 				<el-table-column align="center" type="selection" width="40" />
 				<el-table-column :label="$t('table.index')" type="index" width="60" />
 				<el-table-column :label="$t('table.name')" prop="name" show-overflow-tooltip></el-table-column>
-				<el-table-column :label="$t('table.content')" width="230" show-overflow-tooltip>
+				<el-table-column :label="$t('table.content')" width="260">
 					<template #default="scope">
 						<div class="flex flex-col">
 							<span class="text-sm">{{ `${$t('table.price')}：${scope.row.price || ''}` }}</span>
@@ -60,17 +57,11 @@
 						</div>
 					</template>
 				</el-table-column>
-				<el-table-column :label="$t('table.wechatPush')" width="100" show-overflow-tooltip>
-					<template #default="scope">
-						<!-- <dict-tag :options="wechat_push" :value="scope.row.wechatPush"></dict-tag> -->
-						<span>todo dict</span>
-					</template>
-				</el-table-column>
 				<el-table-column :label="$t('table.weight')" prop="weight" />
 				<el-table-column :label="$t('table.status')" show-overflow-tooltip>
 					<template #default="scope">
-						<el-switch inline-prompt v-model="scope.row.status" active-value="1" inactive-value="0"
-							:active-text="$t('table.online')" :inactive-text="$t('table.offline')" v-auth="'license_customer_edit'"
+						<el-switch inline-prompt v-model="scope.row.status" :active-value="1" :inactive-value="0"
+							:active-text="$t('table.online')" :inactive-text="$t('table.offline')"
 							@change="(val: string) => handleChangeStatus(scope.row.id, val)" />
 					</template>
 				</el-table-column>
@@ -78,12 +69,11 @@
 				<el-table-column :label="$t('common.updateTime')" prop="updateTime" />
 				<el-table-column :label="$t('common.action')" width="150">
 					<template #default="scope">
-						<el-button class="text-sm" icon="edit-pen" @click="formDialogRef.openDialog(scope.row.id)" text
-							type="primary" v-auth="'license_customer_edit'">
+						<el-button class="text-sm !p-0" :icon="EditIcon" @click="formDialogRef.openDialog(scope.row.id)" text
+							type="primary">
 							{{ $t('common.editBtn') }}
 						</el-button>
-						<el-button class="text-sm" icon="delete" @click="handleDelete([scope.row.id])" text type="primary"
-							v-auth="'license_customer_del'">
+						<el-button class="text-sm !p-0" :icon="Trash2Icon" @click="handleDelete([scope.row.id])" text type="danger">
 							{{ $t('common.delBtn') }}
 						</el-button>
 					</template>
@@ -98,13 +88,14 @@
 	</div>
 </template>
 
-<script lang="ts" name="licensePlan" setup>
+<script lang="ts" name="listAndForm" setup>
 import { delObj, fetchList, toggleStatus } from '@/api/table';
 import { useI18n } from 'vue-i18n';
 import { defineAsyncComponent, reactive, ref } from 'vue';
 import { BasicTableProps, useTable } from '@/Hooks/table';
 import { useMessage, useMessageBox } from '@/Hooks/message';
-import { SearchIcon, RotateCcwIcon, CirclePlusIcon, Trash2Icon } from 'lucide-vue-next';
+import { SearchIcon, RotateCcwIcon, CirclePlusIcon, Trash2Icon, EditIcon } from 'lucide-vue-next';
+import { STATUS_OPTIONS, YES_NO } from '@/dictionary'
 
 // 动态引入组件
 const TableForm = defineAsyncComponent(() => import('./form.vue'));
