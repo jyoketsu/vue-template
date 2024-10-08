@@ -29,6 +29,11 @@ export const routes = [
         redirect: "editor",
         children: [
           {
+            path: "/gantt",
+            meta: { title: "gantt", icon: "GanttChart", isShow: true },
+            component: () => import("@/pages/home/gantt/index.vue"),
+          },
+          {
             path: "/editor",
             meta: { title: "editor", icon: "FileText", isShow: true },
             component: () => import("@/pages/home/editor/index.vue"),

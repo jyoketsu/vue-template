@@ -3,6 +3,7 @@ export default {
     dashboard: "首頁",
     user: "用戶管理",
     component: "組件實例",
+    gantt: "甘特圖",
     editor: "編輯器",
     chart: "圖表",
     tableForm: "表格表單",

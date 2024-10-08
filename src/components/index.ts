@@ -5,6 +5,7 @@ import {
   Table,
   Hammer,
   LineChart,
+  GanttChart,
 } from "lucide-vue-next";
 import Pagination from "@/components/pagination/index.vue";
 import RightToolbar from "@/components/rightToolbar/index.vue";
@@ -19,5 +20,6 @@ export default {
     app.component("LineChart", LineChart);
     app.component("Pagination", Pagination);
     app.component("RightToolbar", RightToolbar);
+    app.component("GanttChart", GanttChart);
   },
 };

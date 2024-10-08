@@ -3,6 +3,7 @@ export default {
     dashboard: "首页",
     user: "用户管理",
     component: "组件实例",
+    gantt: "甘特图",
     editor: "编辑器",
     chart: "图表",
     tableForm: "表格表单",
@@ -80,8 +81,9 @@ export default {
     cilpboard: "复制到剪贴板",
     fullscreen: "全屏",
     qrcode: "二维码",
-    pdf: "下载为PDF",
+    pdf: "打印为PDF",
     downloadFile: "下载文件",
+    importFile: "导入文件",
   },
   message: {
     box: {
