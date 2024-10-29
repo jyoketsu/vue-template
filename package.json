@@ -12,6 +12,7 @@
     "deploy-gh-pages": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
+    "@iconify/vue": "^4.1.2",
     "@tiptap/extension-character-count": "^2.0.0-beta.25",
     "@tiptap/extension-code-block-lowlight": "^2.0.0-beta.68",
     "@tiptap/extension-floating-menu": "^2.0.0-beta.56",
