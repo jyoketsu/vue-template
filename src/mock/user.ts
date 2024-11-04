@@ -16,7 +16,7 @@ const userInfo = [
     username: "user",
     password: "123456",
     role: "user",
-    avatar: "https://psnine.com/Upload/game/34992.png",
+    avatar: "",
     token: "user_token",
   },
 ];

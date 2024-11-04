@@ -34,6 +34,7 @@ export const useAuthStore = defineStore("auth", () => {
   const register = async () => {};
   const logout = async () => {
     localStorage.removeItem("auth_token");
+    user.value = null;
   };
   return { user, login, register, getUserInfoByToken, logout };
 });

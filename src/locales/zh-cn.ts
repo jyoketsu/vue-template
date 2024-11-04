@@ -11,6 +11,14 @@ export default {
     time: "时间处理",
     tools: "小功能",
   },
+  auth: {
+    username: "用户名",
+    usernamePlaceholder: "请输入用户名",
+    password: "密码",
+    passwordPlaceholder: "请输入密码",
+    passwordValidater: "密码长度必须在3-100之间",
+    login: "登录",
+  },
   common: {
     logout: "退出登录",
     tip: "提示",
