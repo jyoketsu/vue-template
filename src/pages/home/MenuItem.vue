@@ -1,7 +1,8 @@
 <template>
   <template v-for="routes in menuRouteList as any" :key="routes.path">
     <!-- 所有一级路由 -->
-    <el-menu-item :index="routes.path" v-if="routes.meta.isShow && !routes.children">
+    <el-menu-item :index="`${parentPath ? `${parentPath}/` : ``}${routes.path}`"
+      v-if="routes.meta.isShow && !routes.children">
       <el-icon>
         <component :is="routes.meta.icon"></component>
       </el-icon>
@@ -28,13 +29,14 @@
         <span>{{ $t(`router.${routes.meta.title}`) }}</span>
       </template>
       <!-- 递归循环 -->
-      <MenuItem :menuRouteList="routes.children" />
+      <MenuItem :menuRouteList="routes.children" :parentPath="routes.path" />
     </el-sub-menu>
   </template>
 </template>
 
 <script setup lang="ts">
 defineProps<{
-  menuRouteList: any
+  menuRouteList: any,
+  parentPath?: string
 }>()
 </script>

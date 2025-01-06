@@ -2,14 +2,28 @@ export default {
   router: {
     dashboard: "首頁",
     user: "用戶管理",
-    component: "組件實例",
-    gantt: "甘特圖",
-    editor: "編輯器",
-    chart: "圖表",
+    component: {
+      index: "組件實例",
+      gantt: "甘特圖",
+      editor: "編輯器",
+      chart: "圖表",
+    },
     tableForm: "表格表單",
     waterfall: "瀑布流",
     time: "時間處理",
     tools: "小功能",
+    biz: {
+      index: "業務示例",
+      dictionary: "字典管理",
+    },
+  },
+  auth: {
+    username: "用戶名",
+    usernamePlaceholder: "請輸入用戶名",
+    password: "密碼",
+    passwordPlaceholder: "請輸入密碼",
+    passwordValidater: "密碼長度必須在3-100之間",
+    login: "登錄",
   },
   common: {
     logout: "退出登錄",
@@ -81,8 +95,9 @@ export default {
     cilpboard: "復製到剪貼板",
     fullscreen: "全屏",
     qrcode: "二維碼",
-    pdf: "下載為PDF",
+    pdf: "打印為PDF",
     downloadFile: "下載文件",
+    importFile: "導入文件",
   },
   message: {
     box: {

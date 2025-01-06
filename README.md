@@ -12,11 +12,11 @@
 
 ## 简介
 
-knowledge-base-soar。使用`vite`，基于 `vue3 + TypeScript + vue-router + vuex + elementPlus` 开发。支持多语言和暗黑模式。
+Vue Template。使用`vite`，基于 `vue3 + TypeScript + vue-router + vuex + elementPlus` 开发。支持多语言和暗黑模式。
 
 ## 产品名
 
-soar 知识库
+Vue Template
 
 ## 使用技术
 
@@ -50,8 +50,3 @@ yarn deploy
 ## iconiFy
 
 http://icon-sets.iconify.design/mdi/
-
-## 嵌入模式自动登录并跳转知识库
-http://localhost:5173/base/#/login?token=OADQDDSQFC54MFY5B3FXIJW3DI5BSVMK7T51BYP87QL4YL1Q&redirectPath=1521856083
-## 嵌入模式自动登录并跳转节点预览
-http://localhost:5173/base/#/login?token=OADQDDSQFC54MFY5B3FXIJW3DI5BSVMK7T51BYP87QL4YL1Q&redirectPath=node/1522042887

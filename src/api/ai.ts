@@ -11,7 +11,6 @@ export function askAi(
   };
 
   // 创建一个 Fetch 请求
-  // const aiUrl = "http://localhost:3000/chatbot/api/chat";
   const aiUrl = "https://soar.cn/chatbot/api/chat";
 
   fetch(aiUrl, {

@@ -14,6 +14,18 @@ export const routes = [
         component: () => import("@/pages/home/dashboard/index.vue"),
       },
       {
+        path: "/biz",
+        meta: { title: "biz.index", icon: "Business", isShow: true },
+        component: () => import("@/pages/home/biz/index.vue"),
+        children: [
+          {
+            path: "dictionary",
+            meta: { title: "biz.dictionary", Icon: "BookA", isShow: true },
+            component: () => import("@/pages/home/biz/dictionary/index.vue"),
+          },
+        ],
+      },
+      {
         path: "/tableForm",
         meta: { title: "tableForm", icon: "Table", isShow: true },
         component: () => import("@/pages/home/table/index.vue"),
@@ -25,22 +37,26 @@ export const routes = [
       },
       {
         path: "/component",
-        meta: { title: "component", icon: "Component", isShow: true },
+        meta: { title: "component.index", icon: "Component", isShow: true },
         redirect: "editor",
         children: [
           {
-            path: "/gantt",
-            meta: { title: "gantt", icon: "GanttChart", isShow: true },
+            path: "gantt",
+            meta: {
+              title: "component.gantt",
+              icon: "GanttChart",
+              isShow: true,
+            },
             component: () => import("@/pages/home/gantt/index.vue"),
           },
           {
-            path: "/editor",
-            meta: { title: "editor", icon: "FileText", isShow: true },
+            path: "editor",
+            meta: { title: "component.editor", icon: "FileText", isShow: true },
             component: () => import("@/pages/home/editor/index.vue"),
           },
           {
-            path: "/chart",
-            meta: { title: "chart", icon: "LineChart", isShow: true },
+            path: "chart",
+            meta: { title: "component.chart", icon: "LineChart", isShow: true },
             component: () => import("@/pages/home/chart/index.vue"),
           },
         ],

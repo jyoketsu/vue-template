@@ -1,7 +1,7 @@
 import Mock from "mockjs";
 
 // 定义 API 基础 URL
-const API_URL = "http://localhost:3000";
+const API_URL = import.meta.env.VITE_API_URL;
 
 // 模拟的用户信息数据
 const userInfo = [

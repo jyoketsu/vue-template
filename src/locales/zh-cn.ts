@@ -2,14 +2,20 @@ export default {
   router: {
     dashboard: "首页",
     user: "用户管理",
-    component: "组件实例",
-    gantt: "甘特图",
-    editor: "编辑器",
-    chart: "图表",
+    component: {
+      index: "组件实例",
+      gantt: "甘特图",
+      editor: "编辑器",
+      chart: "图表",
+    },
     tableForm: "表格表单",
     waterfall: "瀑布流",
     time: "时间处理",
     tools: "小功能",
+    biz: {
+      index: "业务示例",
+      dictionary: "字典管理",
+    },
   },
   auth: {
     username: "用户名",
