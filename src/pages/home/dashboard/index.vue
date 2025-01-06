@@ -67,7 +67,7 @@ const techStackList = computed(() => [{
   link: 'https://pinia.vuejs.org/'
 }, {
   title: 'Element Plus',
-  icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf1kbcgUZQKvVkE5pcMTzAIimE41upKJShsQ&s',
+  icon: '/icons/element.png',
   describtion: t('dashboard.elementDesc'),
   link: 'https://element-plus.org/'
 }, {

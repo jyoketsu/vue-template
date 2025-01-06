@@ -35,5 +35,12 @@ export default ({ mode }) => {
         // localEnabled: true,
       }),
     ],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: "modern-compiler", // or "modern"
+        },
+      },
+    },
   });
 };
