@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-	<div>
+	<div class="size-full overflow-hidden">
 		<router-view></router-view>
 	</div>
 </template>

@@ -1,6 +1,6 @@
 <template>
 	<el-pagination @size-change="sizeChangeHandle" @current-change="currentChangeHandle" class="justify-end mt-4"
-		:pager-count="5" :page-sizes="props.pageSizes" :current-page="props.current" background :page-size="props.size"
+		:pager-count="5" :page-sizes="props.pageSizes" :current-page="props.page" background :page-size="props.size"
 		:layout="props.layout" :total="props.total">
 	</el-pagination>
 </template>
@@ -9,7 +9,7 @@
 const emit = defineEmits(['sizeChange', 'currentChange']);
 
 const props = defineProps({
-	current: {
+	page: {
 		type: Number,
 		default: 1,
 	},

@@ -40,6 +40,24 @@ export const request = {
       }
     });
   },
+  put(path: string, params: object) {
+    return new Promise(async function (resolve, reject) {
+      try {
+        const response = await axios({
+          method: "put",
+          url: path,
+          data: params,
+          headers: {
+            token: token,
+          },
+          // withCredentials: true,
+        });
+        resolve(response.data);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  },
   patch(path: string, params: object) {
     return new Promise(async function (resolve, reject) {
       try {
@@ -58,7 +76,7 @@ export const request = {
       }
     });
   },
-  delete(path: string, params: object) {
+  delete(path: string, params?: object) {
     return new Promise(async function (resolve, reject) {
       try {
         const response = await axios({

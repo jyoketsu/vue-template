@@ -20,7 +20,7 @@ export const routes = [
         children: [
           {
             path: "dictionary",
-            meta: { title: "biz.dictionary", Icon: "BookA", isShow: true },
+            meta: { title: "biz.dictionary", icon: "BookA", isShow: true },
             component: () => import("@/pages/home/biz/dictionary/index.vue"),
           },
         ],

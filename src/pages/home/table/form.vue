@@ -171,7 +171,7 @@ const onSubmit = async () => {
 			emit('refresh');
 		}
 	} catch (error: any) {
-		useMessage().error(error.msg);
+		useMessage().error(error.message);
 	} finally {
 		loading.value = false;
 	}

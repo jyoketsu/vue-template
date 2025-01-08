@@ -42,5 +42,19 @@ export default ({ mode }) => {
         },
       },
     },
+    server: {
+      proxy: {
+        "/api": {
+          target: env.VITE_API_URL, // 后端服务器地址
+          changeOrigin: true, // 允许跨域
+          rewrite: (path) => path.replace(/^\/api/, ""), // 可选：重写路径
+          configure: (proxy) => {
+            proxy.on("proxyReq", (proxyReq, req, res) => {
+              console.log(`Proxying request: ${req.url}`);
+            });
+          },
+        },
+      },
+    },
   });
 };

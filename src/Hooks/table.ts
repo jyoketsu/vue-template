@@ -47,7 +47,7 @@ export interface TableStyle {
  */
 export interface Pagination {
   // 当前页码，默认为1
-  current?: number;
+  page?: number;
   // 每页显示条数，默认为10
   size?: number;
   // 总条数，默认为0
@@ -70,9 +70,9 @@ export function useTable(options?: BasicTableProps) {
     queryForm: {},
     // 表格展示的数据数组，默认为空数组
     dataList: [],
-    // 分页组件属性配置，如当前页码、每页展示数据条数等，默认值为 {current:1, size:10,total:0,pageSizes:[1, 10, 20, 50, 100, 200],layout:'total, sizes, prev, pager, next, jumper'}
+    // 分页组件属性配置，如当前页码、每页展示数据条数等，默认值为 {page:1, size:10,total:0,pageSizes:[1, 10, 20, 50, 100, 200],layout:'total, sizes, prev, pager, next, jumper'}
     pagination: {
-      current: 1,
+      page: 1,
       size: 10,
       total: 0,
       pageSizes: [1, 10, 20, 50, 100, 200],
@@ -90,8 +90,8 @@ export function useTable(options?: BasicTableProps) {
     ascs: [],
     // props属性配置对象，用于自定义数据属性，默认值为 {item:'records',totalCount:'total'}
     props: {
-      item: "records",
-      totalCount: "total",
+      item: "content",
+      totalCount: "totalElements",
     },
   };
 
@@ -126,7 +126,7 @@ export function useTable(options?: BasicTableProps) {
         // 调用state.pageList方法发起分页查询
         const res = await state.pageList({
           ...state.queryForm,
-          current: state.pagination?.current,
+          page: (state.pagination?.page || 1) - 1,
           size: state.pagination?.size,
           descs: state.descs?.join(","),
           ascs: state.ascs?.join(","),
@@ -170,8 +170,8 @@ export function useTable(options?: BasicTableProps) {
    * @param val 新的页码
    */
   const currentChangeHandle = (val: number) => {
-    // 修改state.pagination中的current属性
-    state.pagination!.current = val;
+    // 修改state.pagination中的page属性
+    state.pagination!.page = val;
     // 再次发起查询操作
     query();
   };
@@ -206,9 +206,9 @@ export function useTable(options?: BasicTableProps) {
    * @param refresh 是否刷新当前页码
    */
   const getDataList = (refresh?: any) => {
-    // 如果需要刷新，则将state.pagination.current重置为1
+    // 如果需要刷新，则将state.pagination.page重置为1
     if (refresh !== false) {
-      state.pagination!.current = 1;
+      state.pagination!.page = 1;
     }
     // 再次发起查询操作
     query();

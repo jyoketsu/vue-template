@@ -1,3 +1,5 @@
+import { ru } from "element-plus/es/locale";
+
 export default {
   router: {
     dashboard: "首页",
@@ -45,8 +47,10 @@ export default {
     cancelButtonText: "取消",
     delConfirmText: "此操作将永久删除",
     editSuccessText: "编辑成功",
+    addSuccessText:"添加成功",
     delSuccessText: "删除成功",
     optSuccessText: "操作成功",
+    index: "#",
   },
   menu: {
     edit: "编辑",
@@ -74,7 +78,6 @@ export default {
       "Lucide 是一个开源的图标库，提供简洁、现代的线性图标，灵活可定制，适用于网页和移动端应用。Lucide 以 SVG 格式为主，易于集成和使用。",
   },
   table: {
-    index: "#",
     name: "名称",
     inputNameTip: "请输入名称",
     status: "状态",
@@ -99,9 +102,19 @@ export default {
     downloadFile: "下载文件",
     importFile: "导入文件",
   },
+  dictionary: {
+    name: "字典名称",
+    inputNameTip: "请输入字典名称",
+    dictType: "字典类型",
+    dictCode: "字典值",
+  },
   message: {
     box: {
       title: "系统提示",
+    },
+    validate: {
+      required: "不能为空",
+      length: "长度必须在{min}-{max}之间",
     },
   },
 };

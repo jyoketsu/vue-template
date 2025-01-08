@@ -52,11 +52,11 @@ const fetchList = (options: any) => {
     code: 200,
     message: "获取成功",
     data: {
-      current: 1,
-      pages: 1,
-      total: 10,
+      page: 0,
+      totalPages: 1,
+      totalElements: 10,
       size: 10,
-      records: data,
+      content: data,
     },
   };
 };
