@@ -15,6 +15,8 @@ export default {
     biz: {
       index: "業務示例",
       dictionary: "字典管理",
+      ingredient: "食材管理",
+      recipe: "食譜管理",
     },
   },
   auth: {
@@ -45,8 +47,10 @@ export default {
     cancelButtonText: "取消",
     delConfirmText: "此操作將永久刪除",
     editSuccessText: "編輯成功",
+    addSuccessText: "添加成功",
     delSuccessText: "刪除成功",
     optSuccessText: "操作成功",
+    index: "#",
   },
   menu: {
     edit: "編輯",
@@ -74,7 +78,6 @@ export default {
       "Lucide 是一個開源的圖標庫，提供簡潔、現代的線性圖標，靈活可定製，適用於網頁和移動端應用。Lucide 以 SVG 格式為主，易於集成和使用。",
   },
   table: {
-    index: "#",
     name: "名稱",
     inputNameTip: "請輸入名稱",
     status: "狀態",
@@ -99,9 +102,32 @@ export default {
     downloadFile: "下載文件",
     importFile: "導入文件",
   },
+  dictionary: {
+    name: "字典名稱",
+    inputNameTip: "請輸入字典名稱",
+    dictType: "字典類型",
+    dictCode: "字典值",
+  },
+  ingredient: {
+    name: "食材名",
+    inputNameTip: "請輸入食材名",
+    unitName: "單位名",
+    unitId: "單位",
+  },
+  recipe: {
+    name: "食譜名",
+    inputNameTip: "請輸入食譜名",
+    description: "簡介",
+    ingredients: "食材",
+    ingredientTip: "請輸入食材，多個以空格分隔",
+  },
   message: {
     box: {
       title: "系統提示",
+    },
+    validate: {
+      required: "不能為空",
+      length: "長度必須在{min}-{max}之間",
     },
   },
 };

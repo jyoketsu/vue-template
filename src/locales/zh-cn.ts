@@ -16,6 +16,7 @@ export default {
       index: "业务示例",
       dictionary: "字典管理",
       ingredient: "食材管理",
+      recipe: "食谱管理",
     },
   },
   auth: {
@@ -112,6 +113,13 @@ export default {
     inputNameTip: "请输入食材名",
     unitName: "单位名",
     unitId: "单位",
+  },
+  recipe: {
+    name: "食谱名",
+    inputNameTip: "请输入食谱名",
+    description: "简介",
+    ingredients: "食材",
+    ingredientTip: "请输入食材，多个以空格分隔",
   },
   message: {
     box: {

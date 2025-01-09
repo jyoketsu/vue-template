@@ -10,6 +10,7 @@ import {
   BriefcaseBusiness,
   BookA,
   Carrot,
+  ChefHat,
 } from "lucide-vue-next";
 import Pagination from "@/components/pagination/index.vue";
 import RightToolbar from "@/components/rightToolbar/index.vue";
@@ -28,5 +29,6 @@ export default {
     app.component("Business", BriefcaseBusiness);
     app.component("BookA", BookA);
     app.component("Carrot", Carrot);
+    app.component("ChefHat", ChefHat);
   },
 };
