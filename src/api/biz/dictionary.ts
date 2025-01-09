@@ -1,7 +1,5 @@
 import { request } from "@/api/index";
 
-const API_URL = import.meta.env.VITE_API_URL;
-
 export function fetchList(query: any) {
   return request.get("/api/dictionary", query);
 }
@@ -18,10 +16,14 @@ export function delObj(id: string) {
   return request.delete(`/api/dictionary/${id}`);
 }
 
-export function putObj(id: string, obj: any) {
-  return request.put(`/api/dictionary/${id}`, obj);
+export function putObj(obj: any) {
+  return request.put(`/api/dictionary`, obj);
 }
 
 export function getDictTypes() {
   return request.get("/api/dictionary/types");
+}
+
+export function getDictTypesByType(type: string) {
+  return request.get("/api/dictionary/type", { type });
 }

@@ -9,6 +9,7 @@ import {
   GanttChart,
   BriefcaseBusiness,
   BookA,
+  Carrot,
 } from "lucide-vue-next";
 import Pagination from "@/components/pagination/index.vue";
 import RightToolbar from "@/components/rightToolbar/index.vue";
@@ -26,5 +27,6 @@ export default {
     app.component("GanttChart", GanttChart);
     app.component("Business", BriefcaseBusiness);
     app.component("BookA", BookA);
+    app.component("Carrot", Carrot);
   },
 };

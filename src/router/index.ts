@@ -23,6 +23,11 @@ export const routes = [
             meta: { title: "biz.dictionary", icon: "BookA", isShow: true },
             component: () => import("@/pages/home/biz/dictionary/index.vue"),
           },
+          {
+            path: "ingredient",
+            meta: { title: "biz.ingredient", icon: "Carrot", isShow: true },
+            component: () => import("@/pages/home/biz/ingredient/index.vue"),
+          },
         ],
       },
       {

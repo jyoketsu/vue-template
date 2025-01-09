@@ -1,5 +1,3 @@
-import { ru } from "element-plus/es/locale";
-
 export default {
   router: {
     dashboard: "首页",
@@ -17,6 +15,7 @@ export default {
     biz: {
       index: "业务示例",
       dictionary: "字典管理",
+      ingredient: "食材管理",
     },
   },
   auth: {
@@ -47,7 +46,7 @@ export default {
     cancelButtonText: "取消",
     delConfirmText: "此操作将永久删除",
     editSuccessText: "编辑成功",
-    addSuccessText:"添加成功",
+    addSuccessText: "添加成功",
     delSuccessText: "删除成功",
     optSuccessText: "操作成功",
     index: "#",
@@ -107,6 +106,12 @@ export default {
     inputNameTip: "请输入字典名称",
     dictType: "字典类型",
     dictCode: "字典值",
+  },
+  ingredient: {
+    name: "食材名",
+    inputNameTip: "请输入食材名",
+    unitName: "单位名",
+    unitId: "单位",
   },
   message: {
     box: {

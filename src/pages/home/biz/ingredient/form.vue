@@ -5,16 +5,16 @@
 			<el-form ref="dataFormRef" v-loading="loading" :model="dataForm" :rules="dataRules" label-width="150px">
 				<el-row :gutter="20">
 					<el-col :span="24" class="mb20">
-						<el-form-item :label="$t('dictionary.name')" prop="name">
-							<el-input v-model="dataForm.name" :placeholder="$t('dictionary.name')"></el-input>
+
+						<el-form-item :label="$t('ingredient.name')" prop="name">
+							<el-input v-model="dataForm.name" :placeholder="$t('ingredient.name')"></el-input>
 						</el-form-item>
 
-						<el-form-item :label="$t('dictionary.dictCode')" prop="dictCode">
-							<el-input v-model="dataForm.dictCode" :placeholder="$t('dictionary.dictCode')"></el-input>
-						</el-form-item>
-
-						<el-form-item :label="$t('dictionary.dictType')" prop="dictType">
-							<el-input v-model="dataForm.dictType" :placeholder="$t('dictionary.dictType')"></el-input>
+						<el-form-item :label="$t('ingredient.unitId')" prop="unitId">
+							<el-select v-model="dataForm.unitId" :placeholder="$t('ingredient.unitId')" clearable>
+								<el-option :key="item.value" :label="item.label" :value="`${item.value}`" v-for="item in unit">
+								</el-option>
+							</el-select>
 						</el-form-item>
 
 					</el-col>
@@ -33,12 +33,15 @@
 
 <script lang="ts" name="licensePlanDialog" setup>
 import { useI18n } from 'vue-i18n';
-import { addObj, putObj, getObj } from '@/api/biz/dictionary';
+import { addObj, putObj, getObj } from '@/api/biz/ingredient';
 import { nextTick, reactive, ref } from 'vue';
 import { useMessage } from '@/Hooks/message';
 
 const { t } = useI18n();
 
+const props = defineProps<{
+	unit: { label: string; value: string }[]
+}>();
 // 定义刷新表格emit
 const emit = defineEmits(['refresh']);
 
@@ -51,8 +54,7 @@ const loading = ref(false);
 const dataForm = reactive({
 	id: '',
 	name: '',
-	dictCode: '',
-	dictType: ''
+	unitId: ''
 });
 
 const dataRules = ref({
@@ -60,13 +62,8 @@ const dataRules = ref({
 		{ required: true, message: t("message.validate.required"), trigger: 'blur' },
 		{ min: 1, max: 20, message: t("message.validate.length", { min: 1, max: 20 }), trigger: 'blur' },
 	],
-	dictCode: [
+	unitId: [
 		{ required: true, message: t("message.validate.required"), trigger: 'blur' },
-		{ min: 1, max: 20, message: t("message.validate.length", { min: 1, max: 20 }), trigger: 'blur' },
-	],
-	dictType: [
-		{ required: true, message: t("message.validate.required"), trigger: 'blur' },
-		{ min: 1, max: 20, message: t("message.validate.length", { min: 1, max: 20 }), trigger: 'blur' },
 	],
 });
 
@@ -119,6 +116,7 @@ const getData = async (id: string) => {
 		// @ts-ignore
 		const { data } = await getObj(id);
 		delete data['updateTime']
+		delete data['unitName']
 		Object.assign(dataForm, data);
 	} finally {
 		loading.value = false;

@@ -50,3 +50,7 @@ yarn deploy
 ## iconiFy
 
 http://icon-sets.iconify.design/mdi/
+
+## hooks
+
+[dict](src/Hooks//dict.ts)
