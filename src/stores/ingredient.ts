@@ -1,4 +1,4 @@
-import { Ingredient } from "@/interface/Ingredient";
+import { Ingredient } from "@/interface/Recipe";
 import { defineStore } from "pinia";
 import { ref } from "vue";
 

@@ -1,3 +1,5 @@
+import { valid } from "mockjs";
+
 export default {
   router: {
     dashboard: "首页",
@@ -120,6 +122,13 @@ export default {
     description: "简介",
     ingredients: "食材",
     ingredientTip: "请输入食材，多个以空格分隔",
+    addIngredient: "添加食材",
+    steps: "步骤",
+    addStep: "添加步骤",
+    stepTip: "请输入步骤做法",
+    validate: {
+      duplicateIngredient: "食材重复！",
+    },
   },
   message: {
     box: {

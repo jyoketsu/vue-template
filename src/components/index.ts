@@ -11,6 +11,8 @@ import {
   BookA,
   Carrot,
   ChefHat,
+  Trash2,
+  CirclePlus,
 } from "lucide-vue-next";
 import Pagination from "@/components/pagination/index.vue";
 import RightToolbar from "@/components/rightToolbar/index.vue";
@@ -30,5 +32,7 @@ export default {
     app.component("BookA", BookA);
     app.component("Carrot", Carrot);
     app.component("ChefHat", ChefHat);
+    app.component("Delete", Trash2);
+    app.component("Add", CirclePlus);
   },
 };

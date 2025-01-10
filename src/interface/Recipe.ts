@@ -1,11 +1,11 @@
-export interface Recipe {
-  _id: string;
-  title: string;
-  // 大荤 小荤 素菜 汤 单品
-  type: "dahun" | "xiaohun" | "vegetarian" | "soup" | "single";
-  description: string;
-  cover?: string;
-  content: string;
-  createTime: Date;
-  updateTime: Date;
+export interface Ingredient {
+  id: string;
+  name: string;
+  unitId: string;
+  unitName: string;
+}
+
+export interface Step {
+  imageUrl: string;
+  step: string;
 }

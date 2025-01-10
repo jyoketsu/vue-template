@@ -4,6 +4,9 @@ export function fetchList(query: any) {
   return request.get("/api/ingredient", query);
 }
 
+export function getAll() {
+  return request.get("/api/ingredient/all");
+}
 export function addObj(obj: any) {
   return request.post("/api/ingredient", obj);
 }

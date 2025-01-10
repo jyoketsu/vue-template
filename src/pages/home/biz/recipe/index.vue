@@ -65,7 +65,7 @@
 			<pagination @current-change="currentChangeHandle" @size-change="sizeChangeHandle" v-bind="state.pagination">
 			</pagination>
 		</div>
-		<table-form ref="formDialogRef" :unit="unit" @refresh="getDataList" />
+		<table-form ref="formDialogRef" :unit="unit" :ingredientList="ingredients" @refresh="getDataList" />
 	</div>
 </template>
 
@@ -78,6 +78,8 @@ import { useMessage, useMessageBox } from '@/Hooks/message';
 import { SearchIcon, RotateCcwIcon, CirclePlusIcon, Trash2Icon, EditIcon } from 'lucide-vue-next';
 import dayjs from 'dayjs';
 import { useDict } from '@/Hooks/dict';
+import { Ingredient } from '@/interface/Recipe';
+import { getAll } from '@/api/biz/ingredient';
 
 // 动态引入组件
 const TableForm = defineAsyncComponent(() => import('./form.vue'));
@@ -88,6 +90,7 @@ const formDialogRef = ref();
 const queryRef = ref();
 const showSearch = ref(true);
 const types = ref([]);
+const ingredients = ref<Ingredient[]>([]);
 
 // 定义字典
 const { unit } = useDict(
@@ -111,6 +114,13 @@ const state: BasicTableProps = reactive<BasicTableProps>({
 
 //  table hook
 const { getDataList, currentChangeHandle, sizeChangeHandle, tableStyle } = useTable(state);
+
+onMounted(async () => {
+	const res: any = await getAll();
+	if (res.code === 200) {
+		ingredients.value = res.data;
+	}
+})
 
 // 清空搜索条件
 const resetQuery = () => {
