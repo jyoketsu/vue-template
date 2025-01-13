@@ -13,6 +13,7 @@ import {
   ChefHat,
   Trash2,
   CirclePlus,
+  ImageUp,
 } from "lucide-vue-next";
 import Pagination from "@/components/pagination/index.vue";
 import RightToolbar from "@/components/rightToolbar/index.vue";
@@ -34,5 +35,6 @@ export default {
     app.component("ChefHat", ChefHat);
     app.component("Delete", Trash2);
     app.component("Add", CirclePlus);
+    app.component("ImageUp", ImageUp);
   },
 };

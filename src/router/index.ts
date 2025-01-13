@@ -38,7 +38,7 @@ export const routes = [
       {
         path: "/tableForm",
         meta: { title: "tableForm", icon: "Table", isShow: true },
-        component: () => import("@/pages/home/table/index.vue"),
+        redirect: "/biz/recipe",
       },
       {
         path: "/tools",

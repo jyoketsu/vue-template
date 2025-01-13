@@ -10,7 +10,7 @@ import "@/styles/light/css-vars.css";
 import "@/styles/dark/css-vars.css";
 import "@/styles/element/custom.css";
 import "./navigationGuards";
-import "./mock/index";
+// import "./mock/index";
 
 const pinia = createPinia();
 const app = createApp(App);

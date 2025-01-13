@@ -54,3 +54,7 @@ http://icon-sets.iconify.design/mdi/
 ## hooks
 
 [dict](src/Hooks//dict.ts)
+
+## 图片上传API
+[picgo](https://www.picgo.net/)
+[cdnjson](https://cdnjson.com/)

@@ -54,6 +54,18 @@ export default ({ mode }) => {
             });
           },
         },
+
+        "/upload": {
+          target: "https://www.picgo.net", // 文件上传接口的目标地址
+          changeOrigin: true, // 允许跨域
+          rewrite: (path) => path.replace(/^\/upload/, "/api/1/upload"), // 将 `/upload` 重写为实际接口路径
+          configure: (proxy) => {
+            proxy.on("proxyReq", (proxyReq) => {
+              // 设置 X-API-Key 头
+              proxyReq.setHeader("X-API-Key", env.VITE_PIC_GO_KEY);
+            });
+          },
+        },
       },
     },
   });

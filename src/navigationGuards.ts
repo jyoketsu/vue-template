@@ -7,6 +7,9 @@ import { message } from "./Hooks/Element-plus";
 
 //全局前置守卫
 router.beforeEach(async (to, from, next) => {
+  next();
+  return
+  // todo
   nprogress.start();
   const userStore = useAuthStore();
   const token = localStorage.getItem("auth_token");

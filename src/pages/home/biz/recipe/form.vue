@@ -41,7 +41,11 @@
 						<!-- 步骤 -->
 						<el-form-item :label="$t('recipe.steps')" prop="steps">
 							<div class="w-full flex flex-col space-y-3">
-								<div v-for="(step, index) in content">
+								<div v-for="(step, index) in content" class="grid grid-cols-[160px_1fr] gap-2">
+									<div class="rounded">
+										<ImageUploader :image-url="step.imageUrl"
+											@success="(url: string) => handleUploadSuccess(url, index)" />
+									</div>
 									<el-input v-model="step.step" type="textarea" :autosize="{ minRows: 5 }" resize="none"
 										:placeholder="$t('recipe.stepTip')"></el-input>
 								</div>
@@ -72,6 +76,7 @@ import { addObj, putObj, getObj } from '@/api/biz/recipe';
 import { nextTick, reactive, ref } from 'vue';
 import { useMessage } from '@/Hooks/message';
 import { Ingredient, Step } from '@/interface/Recipe';
+import ImageUploader from './imageUploader.vue';
 
 const { t } = useI18n();
 
@@ -87,7 +92,7 @@ const emit = defineEmits(['refresh']);
 const dataFormRef = ref();
 const visible = ref(false);
 const loading = ref(false);
-
+const targetStepIndex = ref(0);
 
 const dataForm = reactive({
 	id: '',
@@ -126,41 +131,47 @@ const openDialog = (id: string) => {
 	}
 };
 
-// 提交
+// 提交表单
 const onSubmit = async () => {
+	// 验证表单
 	const valid = await dataFormRef.value.validate().catch(() => { });
 	if (!valid) return false;
 
 	try {
+		// 处理配料
 		const result = ingredients.value.reduce((acc: { [key: string]: number }, item) => {
 			const key = item.id;
 			if (acc[key] !== undefined) {
-				throw new Error(t("recipe.validate.duplicateIngredient"));
+				throw new Error(t("recipe.validate.duplicateIngredient")); // 抛出重复配料错误
 			}
 			acc[key] = item.quantity;
 			return acc;
 		}, {});
 
+		// 组装提交数据
 		const obj = { ...dataForm, ...{ ingredients: result, content: JSON.stringify(content.value) } };
 
 		const { id } = dataForm;
 		if (id) {
+			// 编辑操作
 			loading.value = true;
 			await putObj(obj);
-			useMessage().success(t('common.editSuccessText'));
+			useMessage().success(t('common.editSuccessText')); // 显示编辑成功信息
 			emit('refresh');
-			visible.value = false;
+			visible.value = false; // 关闭弹窗
 		} else {
+			// 添加操作
 			loading.value = true;
 			await addObj(obj);
-			useMessage().success(t('common.addSuccessText'));
+			useMessage().success(t('common.addSuccessText')); // 显示添加成功信息
 			emit('refresh');
-			visible.value = false;
+			visible.value = false; // 关闭弹窗
 		}
 	} catch (error: any) {
+		// 显示错误信息
 		useMessage().error(error.response ? error.response.data.message : error.message);
 	} finally {
-		loading.value = false;
+		loading.value = false; // 解除加载状态
 	}
 };
 
@@ -206,6 +217,12 @@ const handleAddStep = () => {
 		step: ''
 	})
 }
+
+const handleUploadSuccess = (url: string, index: number) => {
+	content.value[index].imageUrl = url
+}
+
+
 
 // 暴露变量
 defineExpose({

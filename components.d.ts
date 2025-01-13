@@ -36,6 +36,7 @@ declare module 'vue' {
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
+    ElUpload: typeof import('element-plus/es')['ElUpload']
     IconButton: typeof import('./src/components/common/IconButton.vue')['default']
     Pagination: typeof import('./src/components/pagination/index.vue')['default']
     RightToolbar: typeof import('./src/components/rightToolbar/index.vue')['default']
