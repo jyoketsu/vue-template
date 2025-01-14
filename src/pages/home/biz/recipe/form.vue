@@ -137,42 +137,36 @@ const onSubmit = async () => {
 	const valid = await dataFormRef.value.validate().catch(() => { });
 	if (!valid) return false;
 
-	try {
-		// 处理配料
-		const result = ingredients.value.reduce((acc: { [key: string]: number }, item) => {
-			const key = item.id;
-			if (acc[key] !== undefined) {
-				throw new Error(t("recipe.validate.duplicateIngredient")); // 抛出重复配料错误
-			}
-			acc[key] = item.quantity;
-			return acc;
-		}, {});
-
-		// 组装提交数据
-		const obj = { ...dataForm, ...{ ingredients: result, content: JSON.stringify(content.value) } };
-
-		const { id } = dataForm;
-		if (id) {
-			// 编辑操作
-			loading.value = true;
-			await putObj(obj);
-			useMessage().success(t('common.editSuccessText')); // 显示编辑成功信息
-			emit('refresh');
-			visible.value = false; // 关闭弹窗
-		} else {
-			// 添加操作
-			loading.value = true;
-			await addObj(obj);
-			useMessage().success(t('common.addSuccessText')); // 显示添加成功信息
-			emit('refresh');
-			visible.value = false; // 关闭弹窗
+	// 处理配料
+	const result = ingredients.value.reduce((acc: { [key: string]: number }, item) => {
+		const key = item.id;
+		if (acc[key] !== undefined) {
+			throw new Error(t("recipe.validate.duplicateIngredient")); // 抛出重复配料错误
 		}
-	} catch (error: any) {
-		// 显示错误信息
-		useMessage().error(error.response ? error.response.data.message : error.message);
-	} finally {
-		loading.value = false; // 解除加载状态
+		acc[key] = item.quantity;
+		return acc;
+	}, {});
+
+	// 组装提交数据
+	const obj = { ...dataForm, ...{ ingredients: result, content: JSON.stringify(content.value) } };
+
+	const { id } = dataForm;
+	if (id) {
+		// 编辑操作
+		loading.value = true;
+		await putObj(obj);
+		useMessage().success(t('common.editSuccessText')); // 显示编辑成功信息
+		emit('refresh');
+		visible.value = false; // 关闭弹窗
+	} else {
+		// 添加操作
+		loading.value = true;
+		await addObj(obj);
+		useMessage().success(t('common.addSuccessText')); // 显示添加成功信息
+		emit('refresh');
+		visible.value = false; // 关闭弹窗
 	}
+	loading.value = false; // 解除加载状态
 };
 
 const getData = async (id: string) => {

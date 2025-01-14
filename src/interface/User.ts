@@ -1,5 +1,5 @@
 export interface User {
-  _id: string;
+  id: string;
   username: string;
   password: string;
   email?: string;
@@ -8,4 +8,5 @@ export interface User {
   profile?: string;
   createTime: Date;
   updateTime: Date;
+  token: string;
 }

@@ -133,13 +133,9 @@ const handleDelete = async (ids: string[]) => {
 		return;
 	}
 
-	try {
-		await delObj(ids[0]);
-		getDataList();
-		useMessage().success(t('common.delSuccessText'));
-	} catch (err: any) {
-		useMessage().error(err.msg);
-	}
+	await delObj(ids[0]);
+	getDataList();
+	useMessage().success(t('common.delSuccessText'));
 };
 
 </script>

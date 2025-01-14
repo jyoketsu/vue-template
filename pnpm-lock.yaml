@@ -141,9 +141,6 @@ importers:
       gh-pages:
         specifier: ^6.0.0
         version: 6.3.0
-      mockjs:
-        specifier: ^1.1.0
-        version: 1.1.0
       postcss:
         specifier: ^8.4.38
         version: 8.4.49

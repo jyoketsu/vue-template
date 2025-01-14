@@ -1,15 +1,11 @@
-//路由鉴权
+// 路由鉴权
 import nprogress from "./utils/nprogress";
 import { router } from "@/router";
 import { useAuthStore } from "@/stores/auth";
-import { ElMessage } from "element-plus";
 import { message } from "./Hooks/Element-plus";
 
-//全局前置守卫
+// 全局前置守卫
 router.beforeEach(async (to, from, next) => {
-  next();
-  return
-  // todo
   nprogress.start();
   const userStore = useAuthStore();
   const token = localStorage.getItem("auth_token");
@@ -40,7 +36,7 @@ router.beforeEach(async (to, from, next) => {
   }
 });
 
-//全局后置守卫
+// 全局后置守卫
 router.afterEach((to, from, next) => {
   nprogress.done();
 });

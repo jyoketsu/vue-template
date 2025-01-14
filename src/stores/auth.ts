@@ -13,23 +13,12 @@ export const useAuthStore = defineStore("auth", () => {
     username: string;
     password: string;
   }) => {
-    const response = (await loginApi(
-      username,
-      password
-    )) as ApiResponse<string>;
-    if (response.code === 200) {
-      localStorage.setItem("auth_token", response.data);
-    } else {
-      return Promise.reject(new Error(response.message));
-    }
+    const response = (await loginApi(username, password)) as ApiResponse<User>;
+    localStorage.setItem("auth_token", response.data.token);
   };
   const getUserInfoByToken = async (token: string) => {
     const response = (await loginByToken(token)) as ApiResponse<User>;
-    if (response.code === 200) {
-      user.value = { ...response.data };
-    } else {
-      return Promise.reject(new Error(response.message));
-    }
+    user.value = { ...response.data };
   };
   const register = async () => {};
   const logout = async () => {

@@ -1,20 +1,15 @@
+import { useMessage } from "@/Hooks/message";
 import axios from "axios";
 let token = localStorage.getItem("auth_token") || "";
 
 export const request = {
-  get(path: string, params?: object, noHeaders?: boolean) {
+  get(path: string, params?: object) {
     return new Promise(async function (resolve, reject) {
       try {
         const response = await axios({
           method: "get",
           url: path,
           params: params,
-          headers: !noHeaders
-            ? {
-                token: token,
-              }
-            : undefined,
-          // withCredentials: true,
         });
         resolve(response.data);
       } catch (error) {
@@ -29,10 +24,6 @@ export const request = {
           method: "post",
           url: path,
           data: params,
-          headers: {
-            token: token,
-          },
-          // withCredentials: true,
         });
         resolve(response.data);
       } catch (error) {
@@ -47,10 +38,6 @@ export const request = {
           method: "put",
           url: path,
           data: params,
-          headers: {
-            token: token,
-          },
-          // withCredentials: true,
         });
         resolve(response.data);
       } catch (error) {
@@ -65,10 +52,6 @@ export const request = {
           method: "patch",
           url: path,
           data: params,
-          headers: {
-            token: token,
-          },
-          // withCredentials: true,
         });
         resolve(response.data);
       } catch (error) {
@@ -83,10 +66,6 @@ export const request = {
           method: "delete",
           url: path,
           data: params,
-          headers: {
-            token: token,
-          },
-          // withCredentials: true,
         });
         resolve(response.data);
       } catch (error) {
@@ -109,3 +88,38 @@ export function rmvToken() {
 export function getToken() {
   return token;
 }
+
+// 请求拦截器
+axios.interceptors.request.use(
+  (config) => {
+    // 检查 URL 是否包含 `/api`
+    if (config.url && /\/api/.test(config.url)) {
+      const token = localStorage.getItem("auth_token");
+      if (token) {
+        config.headers["Authorization"] = `Bearer ${token}`;
+      }
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// 响应拦截器
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    // if (error.response && error.response.status === 401) {
+    //   // 处理未认证错误，例如跳转到登录页
+    //   rmvToken();
+    //   window.location.href = "/login";
+    // }
+
+    return useMessage().error(
+      error.response && error.response.data
+        ? error.response.data.message
+        : error.message
+    );
+  }
+);

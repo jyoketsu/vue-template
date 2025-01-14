@@ -88,25 +88,20 @@ const onSubmit = async () => {
 	const valid = await dataFormRef.value.validate().catch(() => { });
 	if (!valid) return false;
 
-	try {
-		const { id } = dataForm;
-		if (id) {
-			loading.value = true;
-			await putObj(dataForm);
-			useMessage().success(t('common.editSuccessText'));
-			emit('refresh');
-		} else {
-			loading.value = true;
-			await addObj(dataForm);
-			useMessage().success(t('common.addSuccessText'));
-			emit('refresh');
-		}
-	} catch (error: any) {
-		useMessage().error(error.response.data.message);
-	} finally {
-		visible.value = false; // 关闭弹窗
-		loading.value = false;
+	const { id } = dataForm;
+	if (id) {
+		loading.value = true;
+		await putObj(dataForm);
+		useMessage().success(t('common.editSuccessText'));
+		emit('refresh');
+	} else {
+		loading.value = true;
+		await addObj(dataForm);
+		useMessage().success(t('common.addSuccessText'));
+		emit('refresh');
 	}
+	visible.value = false; // 关闭弹窗
+	loading.value = false;
 };
 
 const getData = async (id: string) => {

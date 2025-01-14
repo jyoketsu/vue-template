@@ -1,13 +1,14 @@
 <template>
-  <div class="size-full flex flex-col justify-center items-center bg-gradient-to-tr from-emerald-900 to-emerald-100 dark:from-emerald-900 dark:to-zinc-900">
+  <div
+    class="size-full flex flex-col justify-center items-center bg-gradient-to-tr from-emerald-900 to-emerald-100 dark:from-emerald-900 dark:to-zinc-900">
 
     <div class="flex flex-col justify-center items-center px-7 py-10 bg-white dark:bg-gray-800 rounded-md">
       <div class="font-bold text-2xl mb-10 flex items-center">
         <i class="bg-[url(/logo.svg)] bg-contain bg-no-repeat bg-center size-8 mr-2" />
         <p>Vue Template</p>
       </div>
-      <el-form class="w-72 lg:w-80" ref="formRef" :model="loginForm" label-position="left" autocomplete="on" :rules="rules"
-        @keyup.enter="onSubmit(formRef)">
+      <el-form class="w-72 lg:w-80" ref="formRef" :model="loginForm" label-position="left" autocomplete="on"
+        :rules="rules" @keyup.enter="onSubmit(formRef)">
         <el-form-item prop="username">
           <el-input v-model="loginForm.username" :placeholder="$t('auth.usernamePlaceholder')">
             <template #prefix>
@@ -82,19 +83,15 @@ let rules = reactive({
 });
 
 const onSubmit = async (formEl?: FormInstance) => {
-  try {
-    if (!formEl) return;
-    await formEl.validate(async (valid, fields) => {
-      if (valid) {
-        await login(loginForm);
-        notification("登录成功", "您好，欢迎回来!", "success")
-        router.push({ path: (route.query.url as any) || '/' });
-      } else {
-        console.log("error submit!", fields);
-      }
-    });
-  } catch (err: any) {
-    message("error", err.message);
-  }
+  if (!formEl) return;
+  await formEl.validate(async (valid, fields) => {
+    if (valid) {
+      await login(loginForm);
+      notification("登录成功", "您好，欢迎回来!", "success")
+      router.push({ path: (route.query.url as any) || '/' });
+    } else {
+      console.log("error submit!", fields);
+    }
+  });
 };
 </script>
