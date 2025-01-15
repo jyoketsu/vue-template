@@ -4,6 +4,7 @@ import {
   login as loginApi,
   register as registerApi,
   loginByToken,
+  updateUser,
 } from "@/api/auth";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
@@ -41,5 +42,23 @@ export const useAuthStore = defineStore("auth", () => {
     localStorage.removeItem("auth_token");
     user.value = null;
   };
-  return { user, login, register, getUserInfoByToken, logout };
+
+  const update = async ({
+    id,
+    username,
+    avatar,
+  }: {
+    id: string;
+    username?: string;
+    avatar?: string;
+  }) => {
+    const response = (await updateUser(
+      id,
+      username,
+      avatar
+    )) as ApiResponse<User>;
+    user.value = { ...response.data };
+  };
+
+  return { user, login, register, getUserInfoByToken, logout, update };
 });

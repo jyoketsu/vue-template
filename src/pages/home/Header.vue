@@ -17,7 +17,7 @@
       </template>
     </el-dropdown>
     <el-dropdown>
-      <div class="h-full flex items-center space-x-1">
+      <div class="h-full flex items-center space-x-1" @click="optionsVisible = true">
         <el-avatar :size="28" :src="user?.avatar">{{ user?.username.substring(0, 1) }}</el-avatar>
         <span>{{ user?.username }}</span>
       </div>
@@ -28,7 +28,9 @@
       </template>
     </el-dropdown>
   </div>
+  <Options :visible="optionsVisible" @close="optionsVisible = false" />
 </template>
+
 <script setup lang="ts">
 import { useCommonStore } from "@/stores/common";
 import { useAuthStore } from "@/stores/auth";
@@ -40,6 +42,8 @@ import { messageBox } from "@/Hooks/Element-plus";
 import { useRoute, useRouter } from "vue-router";
 import { MenuIcon, ChevronsRightIcon } from "lucide-vue-next";
 import Breadcrumb from './Breadcrumb.vue'
+import { ref } from "vue";
+import Options from './options/index.vue';
 
 const { locale } = useI18n();
 const router = useRouter();
@@ -52,6 +56,7 @@ const { setLocale, toggleCollapse } = commonStore;
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 const { t } = useI18n();
+const optionsVisible = ref(false);
 
 
 function changeLocale(type: string) {

@@ -87,8 +87,8 @@ importers:
         specifier: ^1.11.9
         version: 1.11.13
       element-plus:
-        specifier: ^2.7.3
-        version: 2.9.2(vue@3.5.13(typescript@5.4.5))
+        specifier: ^2.9.3
+        version: 2.9.3(vue@3.5.13(typescript@5.4.5))
       lowlight:
         specifier: ^3.1.0
         version: 3.3.0
@@ -1164,8 +1164,8 @@ packages:
   electron-to-chromium@1.5.76:
     resolution: {integrity: sha512-CjVQyG7n7Sr+eBXE86HIulnL5N8xZY1sgmOPGuq/F0Rr0FJq63lg0kEtOIDfZBk44FnDLf6FUJ+dsJcuiUDdDQ==}
 
-  element-plus@2.9.2:
-    resolution: {integrity: sha512-HS+Cc5mmy70DixJuoN3cMxPPoNWXkjHzUw2PcGmysk6NHQzzUtwi2Vc+dlmbmRxj3eNqgC1xpPQV5Nf9uDtQRg==}
+  element-plus@2.9.3:
+    resolution: {integrity: sha512-6tSLp5XytDS4TMZ0P3aGZnr7MXTagfNycepNfIDitd9IgwM9y01+Ssu6mglNi8RiXYhek6LBWNOd/cvpIO12+w==}
     peerDependencies:
       vue: ^3.2.0
 
@@ -2912,7 +2912,7 @@ snapshots:
 
   electron-to-chromium@1.5.76: {}
 
-  element-plus@2.9.2(vue@3.5.13(typescript@5.4.5)):
+  element-plus@2.9.3(vue@3.5.13(typescript@5.4.5)):
     dependencies:
       '@ctrl/tinycolor': 3.6.1
       '@element-plus/icons-vue': 2.3.1(vue@3.5.13(typescript@5.4.5))
@@ -3806,7 +3806,7 @@ snapshots:
       add: 2.0.6
       axios: 1.7.9
       dayjs: 1.11.13
-      element-plus: 2.9.2(vue@3.5.13(typescript@5.4.5))
+      element-plus: 2.9.3(vue@3.5.13(typescript@5.4.5))
       lowlight: 3.3.0
       lucide-vue-next: 0.379.0(vue@3.5.13(typescript@5.4.5))
       nprogress: 0.2.0

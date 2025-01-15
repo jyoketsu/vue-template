@@ -76,7 +76,7 @@ import { addObj, putObj, getObj } from '@/api/biz/recipe';
 import { nextTick, reactive, ref } from 'vue';
 import { useMessage } from '@/Hooks/message';
 import { Ingredient, Step } from '@/interface/Recipe';
-import ImageUploader from './imageUploader.vue';
+import ImageUploader from '@/components/common/imageUploader.vue';
 
 const { t } = useI18n();
 
@@ -215,8 +215,6 @@ const handleAddStep = () => {
 const handleUploadSuccess = (url: string, index: number) => {
 	content.value[index].imageUrl = url
 }
-
-
 
 // 暴露变量
 defineExpose({
