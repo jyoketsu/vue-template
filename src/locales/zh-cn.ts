@@ -67,27 +67,6 @@ export default {
     edit: "编辑",
     delete: "删除",
   },
-  dashboard: {
-    techStack: "技术栈",
-    am: "上午好",
-    pm: "下午好",
-    evening: "晚上好",
-    weather: "{city}今日天气{weather}，气温约{temperature}度。",
-    weatherLoading: "获取天气信息中...",
-    vueDesc:
-      "Vue是一款用于构建用户界面的 JavaScript 框架。它基于标准 HTML、CSS 和 JavaScript 构建，并提供了一套声明式的、组件化的编程模型。",
-    tsDesc:
-      "TypeScript是由微软进行开发和维护的一种开源的编程语言。TypeScript是JavaScript的严格语法超集，提供了可选的静态类型检查。",
-    viteDesc: "Vite是一种新型前端构建工具，能够显著提升前端开发体验。",
-    piniaDesc: "一个拥有组合式 API 的 Vue 状态管理库。",
-    tailwindDesc:
-      "Tailwind CSS 是一个功能类优先的 CSS 框架，提供高度可定制的实用工具，让开发者通过简洁的类名快速构建响应式、现代的用户界面。",
-    i18nDesc: "Vue I18n 是 Vue.js 的国际化插件。",
-    elementDesc:
-      "Element Plus 是基于 Vue 3 的 UI 组件库，提供丰富的高质量组件，帮助开发者快速构建现代化、响应式的网页应用。",
-    lucideDesc:
-      "Lucide 是一个开源的图标库，提供简洁、现代的线性图标，灵活可定制，适用于网页和移动端应用。Lucide 以 SVG 格式为主，易于集成和使用。",
-  },
   table: {
     name: "名称",
     inputNameTip: "请输入名称",
@@ -147,5 +126,45 @@ export default {
       required: "不能为空",
       length: "长度必须在{min}-{max}之间",
     },
+  },
+  dashboard: {
+    frontendTechStack: "前端技术栈",
+    backendTechStack: "后端技术栈",
+    am: "上午好",
+    pm: "下午好",
+    evening: "晚上好",
+    weather: "{city}今日天气{weather}，气温约{temperature}度。",
+    weatherLoading: "获取天气信息中...",
+    vueDesc:
+      "Vue是一款用于构建用户界面的 JavaScript 框架。它基于标准 HTML、CSS 和 JavaScript 构建，并提供了一套声明式的、组件化的编程模型。",
+    tsDesc:
+      "TypeScript是由微软进行开发和维护的一种开源的编程语言。TypeScript是JavaScript的严格语法超集，提供了可选的静态类型检查。",
+    viteDesc: "Vite是一种新型前端构建工具，能够显著提升前端开发体验。",
+    piniaDesc: "一个拥有组合式 API 的 Vue 状态管理库。",
+    tailwindDesc:
+      "Tailwind CSS 是一个功能类优先的 CSS 框架，提供高度可定制的实用工具，让开发者通过简洁的类名快速构建响应式、现代的用户界面。",
+    i18nDesc: "Vue I18n 是 Vue.js 的国际化插件。",
+    elementDesc:
+      "Element Plus 是基于 Vue 3 的 UI 组件库，提供丰富的高质量组件，帮助开发者快速构建现代化、响应式的网页应用。",
+    lucideDesc:
+      "Lucide 是一个开源的图标库，提供简洁、现代的线性图标，灵活可定制，适用于网页和移动端应用。Lucide 以 SVG 格式为主，易于集成和使用。",
+    javaDesc:
+      "Java是一种广泛使用的面向对象编程语言，具有跨平台特性，常用于开发企业级应用。",
+    springDesc:
+      "Spring是一个开源的Java框架，用于构建企业级应用，提供了一套完整的解决方案，包括持久化数据、事务管理、安全控制、RESTful API等。",
+    mysqlDesc:
+      "MySQL是一个开源的关系数据库管理系统，是世界上最流行的关系数据库管理系统之一。",
+    redisDesc:
+      "Redis是一个开源的高性能、高可用、内存数据库，可以用作缓存、消息队列、会话状态等。",
+    springSecurityDesc:
+      "Spring Security是Spring框架的安全模块，提供了一套完整的解决方案，包括身份验证、访问控制、密码加密等。",
+    mavenDesc:
+      "Maven是一个基于Java的开源构建管理工具，用于管理Java项目的构建、依赖管理、插件管理等。",
+    swaggerDesc:
+      "Swagger是一个开源的API文档工具，可以用于生成RESTful API的文档，方便开发人员进行API调用和管理。",
+    dockerDesc:
+      "Docker是一个开源的应用容器化平台，可以用于快速创建、部署和管理应用程序。",
+    jwtDesc:
+      "JWT是一种安全的、可靠的、无状态的、开放标准的、自主可信的令牌标准，用于在分布式应用程序中进行身份验证和权限控制。",
   },
 };
