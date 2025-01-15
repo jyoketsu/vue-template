@@ -1,5 +1,3 @@
-import { valid } from "mockjs";
-
 export default {
   router: {
     dashboard: "首页",
@@ -28,6 +26,17 @@ export default {
     passwordPlaceholder: "请输入密码",
     passwordValidater: "密码长度必须在3-100之间",
     login: "登录",
+    register: "注册",
+    noAccount: "没有账号？",
+    registerNow: "立即注册",
+    hasAccount: "已有账号？",
+    loginNow: "立即登录",
+    confirmPassword: "确认密码",
+    passwordMismatch: "密码不一致",
+    loginSuccess: "登录成功",
+    registerSuccess: "注册成功",
+    welcome: "您好，欢迎回来!",
+    toLogin: "请登录",
   },
   common: {
     logout: "退出登录",

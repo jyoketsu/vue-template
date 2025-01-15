@@ -32,19 +32,19 @@ Vue Template
 ## 安装
 
 ```
-yarn
+pnpm
 ```
 
 ## 启动服务
 
 ```
-yarn dev
+pnpm dev
 ```
 
 ## 编译并发布
 
 ```
-yarn deploy
+pnpm deploy
 ```
 
 ## iconiFy

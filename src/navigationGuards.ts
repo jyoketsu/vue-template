@@ -10,7 +10,7 @@ router.beforeEach(async (to, from, next) => {
   const userStore = useAuthStore();
   const token = localStorage.getItem("auth_token");
   if (token) {
-    if (to.path !== "/login") {
+    if (to.path !== "/login" && to.path !== "/register") {
       //判断有没有用户信息
       if (!userStore.user) {
         try {
@@ -28,7 +28,7 @@ router.beforeEach(async (to, from, next) => {
       next();
     }
   } else {
-    if (to.path !== "/login") {
+    if (to.path !== "/login" && to.path !== "/register") {
       next({ path: "/login", query: { url: to.path } });
     } else {
       next();

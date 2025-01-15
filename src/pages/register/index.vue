@@ -23,16 +23,21 @@
             </template>
           </el-input>
         </el-form-item>
+        <el-form-item prop="confirmPassword">
+          <el-input v-model="loginForm.confirmPassword" type="password" :placeholder="$t('auth.confirmPassword')">
+            <template #prefix>
+              <LockKeyholeIcon class="size-5" />
+            </template>
+          </el-input>
+        </el-form-item>
         <el-form-item class="mt-8">
           <el-button type="primary" style="width: 100%" @click="onSubmit(formRef)">
-            {{ $t("auth.login") }}
+            {{ $t("auth.register") }}
           </el-button>
         </el-form-item>
         <div class="flex justify-center">
-          <span class="text-sm text-gray-500">{{ $t("auth.noAccount") }}</span>
-          <el-button link type="primary" @click="handle2Register">
-            {{ $t("auth.registerNow") }}
-          </el-button>
+          <span class="text-sm text-gray-500">{{ $t("auth.hasAccount") }}</span>
+          <el-button link type="primary" @click="handle2Login">{{ $t("auth.loginNow") }}</el-button>
         </div>
       </el-form>
     </div>
@@ -40,7 +45,7 @@
 </template>
 
 <script setup lang="ts">
-import { message, notification } from "@/Hooks/Element-plus";
+import { notification } from "@/Hooks/Element-plus";
 import { useAuthStore } from "@/stores/auth";
 import { FormInstance } from "element-plus";
 import { LockKeyholeIcon, UserIcon } from "lucide-vue-next";
@@ -52,12 +57,13 @@ const { t } = useI18n();
 const router = useRouter();
 const route = useRoute();
 const store = useAuthStore();
-const { login } = store;
+const { register } = store;
 
 const formRef = ref<FormInstance>();
 const loginForm = reactive({
   username: "",
   password: "",
+  confirmPassword: "",
 });
 
 let rules = reactive({
@@ -73,22 +79,35 @@ let rules = reactive({
       trigger: "change",
     },
   ],
+  confirmPassword: [
+    { required: true, message: t("auth.confirmPasswordPlaceholder"), trigger: "change" },
+    {
+      validator: (rule: any, value: string, callback: (error?: Error) => void) => {
+        if (value !== loginForm.password) {
+          callback(new Error(t("auth.passwordMismatch")));
+        } else {
+          callback();
+        }
+      },
+      trigger: "change",
+    },
+  ],
 });
 
 const onSubmit = async (formEl?: FormInstance) => {
   if (!formEl) return;
   await formEl.validate(async (valid, fields) => {
     if (valid) {
-      await login(loginForm);
-      notification(t("auth.loginSuccess"), t("auth.welcome"), "success")
-      router.push({ path: (route.query.url as any) || '/' });
+      await register(loginForm);
+      notification(t("auth.registerSuccess"), t("auth.toLogin"), "success")
+      router.push('/login');
     } else {
       console.log("error submit!", fields);
     }
   });
 };
 
-const handle2Register = () => {
-  router.push({ path: "/register" })
+const handle2Login = () => {
+  router.push({ path: "/login" })
 }
 </script>

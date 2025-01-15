@@ -74,6 +74,7 @@ export const routes = [
     ],
   },
   { path: "/login", component: () => import("@/pages/login/index.vue") },
+  { path: "/register", component: () => import("@/pages/register/index.vue") },
   {
     path: "/404",
     component: () => import("@/pages/404/index.vue"),
