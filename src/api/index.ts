@@ -99,6 +99,14 @@ axios.interceptors.request.use(
         config.headers["Authorization"] = `Bearer ${token}`;
       }
     }
+    // 检查 URL 是否包含 `/login`
+    if (config.url && /\/login/.test(config.url)) {
+      const captchaId = sessionStorage.getItem("captchaId");
+      if (captchaId) {
+        // 设置 Captcha-Id 头部
+        config.headers["Captcha-Id"] = captchaId;
+      }
+    }
     return config;
   },
   (error) => {

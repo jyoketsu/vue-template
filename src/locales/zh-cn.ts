@@ -40,6 +40,9 @@ export default {
     registerSuccess: "注册成功",
     welcome: "您好，欢迎回来!",
     toLogin: "请登录",
+    captcha: "验证码",
+    captchaPlaceholder: "请输入验证码",
+    changeCaptcha: "换一张",
   },
   common: {
     logout: "退出登录",

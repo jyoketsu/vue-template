@@ -1,9 +1,10 @@
 import { request } from "@/api/index";
 
-export function login(username: string, password: string) {
+export function login(username: string, password: string, captcha: string) {
   return request.post("/api/auth/login", {
     username,
     password,
+    captcha,
   });
 }
 
@@ -32,4 +33,20 @@ export function changePassword(
     password,
     newPassword,
   });
+}
+
+export async function getCaptcha() {
+  try {
+    // 获取 Captcha
+    const response = await fetch("/api/captcha");
+    // 获取 Captcha-Id
+    const captchaId = response.headers.get("Captcha-Id");
+    const blob = await response.blob();
+    // 保存 Captcha-Id
+    sessionStorage.setItem("captchaId", captchaId || "");
+    // 返回 Blob
+    return URL.createObjectURL(blob);
+  } catch (error) {
+    console.error("Failed to fetch captcha:", error);
+  }
 }

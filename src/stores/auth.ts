@@ -16,11 +16,17 @@ export const useAuthStore = defineStore("auth", () => {
   const login = async ({
     username,
     password,
+    captcha,
   }: {
     username: string;
     password: string;
+    captcha: string;
   }) => {
-    const response = (await loginApi(username, password)) as ApiResponse<User>;
+    const response = (await loginApi(
+      username,
+      password,
+      captcha
+    )) as ApiResponse<User>;
     localStorage.setItem("auth_token", response.data.token);
   };
 
