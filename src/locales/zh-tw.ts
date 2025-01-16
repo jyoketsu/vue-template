@@ -22,10 +22,22 @@ export default {
   auth: {
     username: "用戶名",
     usernamePlaceholder: "請輸入用戶名",
+    usernameInvalid: "用戶名只能包含英文和數字",
     password: "密碼",
     passwordPlaceholder: "請輸入密碼",
     passwordValidater: "密碼長度必須在3-100之間",
     login: "登錄",
+    register: "註冊",
+    noAccount: "沒有賬號？",
+    registerNow: "立即註冊",
+    hasAccount: "已有賬號？",
+    loginNow: "立即登錄",
+    confirmPassword: "確認密碼",
+    passwordMismatch: "密碼不一致",
+    loginSuccess: "登錄成功",
+    registerSuccess: "註冊成功",
+    welcome: "您好，歡迎回來!",
+    toLogin: "請登錄",
   },
   common: {
     logout: "退出登錄",
@@ -56,27 +68,6 @@ export default {
     edit: "編輯",
     delete: "刪除",
   },
-  dashboard: {
-    techStack: "技術棧",
-    am: "上午好",
-    pm: "下午好",
-    evening: "晚上好",
-    weather: "{city}今日天氣{weather}，氣溫約{temperature}度。",
-    weatherLoading: "獲取天氣信息中...",
-    vueDesc:
-      "Vue是一款用於構建用戶界面的 JavaScript 框架。它基於標準 HTML、CSS 和 JavaScript 構建，並提供了一套聲明式的、組件化的編程模型。",
-    tsDesc:
-      "TypeScript是由微軟進行開發和維護的一種開源的編程語言。TypeScript是JavaScript的嚴格語法超集，提供了可選的靜態類型檢查。",
-    viteDesc: "Vite是一種新型前端構建工具，能夠顯著提升前端開發體驗。",
-    piniaDesc: "一個擁有組合式 API 的 Vue 狀態管理庫。",
-    tailwindDesc:
-      "Tailwind CSS 是一個功能類優先的 CSS 框架，提供高度可定製的實用工具，讓開發者通過簡潔的類名快速構建響應式、現代的用戶界面。",
-    i18nDesc: "Vue I18n 是 Vue.js 的國際化插件。",
-    elementDesc:
-      "Element Plus 是基於 Vue 3 的 UI 組件庫，提供豐富的高質量組件，幫助開發者快速構建現代化、響應式的網頁應用。",
-    lucideDesc:
-      "Lucide 是一個開源的圖標庫，提供簡潔、現代的線性圖標，靈活可定製，適用於網頁和移動端應用。Lucide 以 SVG 格式為主，易於集成和使用。",
-  },
   table: {
     name: "名稱",
     inputNameTip: "請輸入名稱",
@@ -95,7 +86,7 @@ export default {
     offline: "禁用",
   },
   tools: {
-    cilpboard: "復製到剪貼板",
+    cilpboard: "複製到剪貼板",
     fullscreen: "全屏",
     qrcode: "二維碼",
     pdf: "打印為PDF",
@@ -120,6 +111,13 @@ export default {
     description: "簡介",
     ingredients: "食材",
     ingredientTip: "請輸入食材，多個以空格分隔",
+    addIngredient: "添加食材",
+    steps: "步驟",
+    addStep: "添加步驟",
+    stepTip: "請輸入步驟做法",
+    validate: {
+      duplicateIngredient: "食材重複！",
+    },
   },
   message: {
     box: {
@@ -129,5 +127,45 @@ export default {
       required: "不能為空",
       length: "長度必須在{min}-{max}之間",
     },
+  },
+  dashboard: {
+    frontendTechStack: "前端技術棧",
+    backendTechStack: "後端技術棧",
+    am: "上午好",
+    pm: "下午好",
+    evening: "晚上好",
+    weather: "{city}今日天氣{weather}，氣溫約{temperature}度。",
+    weatherLoading: "獲取天氣信息中...",
+    vueDesc:
+      "Vue是一款用於構建用戶界面的 JavaScript 框架。它基於標準 HTML、CSS 和 JavaScript 構建，並提供了一套聲明式的、組件化的編程模型。",
+    tsDesc:
+      "TypeScript是由微軟進行開發和維護的一種開源的編程語言。TypeScript是JavaScript的嚴格語法超集，提供了可選的靜態類型檢查。",
+    viteDesc: "Vite是一種新型前端構建工具，能夠顯著提升前端開發體驗。",
+    piniaDesc: "一個擁有組合式 API 的 Vue 狀態管理庫。",
+    tailwindDesc:
+      "Tailwind CSS 是一個功能類優先的 CSS 框架，提供高度可定制的實用工具，讓開發者通過簡潔的類名快速構建響應式、現代的用戶界面。",
+    i18nDesc: "Vue I18n 是 Vue.js 的國際化插件。",
+    elementDesc:
+      "Element Plus 是基於 Vue 3 的 UI 組件庫，提供豐富的高質量組件，幫助開發者快速構建現代化、響應式的網頁應用。",
+    lucideDesc:
+      "Lucide 是一個開源的圖標庫，提供簡潔、現代的線性圖標，靈活可定制，適用於網頁和移動端應用。Lucide 以 SVG 格式為主，易於集成和使用。",
+    javaDesc:
+      "Java是一種廣泛使用的面向對象編程語言，具有跨平台特性，常用於開發企業級應用。",
+    springDesc:
+      "Spring是一個開源的Java框架，用於構建企業級應用，提供了一套完整的解決方案，包括持久化數據、事務管理、安全控制、RESTful API等。",
+    mysqlDesc:
+      "MySQL是一個開源的關係數據庫管理系統，是世界上最流行的關係數據庫管理系統之一。",
+    redisDesc:
+      "Redis是一個開源的高性能、高可用、內存數據庫，可以用作緩存、消息隊列、會話狀態等。",
+    springSecurityDesc:
+      "Spring Security是Spring框架的安全模塊，提供了一套完整的解決方案，包括身份驗證、訪問控制、密碼加密等。",
+    mavenDesc:
+      "Maven是一個基於Java的開源構建管理工具，用於管理Java項目的構建、依賴管理、插件管理等。",
+    swaggerDesc:
+      "Swagger是一個開源的API文檔工具，可以用於生成RESTful API的文檔，方便開發人員進行API調用和管理。",
+    dockerDesc:
+      "Docker是一個開源的應用容器化平台，可以用於快速創建、部署和管理應用程序。",
+    jwtDesc:
+      "JWT是一種安全的、可靠的、無狀態的、開放標準的、自主可信的令牌標準，用於在分佈式應用程序中進行身份驗證和權限控制。",
   },
 };

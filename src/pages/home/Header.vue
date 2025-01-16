@@ -17,12 +17,13 @@
       </template>
     </el-dropdown>
     <el-dropdown>
-      <div class="h-full flex items-center space-x-1" @click="optionsVisible = true">
+      <div class="h-full flex items-center space-x-1">
         <el-avatar :size="28" :src="user?.avatar">{{ user?.username.substring(0, 1) }}</el-avatar>
         <span>{{ user?.username }}</span>
       </div>
       <template #dropdown>
         <el-dropdown-menu>
+          <el-dropdown-item @click="optionsVisible = true">{{ $t('common.options') }}</el-dropdown-item>
           <el-dropdown-item @click="loginOut">{{ $t('common.logout') }}</el-dropdown-item>
         </el-dropdown-menu>
       </template>

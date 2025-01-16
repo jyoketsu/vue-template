@@ -5,6 +5,7 @@ import {
   register as registerApi,
   loginByToken,
   updateUser,
+  changePassword as changePasswordApi,
 } from "@/api/auth";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
@@ -44,21 +45,41 @@ export const useAuthStore = defineStore("auth", () => {
   };
 
   const update = async ({
-    id,
     username,
     avatar,
   }: {
-    id: string;
     username?: string;
     avatar?: string;
   }) => {
-    const response = (await updateUser(
-      id,
-      username,
-      avatar
-    )) as ApiResponse<User>;
-    user.value = { ...response.data };
+    if (user.value && user.value.id) {
+      const response = (await updateUser(
+        user.value.id,
+        username,
+        avatar
+      )) as ApiResponse<User>;
+      user.value = { ...response.data };
+    }
   };
 
-  return { user, login, register, getUserInfoByToken, logout, update };
+  const changePassword = async ({
+    password,
+    newPassword,
+  }: {
+    password: string;
+    newPassword: string;
+  }) => {
+    if (user.value && user.value.username) {
+      await changePasswordApi(user.value.username, password, newPassword);
+    }
+  };
+
+  return {
+    user,
+    login,
+    register,
+    getUserInfoByToken,
+    logout,
+    update,
+    changePassword,
+  };
 });

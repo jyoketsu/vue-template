@@ -69,11 +69,22 @@ const loginForm = reactive({
 let rules = reactive({
   username: [
     { required: true, message: t("auth.usernamePlaceholder"), trigger: "change" },
+    {
+      validator: (rule: any, value: string, callback: (error?: Error) => void) => {
+        const regex = /^[a-zA-Z0-9]+$/;
+        if (!regex.test(value)) {
+          callback(new Error(t("auth.usernameInvalid")));
+        } else {
+          callback();
+        }
+      },
+      trigger: "change",
+    },
   ],
   password: [
     { required: true, message: t("auth.passwordPlaceholder"), trigger: "change" },
     {
-      min: 3,
+      min: 8,
       max: 100,
       message: t("auth.passwordValidater"),
       trigger: "change",

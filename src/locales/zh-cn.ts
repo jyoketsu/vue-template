@@ -1,3 +1,5 @@
+import { profile } from "console";
+
 export default {
   router: {
     dashboard: "首页",
@@ -22,9 +24,10 @@ export default {
   auth: {
     username: "用户名",
     usernamePlaceholder: "请输入用户名",
+    usernameInvalid: "用户名只能包含英文和数字",
     password: "密码",
     passwordPlaceholder: "请输入密码",
-    passwordValidater: "密码长度必须在3-100之间",
+    passwordValidater: "密码长度必须在8-100之间",
     login: "登录",
     register: "注册",
     noAccount: "没有账号？",
@@ -62,6 +65,7 @@ export default {
     delSuccessText: "删除成功",
     optSuccessText: "操作成功",
     index: "#",
+    options: "设置",
   },
   menu: {
     edit: "编辑",
@@ -117,6 +121,16 @@ export default {
     validate: {
       duplicateIngredient: "食材重复！",
     },
+  },
+  options: {
+    account: "账号",
+    changePassword: "修改密码",
+    changePasswordDesc: "更改您的密码以登录您的账户",
+    currentPassword: "当前密码",
+    newPassword: "新密码",
+    confirmPassword: "确认密码",
+    changePasswordSuccess: "修改密码成功",
+    newPasswordSame: "新密码不能与当前密码相同",
   },
   message: {
     box: {

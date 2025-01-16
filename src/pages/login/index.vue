@@ -67,7 +67,7 @@ let rules = reactive({
   password: [
     { required: true, message: t("auth.passwordPlaceholder"), trigger: "change" },
     {
-      min: 3,
+      min: 8,
       max: 100,
       message: t("auth.passwordValidater"),
       trigger: "change",

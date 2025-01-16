@@ -21,3 +21,15 @@ export function loginByToken(token: string) {
 export function updateUser(id: string, username?: string, avatar?: string) {
   return request.put("/api/auth", { id, username, avatar });
 }
+
+export function changePassword(
+  username: string,
+  password: string,
+  newPassword: string
+) {
+  return request.post("/api/auth/changePassword", {
+    username,
+    password,
+    newPassword,
+  });
+}
