@@ -12,8 +12,8 @@ export function getObj(id: string) {
   return request.get(`/api/recipes/${id}`);
 }
 
-export function delObj(id: string) {
-  return request.delete(`/api/recipes/${id}`);
+export function delObj(ids: string[]) {
+  return request.delete(`/api/recipes`, ids);
 }
 
 export function putObj(obj: any) {

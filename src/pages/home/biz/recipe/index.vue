@@ -142,7 +142,7 @@ const handleDelete = async (ids: string[]) => {
 		return;
 	}
 
-	await delObj(ids[0]);
+	await delObj(ids);
 	getDataList();
 	useMessage().success(t('common.delSuccessText'));
 };

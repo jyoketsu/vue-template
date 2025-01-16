@@ -145,7 +145,7 @@ const handleDelete = async (ids: string[]) => {
 		return;
 	}
 
-	await delObj(ids[0]);
+	await delObj(ids);
 	refresh();
 	useMessage().success(t('common.delSuccessText'));
 };

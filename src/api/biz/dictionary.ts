@@ -12,8 +12,8 @@ export function getObj(id: string) {
   return request.get(`/api/dictionary/${id}`);
 }
 
-export function delObj(id: string) {
-  return request.delete(`/api/dictionary/${id}`);
+export function delObj(ids: string[]) {
+  return request.delete(`/api/dictionary`, ids);
 }
 
 export function putObj(obj: any) {

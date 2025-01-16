@@ -92,19 +92,22 @@ const onSubmit = async () => {
 	if (!valid) return false;
 
 	const { id } = dataForm;
-	if (id) {
-		loading.value = true;
-		await putObj(dataForm);
-		useMessage().success(t('common.editSuccessText'));
+	loading.value = true;
+	try {
+		if (id) {
+			await putObj(dataForm);
+			useMessage().success(t('common.editSuccessText'));
+		} else {
+			await addObj(dataForm);
+			useMessage().success(t('common.addSuccessText'));
+		}
 		emit('refresh');
-	} else {
-		loading.value = true;
-		await addObj(dataForm);
-		useMessage().success(t('common.addSuccessText'));
-		emit('refresh');
+		visible.value = false; // 关闭弹窗
+	} catch (error) {
+		console.error(error);
+	} finally {
+		loading.value = false;
 	}
-	visible.value = false; // 关闭弹窗
-	loading.value = false;
 };
 
 const getData = async (id: string) => {

@@ -150,23 +150,29 @@ const onSubmit = async () => {
 	// 组装提交数据
 	const obj = { ...dataForm, ...{ ingredients: result, content: JSON.stringify(content.value) } };
 
-	const { id } = dataForm;
-	if (id) {
-		// 编辑操作
-		loading.value = true;
-		await putObj(obj);
-		useMessage().success(t('common.editSuccessText')); // 显示编辑成功信息
-		emit('refresh');
-		visible.value = false; // 关闭弹窗
-	} else {
-		// 添加操作
-		loading.value = true;
-		await addObj(obj);
-		useMessage().success(t('common.addSuccessText')); // 显示添加成功信息
-		emit('refresh');
-		visible.value = false; // 关闭弹窗
+	try {
+		const { id } = dataForm;
+		if (id) {
+			// 编辑操作
+			loading.value = true;
+			await putObj(obj);
+			useMessage().success(t('common.editSuccessText')); // 显示编辑成功信息
+			emit('refresh');
+			visible.value = false; // 关闭弹窗
+		} else {
+			// 添加操作
+			loading.value = true;
+			await addObj(obj);
+			useMessage().success(t('common.addSuccessText')); // 显示添加成功信息
+			emit('refresh');
+			visible.value = false; // 关闭弹窗
+		}
+	} catch (error) {
+
+	} finally {
+		loading.value = false; // 解除加载状态
 	}
-	loading.value = false; // 解除加载状态
+
 };
 
 const getData = async (id: string) => {
