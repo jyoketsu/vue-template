@@ -33,8 +33,6 @@ const isDark = useDark();
 const greeting = ref('');
 const weatherInfo = ref<{ city: string; province: string; weather: string; temperature: string } | null>(null);
 
-
-
 const getGreeting = () => {
   // 获取当前时间的小时数
   const hour = new Date().getHours();

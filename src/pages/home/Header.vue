@@ -18,7 +18,7 @@
     </el-dropdown>
     <el-dropdown>
       <div class="h-full flex items-center space-x-1">
-        <el-avatar :size="28" :src="user?.avatar">{{ user?.username.substring(0, 1) }}</el-avatar>
+        <el-avatar :size="28" :src="user?.avatar">{{ user?.username?.substring(0, 1) }}</el-avatar>
         <span>{{ user?.username }}</span>
       </div>
       <template #dropdown>
@@ -68,7 +68,7 @@ function changeLocale(type: string) {
 // 退出登录
 const loginOut = async () => {
   await messageBox(t("common.tip"), t("common.logoutConfirm"), "primary")
-  authStore.logout()
+  await authStore.logout()
   router.push({
     path: "/login",
     query: {

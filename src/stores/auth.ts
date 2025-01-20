@@ -2,13 +2,15 @@ import { ApiResponse } from "@/interface/ApiResponse";
 import { User } from "@/interface/User";
 import {
   login as loginApi,
+  logout as logoutApi,
   register as registerApi,
   loginByToken,
   updateUser,
   changePassword as changePasswordApi,
+  validateAndRefreshToken,
 } from "@/api/auth";
 import { defineStore } from "pinia";
-import { computed, ref } from "vue";
+import { ref } from "vue";
 
 export const useAuthStore = defineStore("auth", () => {
   const user = ref<User | null>(null);
@@ -27,12 +29,20 @@ export const useAuthStore = defineStore("auth", () => {
       password,
       captcha
     )) as ApiResponse<User>;
-    localStorage.setItem("auth_token", response.data.token);
   };
 
   const getUserInfoByToken = async (token: string) => {
     const response = (await loginByToken(token)) as ApiResponse<User>;
     user.value = { ...response.data };
+  };
+
+  const validateToken = async () => {
+    try {
+      const response = (await validateAndRefreshToken()) as ApiResponse<User>;
+      user.value = { ...response.data };
+    } catch (error) {
+      throw error;
+    }
   };
 
   const register = async ({
@@ -46,7 +56,8 @@ export const useAuthStore = defineStore("auth", () => {
   };
 
   const logout = async () => {
-    localStorage.removeItem("auth_token");
+    // localStorage.removeItem("auth_token");
+    await logoutApi();
     user.value = null;
   };
 
@@ -87,5 +98,6 @@ export const useAuthStore = defineStore("auth", () => {
     logout,
     update,
     changePassword,
+    validateToken,
   };
 });

@@ -1,6 +1,6 @@
 import { useMessage } from "@/Hooks/message";
 import axios from "axios";
-let token = localStorage.getItem("auth_token") || "";
+import { refreshToken } from "./auth";
 
 export const request = {
   get(path: string, params?: object) {
@@ -75,30 +75,18 @@ export const request = {
   },
 };
 
-export function setToken(_token: string) {
-  localStorage.setItem("auth_token", _token);
-  token = _token;
-}
-
-export function rmvToken() {
-  localStorage.removeItem("auth_token");
-  token = "";
-}
-
-export function getToken() {
-  return token;
-}
-
 // 请求拦截器
 axios.interceptors.request.use(
   (config) => {
+    // 使用cookie发送token，这个就不需要了
     // 检查 URL 是否包含 `/api`
-    if (config.url && /\/api/.test(config.url)) {
-      const token = localStorage.getItem("auth_token");
-      if (token) {
-        config.headers["Authorization"] = `Bearer ${token}`;
-      }
-    }
+    // if (config.url && /\/api/.test(config.url)) {
+    //   const token = localStorage.getItem("auth_token");
+    //   if (token) {
+    //     config.headers["Authorization"] = `Bearer ${token}`;
+    //   }
+    // }
+
     // 检查 URL 是否包含 `/login`
     if (config.url && /\/login/.test(config.url)) {
       const captchaId = sessionStorage.getItem("captchaId");
@@ -115,16 +103,60 @@ axios.interceptors.request.use(
 );
 
 // 响应拦截器
-axios.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    // if (error.response && error.response.status === 401) {
-    //   // 处理未认证错误，例如跳转到登录页
-    //   rmvToken();
-    //   window.location.href = "/login";
-    // }
+let isRefreshing = false; // 标志位，表示是否正在刷新 token
+let pendingRequests: (() => void)[] = []; // 队列，存放待重试的请求
 
-    return useMessage().error(
+// 响应拦截器
+axios.interceptors.response.use(
+  (response) => response, // 请求成功直接返回
+  async (error) => {
+    const originalRequest = error.config;
+
+    // 如果返回 403，说明需要刷新 token
+    if (error.response && error.response.status === 403) {
+      console.log("403 错误，尝试刷新 token");
+
+      // 如果已经在刷新 token，则将当前请求加入队列，等待 token 刷新完成后重试
+      if (isRefreshing) {
+        return new Promise((resolve) => {
+          pendingRequests.push(() => {
+            resolve(axios(originalRequest));
+          });
+        });
+      }
+
+      // 开始刷新 token，设置标志位
+      isRefreshing = true;
+
+      try {
+        // 调用 refreshToken 方法，它是一个异步方法
+        await refreshToken();
+
+        // 刷新成功后执行所有待重试的请求
+        pendingRequests.forEach((callback) => callback());
+        pendingRequests = []; // 清空队列
+
+        // 重试当前请求
+        return axios(originalRequest);
+      } catch (refreshError: any) {
+        console.log("401 错误，跳转到登录页");
+        window.location.href = "/login"; // 跳转到登录页
+        // 如果刷新失败，则直接返回错误
+        return Promise.reject(refreshError);
+      } finally {
+        // 刷新完成，无论成功或失败，都重置标志位
+        isRefreshing = false;
+      }
+    } else {
+      useMessage().error(
+        error.response && error.response.data
+          ? error.response.data.message
+          : error.message
+      );
+    }
+
+    // 其他错误情况直接返回错误信息
+    return Promise.reject(
       error.response && error.response.data
         ? error.response.data.message
         : error.message

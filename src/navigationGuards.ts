@@ -8,31 +8,26 @@ import { message } from "./Hooks/Element-plus";
 router.beforeEach(async (to, from, next) => {
   nprogress.start();
   const userStore = useAuthStore();
-  const token = localStorage.getItem("auth_token");
-  if (token) {
-    if (to.path !== "/login" && to.path !== "/register") {
-      //判断有没有用户信息
-      if (!userStore.user) {
-        try {
-          await userStore.getUserInfoByToken(token);
-          next({ ...to });
-        } catch (error: any) {
-          message("error", "重新登录");
-          await userStore.logout();
-          next({ path: "/login", query: { url: to.path } });
-        }
-      } else {
+
+  // 检查是否需要登录
+  if (to.path !== "/login" && to.path !== "/register") {
+    // 如果用户未登录
+    if (!userStore.user) {
+      try {
+        // 验证 token
+        await userStore.validateToken();
         next();
+      } catch (error) {
+        // token 验证失败，提示重新登录
+        next({ path: "/login", query: { url: to.path } });
       }
     } else {
+      // 用户已登录，继续导航
       next();
     }
   } else {
-    if (to.path !== "/login" && to.path !== "/register") {
-      next({ path: "/login", query: { url: to.path } });
-    } else {
-      next();
-    }
+    // 不需要登录，继续导航
+    next();
   }
 });
 

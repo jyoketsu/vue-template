@@ -8,6 +8,10 @@ export function login(username: string, password: string, captcha: string) {
   });
 }
 
+export function logout() {
+  return request.post("/api/auth/token/logout");
+}
+
 export function register(username: string, password: string) {
   return request.post("/api/auth/register", {
     username,
@@ -17,6 +21,14 @@ export function register(username: string, password: string) {
 
 export function loginByToken(token: string) {
   return request.get("/api/auth", { token });
+}
+
+export function validateAndRefreshToken() {
+  return request.get("/api/auth/token/validate-and-refresh");
+}
+
+export function refreshToken() {
+  return request.post("/api/auth/token/refresh");
 }
 
 export function updateUser(id: string, username?: string, avatar?: string) {
