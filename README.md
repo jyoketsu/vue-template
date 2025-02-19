@@ -51,9 +51,12 @@ pnpm deploy
 
 http://icon-sets.iconify.design/mdi/
 
+## declaration (.d.ts) file
+[env.d.ts](src/env.d.ts)
+
 ## hooks
 
-[dict](src/Hooks//dict.ts)
+[dict](src/Hooks/dict.ts)
 
 ## 图片上传 API
 
@@ -67,3 +70,9 @@ http://icon-sets.iconify.design/mdi/
 ## 路由鉴权
 
 [navigationGuards](src/navigationGuards.ts)
+
+## Docker
+- [Dockerfile](./Dockerfile)
+- [.dockerignore](./.dockerignore)
+- [build.sh](./build.sh)
+- [docker-compose.yml](./docker-compose.yml)

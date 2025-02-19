@@ -6,3 +6,9 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+
+declare module '@jyoketsu/vue-gantt' {
+  import { Plugin } from 'vue';
+  const vuegantt: Plugin;
+  export default vuegantt;
+}

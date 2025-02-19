@@ -1,5 +1,3 @@
-import { getToken } from ".";
-
 const decoder = new TextDecoder("utf-8");
 
 export function askAi(
@@ -17,7 +15,6 @@ export function askAi(
     method: "POST", // 请求方法为 POST
     headers: {
       "Content-Type": "application/json",
-      token: getToken(),
     },
     body: JSON.stringify(data),
   })

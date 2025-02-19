@@ -1,0 +1,55 @@
+worker_processes auto;
+
+events {
+  worker_connections 1024;
+}
+
+http {
+  include mime.types;
+  default_type application/octet-stream;
+
+  sendfile on;
+  keepalive_timeout 65;
+
+  # 强制使用现代 SSL/TLS 协议
+  ssl_protocols TLSv1.2 TLSv1.3;
+  ssl_prefer_server_ciphers on;
+  ssl_ciphers HIGH:!aNULL:!MD5;
+
+  server {
+    listen 80;
+    server_name localhost;
+
+    location / {
+      root /usr/share/nginx/html;
+      index index.html index.htm;
+      try_files $uri $uri/ /index.html;
+    }
+
+    # 代理 /api 请求到后端服务器
+    location /api {
+      proxy_pass http://backend:8080/api; # 后端服务器地址
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+
+      # 可选：重写路径，去掉 /api 前缀
+      # rewrite ^/api/(.*) /$1 break;
+    }
+
+    # 代理 /upload 请求到文件上传服务器
+    location /upload {
+      proxy_pass https://www.picgo.net/api/1/upload;
+      proxy_set_header Host www.picgo.net;
+      proxy_set_header X-API-Key ${VITE_PIC_GO_KEY}; # 替换为实际值
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+
+      # 强制使用 TLSv1.2 或 TLSv1.3
+      proxy_ssl_protocols TLSv1.2 TLSv1.3;
+      proxy_ssl_server_name on; # 启用 SNI（服务器名称指示）
+    }
+  }
+}
