@@ -10,26 +10,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4  # 检出仓库代码
 
       - name: Setup Docker Buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v2  # 配置Docker构建环境
 
       - name: Build Docker image
         env:
-          VITE_PIC_GO_KEY: ${{ secrets.VITE_PIC_GO_KEY }}
-        run: |
+          VITE_PIC_GO_KEY: ${{ secrets.VITE_PIC_GO_KEY }}  # 从GitHub Secrets获取密钥
           # 构建镜像并保存为 tar 文件
-          docker build --build-arg VITE_PIC_GO_KEY=$VITE_PIC_GO_KEY -t vue3-template:latest .
-          docker save -o vue3-template.tar vue3-template:latest
+        run: |
+          docker build --build-arg VITE_PIC_GO_KEY=$VITE_PIC_GO_KEY -t vue3-template:latest .  # 带参数构建Docker镜像
+          docker save -o vue3-template.tar vue3-template:latest  # 将镜像导出为tar文件
 
       - name: Setup SSH
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          mkdir -p ~/.ssh  # 创建SSH目录
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts  # 写入已知主机信息
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa  # 写入SSH私钥
+          chmod 600 ~/.ssh/id_rsa  # 设置私钥权限
 
       - name: Transfer via SCP
         run: |
-          scp -P 2222 vue3-template.tar root@i234.me:/data/docker-images/
+          scp -P 2222 vue3-template.tar root@xujie.i234.me:/data/docker-images/  # 使用2222端口传输打包的Docker镜像到服务器指定目录
+
+
+# 生成 SSH_PRIVATE_KEY 和 SSH_KNOWN_HOSTS
+
+# 生成一个新的 SSH 密钥对
+# ssh-keygen -t rsa -b 4096 -C "jyoketsu@gmail.com"
+
+# 获取目标服务器的 SSH 主机密钥
+# ssh-keyscan -p 2222 xujie.i234.me

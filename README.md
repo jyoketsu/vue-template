@@ -77,3 +77,6 @@ http://icon-sets.iconify.design/mdi/
 - [nginx.conf.template](./nginx.conf.template)
 - [build.sh](./build.sh)
 - [docker-compose.yml](./docker-compose.yml)
+
+## Actions
+- [main.yml](./.github/workflows/main.yml)
