@@ -1,0 +1,35 @@
+name: Docker Build and Deploy
+
+on:
+  push:
+    branches:
+      - main # 可根据需要修改触发分支
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build Docker image
+        env:
+          VITE_PIC_GO_KEY: ${{ secrets.VITE_PIC_GO_KEY }}
+        run: |
+          # 构建镜像并保存为 tar 文件
+          docker build --build-arg VITE_PIC_GO_KEY=$VITE_PIC_GO_KEY -t vue3-template:latest .
+          docker save -o vue3-template.tar vue3-template:latest
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      - name: Transfer via SCP
+        run: |
+          scp -P 2222 vue3-template.tar root@i234.me:/data/docker-images/

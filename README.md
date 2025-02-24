@@ -74,5 +74,6 @@ http://icon-sets.iconify.design/mdi/
 ## Docker
 - [Dockerfile](./Dockerfile)
 - [.dockerignore](./.dockerignore)
+- [nginx.conf.template](./nginx.conf.template)
 - [build.sh](./build.sh)
 - [docker-compose.yml](./docker-compose.yml)
