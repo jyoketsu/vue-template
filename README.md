@@ -79,4 +79,19 @@ http://icon-sets.iconify.design/mdi/
 - [docker-compose.yml](./docker-compose.yml)
 
 ## Actions
+#### 生成无密码的密钥对
+```bash
+# 本地生成新密钥对（注意 -N 后是空字符串）
+ssh-keygen -t rsa -b 4096 -C "jyoketsu@gmail.com" -f ./github-actions-key -N ""
+```
+将新生成的 `github-actions-key` (无密码私钥) 内容存入 `SSH_PRIVATE_KEY`  
+将 `github-actions-key.pub` (公钥) 内容添加到服务器的 `/root/.ssh/authorized_keys`  
+
+#### 获取目标服务器的 SSH 主机密钥
+```bash
+ssh-keyscan -p 2222 xujie.i234.me
+```
+将输出的内容复制到 GitHub Secrets 中的  `SSH_KNOWN_HOSTS`。
+
+#### 配置 Workflows
 - [main.yml](./.github/workflows/main.yml)

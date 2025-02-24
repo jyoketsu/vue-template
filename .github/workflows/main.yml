@@ -25,26 +25,21 @@ jobs:
 
       - name: Setup SSH
         run: |
-          mkdir -p ~/.ssh  # 创建SSH目录
-          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts  # 写入已知主机信息
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa  # 写入SSH私钥
-          chmod 600 ~/.ssh/id_rsa  # 设置私钥权限
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
 
       - name: Transfer via SCP
         run: |
-          scp -P 2222 vue3-template.tar root@xujie.i234.me:/data/docker-images/  # 使用2222端口传输打包的Docker镜像到服务器指定目录
+          scp -P 2222 vue3-template.tar root@xujie.i234.me:/data/docker-images/
 
-
-# 生成 SSH_PRIVATE_KEY 和 SSH_KNOWN_HOSTS
-
-# 生成一个新的 SSH 密钥对
-# ssh-keygen -t rsa -b 4096 -C "jyoketsu@gmail.com"
-
-# 获取目标服务器的 SSH 主机密钥
-# ssh-keyscan -p 2222 xujie.i234.me
-# 将 SSH_PRIVATE_KEY 和 SSH_KNOWN_HOSTS 的内容添加到 GitHub Secrets 中
-# SSH_PRIVATE_KEY: 私钥内容
-# SSH_KNOWN_HOSTS: 已知主机信息
-# [xujie.i234.me]:2222 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDCfn+1RFi40wOXbT49wSndqQL+wKp2sitqqmcJJ57QtGcY/7AUxbl53hUcYvYmTXFDBfY7/05Y/l1zVsvAuGy0SwZdjhy39tjA68l+T40bRaKXXprn9DkCnrQj99ukF+n0D0QrmxT9/NY3TiGDZeDX7IScv+OsZZI3U4VHOYLwwBLBKnZstc83Esfg+VA34AjhNMJpXnMAW73aJQJnetVU+0jkg6VdAmXDRfraMmxAVm9L1EXMLgJzZi2Y4r7zwMfzcUCcmCKt5ERfp4BGxAScDFQWy5gYunh7JQnVUnVP5xxryrp1eJ2ftZc6ATwI+pOTX7/yEzHCIF7UQ0ZyjYlesdpgUKkuXdASJdk4M3eel6Gw6xSb4ORx8/2N4FbDpi3NvluLi3eVQbdrVIrG73BrSLWCjhw9qaTe+ysVWr8uHTdrEQK9R2Sp2ZcgMI7bWY7TAQFBNeHAl1TqqCKi0igVHh/nWZqVR44bwlnz1poboN3Uyt/SQFsw7zh4h3mnmlM=
-# [xujie.i234.me]:2222 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFKUta8OmtUF/NgcHPwHmV2zJsmU2PC24yftV0nR9yMfS4nSiP1jT8q+g18xabJi9TkvcXusuIMkOtTxi4O47/E=
-# [xujie.i234.me]:2222 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ/LybPE3+mtljD0o6MzKse+JpwNeKCp8JehJtk/sATJ
+      - name: Deploy on Server
+        run: |
+          ssh -p 2222 root@xujie.i234.me << EOF
+            cd /data/docker-images
+            docker load -i vue3-template.tar
+            docker compose down && docker compose up -d
+            docker image prune -f  # 清理无用镜像
+            rm -f vue3-template.tar  # 新增清理tar文件
+          EOF
