@@ -1,6 +1,7 @@
 services:
   mysql:
     image: 'mysql:latest'
+    container_name: spring-boot-template-mysql
     environment:
       - 'MYSQL_DATABASE=mydatabase'
       - 'MYSQL_PASSWORD=secret'
@@ -14,26 +15,42 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql # 使用命名卷挂载 MySQL 数据目录
     restart: unless-stopped
+    networks:
+      - web
 
   redis:
     image: 'redis:latest'
     ports:
       - '6379:6379'
+    restart: unless-stopped
+    networks:
+      - web
 
-  backend:
+  spring-boot-template:
     image: demo-app:latest
     ports:
       - "8080:8080"
+    restart: unless-stopped
     depends_on:
       - mysql
     environment:
       - DB_HOST=mysql
       - REDIS_HOST=redis
-  frontend:
+    networks:
+      - web
+
+  vue3-template:
     image: vue3-template:latest
-    ports:
-      - "5173:80"
+    # ports:
+    #   - "5173:80"
+    restart: unless-stopped
     depends_on:
-      - backend
+      - spring-boot-template
+    networks:
+      - web
 volumes:
   mysql_data: {} # 声明命名卷
+
+networks:
+  web:
+    driver: bridge
