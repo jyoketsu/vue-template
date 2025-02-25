@@ -87,11 +87,24 @@ ssh-keygen -t rsa -b 4096 -C "jyoketsu@gmail.com" -f ./github-actions-key -N ""
 将新生成的 `github-actions-key` (无密码私钥) 内容存入 `SSH_PRIVATE_KEY`  
 将 `github-actions-key.pub` (公钥) 内容添加到服务器的 `/root/.ssh/authorized_keys`  
 
+#### 服务器的 SSH 配置
+```bash
+vi /etc/ssh/sshd_config
+```
+确保以下配置正确
+```bash
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+```
+
 #### 获取目标服务器的 SSH 主机密钥
 ```bash
-ssh-keyscan -p 2222 xujie.i234.me
+ssh-keyscan 47.102.193.24
 ```
 将输出的内容复制到 GitHub Secrets 中的  `SSH_KNOWN_HOSTS`。
 
 #### 配置 Workflows
 - [main.yml](./.github/workflows/main.yml)
+
+#### todo：Https
+ Workspace 服务是通过docker-compose部署的，其中前端frontend是通过nginx镜像构建的镜像，那么，怎么让这个服务启用https呢，怎么安装Let's Encrypt证书？

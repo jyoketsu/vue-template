@@ -32,14 +32,14 @@ jobs:
 
       - name: Transfer via SCP
         run: |
-          scp -P 2222 vue3-template.tar root@xujie.i234.me:/data/docker-images/
+          scp vue3-template.tar root@47.102.193.24:/home/docker-images/
 
       - name: Deploy on Server
         run: |
-          ssh -p 2222 root@xujie.i234.me << EOF
-            cd /data/docker-images
+          ssh root@47.102.193.24 << EOF
+            cd /home/docker-images
             docker load -i vue3-template.tar
-            cd /data/projects/spring-boot-template/
+            cd /home/projects/spring-boot-template/
             docker compose down && docker compose up -d
             docker image prune -f  # 清理无用镜像
             rm -f vue3-template.tar  # 新增清理tar文件
