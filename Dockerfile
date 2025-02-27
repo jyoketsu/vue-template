@@ -13,6 +13,9 @@ RUN npm install
 # 复制项目文件到工作目录
 COPY . .
 
+ARG VITE_AMAP_WEB_KEY
+ENV VITE_AMAP_WEB_KEY=${VITE_AMAP_WEB_KEY}
+
 # 构建项目
 RUN npm run build
 
@@ -32,9 +35,6 @@ COPY nginx.conf.template /etc/nginx/nginx.conf.template
 # ARG 是 Dockerfile 中的一个指令，用于定义在构建阶段可以传递给构建过程的变量，在构建 Docker 镜像时，你可以使用 --build-arg 选项来传递这个参数
 ARG VITE_PIC_GO_KEY
 ENV VITE_PIC_GO_KEY=${VITE_PIC_GO_KEY}
-
-ARG VITE_AMAP_WEB_KEY
-ENV VITE_AMAP_WEB_KEY=${VITE_AMAP_WEB_KEY}
 
 # 输出环境变量以进行调试
 RUN echo "VITE_PIC_GO_KEY=${VITE_PIC_GO_KEY}"
