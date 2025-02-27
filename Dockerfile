@@ -33,8 +33,12 @@ COPY nginx.conf.template /etc/nginx/nginx.conf.template
 ARG VITE_PIC_GO_KEY
 ENV VITE_PIC_GO_KEY=${VITE_PIC_GO_KEY}
 
+ARG VITE_AMAP_WEB_KEY
+ENV VITE_AMAP_WEB_KEY=${VITE_AMAP_WEB_KEY}
+
 # 输出环境变量以进行调试
 RUN echo "VITE_PIC_GO_KEY=${VITE_PIC_GO_KEY}"
+RUN echo "VITE_AMAP_WEB_KEY=${VITE_AMAP_WEB_KEY}"
 
 # 使用 envsubst 替换 nginx.conf 中的环境变量
 RUN envsubst '${VITE_PIC_GO_KEY}' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf
