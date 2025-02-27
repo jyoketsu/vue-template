@@ -18,6 +18,7 @@ jobs:
       - name: Build Docker image
         env:
           VITE_PIC_GO_KEY: ${{ secrets.VITE_PIC_GO_KEY }}  # 从GitHub Secrets获取密钥
+          VITE_AMAP_WEB_KEY: ${{ secrets.VITE_AMAP_WEB_KEY }}
           # 构建镜像并保存为 tar 文件
         run: |
           docker build --build-arg VITE_PIC_GO_KEY=$VITE_PIC_GO_KEY -t vue3-template:latest .  # 带参数构建Docker镜像
