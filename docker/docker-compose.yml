@@ -4,6 +4,8 @@ services:
     ports:
       - "5173:80"
     restart: unless-stopped
+    networks:
+      - xujie_template_default
     
 # 加入到后端网络，docker network ls 查看
 networks:
