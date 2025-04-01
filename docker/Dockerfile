@@ -37,7 +37,7 @@ WORKDIR /etc/nginx
 RUN apk --no-cache add gettext
 
 # 复制 nginx.conf 模板文件到容器
-COPY nginx.conf.template /etc/nginx/nginx.conf.template
+COPY docker/nginx.conf.template /etc/nginx/nginx.conf.template
 
 # 设置环境变量
 # ARG 是 Dockerfile 中的一个指令，用于定义在构建阶段可以传递给构建过程的变量，在构建 Docker 镜像时，你可以使用 --build-arg 选项来传递这个参数
