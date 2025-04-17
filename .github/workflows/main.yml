@@ -45,5 +45,5 @@ jobs:
             cd /home/projects/vue-template/
             docker compose down && docker compose up -d
             docker image prune -f  # 清理无用镜像
-            rm -f vue3-template.tar  # 新增清理tar文件
+            rm -f /home/docker-images/vue3-template.tar  # 新增清理tar文件
           EOF
