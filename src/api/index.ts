@@ -116,8 +116,10 @@ axios.interceptors.response.use(
     const originalRequest = error.config;
 
     // 如果返回 403，说明需要刷新 token
-    if (error.response && error.response.status === 403) {
-      console.log("403 错误，尝试刷新 token");
+    if (error.response &&
+      error.response.status === 403 &&
+      error.response.data.type !== 'PERMISSION_DENIED') {
+      console.log("token过期，403 错误，尝试刷新 token");
 
       // 如果已经在刷新 token，则将当前请求加入队列，等待 token 刷新完成后重试
       if (isRefreshing) {
@@ -145,6 +147,8 @@ axios.interceptors.response.use(
         return axios(originalRequest);
       } catch (refreshError: any) {
         console.log("401 错误，跳转到登录页");
+        Cookies.remove('token');
+        Cookies.remove('refresh_token');
         window.location.href = "/login"; // 跳转到登录页
         // 如果刷新失败，则直接返回错误
         return Promise.reject(refreshError);
