@@ -43,6 +43,7 @@ export default ({ mode }) => {
       },
     },
     server: {
+      host: "0.0.0.0", // 新增这行，允许所有网络接口访问
       proxy: {
         "/api": {
           target: env.VITE_API_URL, // 后端服务器地址

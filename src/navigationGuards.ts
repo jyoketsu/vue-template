@@ -3,6 +3,7 @@ import nprogress from "./utils/nprogress";
 import { router } from "@/router";
 import { useAuthStore } from "@/stores/auth";
 import { message } from "./Hooks/Element-plus";
+import Cookies from "js-cookie";
 
 // 全局前置守卫
 router.beforeEach(async (to, from, next) => {
@@ -14,8 +15,13 @@ router.beforeEach(async (to, from, next) => {
     // 如果用户未登录
     if (!userStore.user) {
       try {
+        const token = Cookies.get('token');
+        if (!token) {
+          next({ path: "/login", query: { url: to.path } });
+          return;
+        }
         // 验证 token
-        await userStore.validateToken();
+        await userStore.getUserInfo();
         next();
       } catch (error) {
         // token 验证失败，提示重新登录

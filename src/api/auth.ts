@@ -1,4 +1,5 @@
 import { request } from "@/api/index";
+import Cookies from "js-cookie";
 
 export function login(username: string, password: string, captcha: string) {
   return request.post("/api/auth/login", {
@@ -9,7 +10,10 @@ export function login(username: string, password: string, captcha: string) {
 }
 
 export function logout() {
-  return request.post("/api/auth/token/logout");
+  return request.post("/api/auth/token/logout", {
+    refreshToken: Cookies.get('refresh_token'),
+    accessToken: Cookies.get('token')
+  });
 }
 
 export function register(username: string, password: string) {
@@ -19,16 +23,14 @@ export function register(username: string, password: string) {
   });
 }
 
-export function loginByToken(token: string) {
-  return request.get("/api/auth", { token });
-}
-
-export function validateAndRefreshToken() {
-  return request.get("/api/auth/token/validate-and-refresh");
+export function loginByToken() {
+  return request.get("/api/auth");
 }
 
 export function refreshToken() {
-  return request.post("/api/auth/token/refresh");
+  return request.post("/api/auth/token/refresh", {
+    refreshToken: Cookies.get("refresh_token")
+  });
 }
 
 export function updateUser(id: string, username?: string, avatar?: string) {

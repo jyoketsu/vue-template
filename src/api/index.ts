@@ -1,6 +1,9 @@
 import { useMessage } from "@/Hooks/message";
 import axios from "axios";
 import { refreshToken } from "./auth";
+import Cookies from "js-cookie";
+import { ApiResponse } from "@/interface/ApiResponse";
+import { User } from "@/interface/User";
 
 export const request = {
   get(path: string, params?: object) {
@@ -78,14 +81,14 @@ export const request = {
 // 请求拦截器
 axios.interceptors.request.use(
   (config) => {
-    // 使用cookie发送token，这个就不需要了
     // 检查 URL 是否包含 `/api`
-    // if (config.url && /\/api/.test(config.url)) {
-    //   const token = localStorage.getItem("auth_token");
-    //   if (token) {
-    //     config.headers["Authorization"] = `Bearer ${token}`;
-    //   }
-    // }
+    if (config.url && /\/api/.test(config.url)) {
+      const token = Cookies.get('token');
+      if (token) {
+        // 设置 Authorization 头部
+        config.headers["Authorization"] = `Bearer ${token}`;
+      }
+    }
 
     // 检查 URL 是否包含 `/login`
     if (config.url && /\/login/.test(config.url)) {
@@ -130,7 +133,9 @@ axios.interceptors.response.use(
 
       try {
         // 调用 refreshToken 方法，它是一个异步方法
-        await refreshToken();
+        const response = (await refreshToken()) as ApiResponse<User>;
+        Cookies.set('token', response.data.accessToken, { sameSite: 'strict' });
+        Cookies.set('refresh_token', response.data.refreshToken, { sameSite: 'strict' });
 
         // 刷新成功后执行所有待重试的请求
         pendingRequests.forEach((callback) => callback());

@@ -8,5 +8,6 @@ export interface User {
   profile?: string;
   createTime: Date;
   updateTime: Date;
-  token: string;
+  accessToken: string;
+  refreshToken: string;
 }

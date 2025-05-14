@@ -7,10 +7,10 @@ import {
   loginByToken,
   updateUser,
   changePassword as changePasswordApi,
-  validateAndRefreshToken,
 } from "@/api/auth";
 import { defineStore } from "pinia";
 import { ref } from "vue";
+import Cookies from 'js-cookie';
 
 export const useAuthStore = defineStore("auth", () => {
   const user = ref<User | null>(null);
@@ -29,20 +29,14 @@ export const useAuthStore = defineStore("auth", () => {
       password,
       captcha
     )) as ApiResponse<User>;
+    // 保存 token
+    Cookies.set('token', response.data.accessToken, { sameSite: 'strict' });
+    Cookies.set('refresh_token', response.data.refreshToken, { sameSite: 'strict' });
   };
 
-  const getUserInfoByToken = async (token: string) => {
-    const response = (await loginByToken(token)) as ApiResponse<User>;
+  const getUserInfo = async () => {
+    const response = (await loginByToken()) as ApiResponse<User>;
     user.value = { ...response.data };
-  };
-
-  const validateToken = async () => {
-    try {
-      const response = (await validateAndRefreshToken()) as ApiResponse<User>;
-      user.value = { ...response.data };
-    } catch (error) {
-      throw error;
-    }
   };
 
   const register = async ({
@@ -56,8 +50,9 @@ export const useAuthStore = defineStore("auth", () => {
   };
 
   const logout = async () => {
-    // localStorage.removeItem("auth_token");
     await logoutApi();
+    Cookies.remove('token');
+    Cookies.remove('refresh_token');
     user.value = null;
   };
 
@@ -94,10 +89,9 @@ export const useAuthStore = defineStore("auth", () => {
     user,
     login,
     register,
-    getUserInfoByToken,
+    getUserInfo,
     logout,
     update,
     changePassword,
-    validateToken,
   };
 });
