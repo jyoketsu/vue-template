@@ -51,6 +51,11 @@ export const routes = [
         redirect: "editor",
         children: [
           {
+            path: "editor",
+            meta: { title: "component.editor", icon: "FileText", isShow: true },
+            component: () => import("@/pages/home/editor/index.vue"),
+          },
+          {
             path: "gantt",
             meta: {
               title: "component.gantt",
@@ -58,11 +63,6 @@ export const routes = [
               isShow: true,
             },
             component: () => import("@/pages/home/gantt/index.vue"),
-          },
-          {
-            path: "editor",
-            meta: { title: "component.editor", icon: "FileText", isShow: true },
-            component: () => import("@/pages/home/editor/index.vue"),
           },
           {
             path: "chart",

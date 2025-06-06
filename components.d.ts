@@ -43,6 +43,7 @@ declare module 'vue' {
     IconFont: typeof import('./src/components/common/IconFont.vue')['default']
     ImageCropUploader: typeof import('./src/components/common/ImageCropUploader/index.vue')['default']
     ImageUploader: typeof import('./src/components/common/ImageUploader.vue')['default']
+    MarkdownEditor: typeof import('./src/components/common/MarkdownEditor.vue')['default']
     Pagination: typeof import('./src/components/pagination/index.vue')['default']
     RightToolbar: typeof import('./src/components/rightToolbar/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

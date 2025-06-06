@@ -5,7 +5,7 @@ export default {
     component: {
       index: "組件實例",
       gantt: "甘特圖",
-      editor: "編輯器",
+      editor: "Markdown編輯器",
       chart: "圖表",
     },
     tableForm: "表格表單",

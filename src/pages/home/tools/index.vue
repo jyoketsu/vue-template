@@ -132,6 +132,13 @@ const image = ref(user.value?.avatar || '')
 
 		</div>
 
+		<div :class="gridClass">
+			<p>图片懒加载</p>
+			<div class="w-full h-[200px]">
+				<img v-lazy="`/images/6c7dfd47.jpeg`" class="size-full object-cover" />
+			</div>
+		</div>
+
 	</div>
 </template>
 

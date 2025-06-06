@@ -6,6 +6,7 @@ import { ClickOutside } from "element-plus";
 import { createPinia } from "pinia";
 import component from "@/components/index";
 import vuegantt from '@jyoketsu/vue-gantt';
+import VueLazyLoad from 'vue3-lazyload'
 import "@/styles/light/css-vars.css";
 import "@/styles/dark/css-vars.css";
 import "@/styles/element/custom.css";
@@ -17,4 +18,7 @@ const app = createApp(App);
 app.directive("clickoutside", ClickOutside);
 app.use(component);
 app.use(vuegantt);
+app.use(VueLazyLoad, {
+	// options
+});
 app.use(pinia).use(router).use(i18n).mount("#app");
