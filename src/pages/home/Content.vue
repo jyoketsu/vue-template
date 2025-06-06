@@ -5,7 +5,7 @@
       <router-view v-slot="{ Component, route }">
         <transition :enter-active-class="`animate__animated animate__fadeIn animate__faster`" mode="out-in">
           <!-- <keep-alive> -->
-          <component :is="Component" :key="route.path" />
+          <component :is="Component" />
           <!-- </keep-alive> -->
         </transition>
       </router-view>
@@ -13,5 +13,10 @@
   </div>
 </template>
 <script setup lang="ts">
+import { onMounted } from "vue";
 import Header from "./Header.vue";
+
+onMounted(() => {
+  console.log("Home Page Mounted");
+})
 </script>

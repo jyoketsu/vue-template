@@ -79,10 +79,10 @@ export const routes = [
     path: "/404",
     component: () => import("@/pages/404/index.vue"),
   },
-  {
-    path: "/:pathMatch(.*)*",
-    redirect: "/404",
-  },
+  // {
+  //   path: "/:pathMatch(.*)*",
+  //   redirect: "/404",
+  // },
 ];
 
 export const router = createRouter({
