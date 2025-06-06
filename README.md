@@ -47,10 +47,6 @@ pnpm dev
 pnpm deploy
 ```
 
-## iconiFy
-
-http://icon-sets.iconify.design/mdi/
-
 ## declaration (.d.ts) file
 [env.d.ts](src/env.d.ts)
 

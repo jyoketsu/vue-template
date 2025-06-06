@@ -159,7 +159,7 @@ axios.interceptors.response.use(
     } else {
       useMessage().error(
         error.response && error.response.data
-          ? error.response.data.message
+          ? (error.response.data.error ? error.response.data.error.message : error.response.data.message)
           : error.message
       );
     }

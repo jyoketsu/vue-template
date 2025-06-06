@@ -12,7 +12,6 @@
     "deploy-gh-pages": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
-    "@iconify/vue": "^4.1.2",
     "@jyoketsu/vue-gantt": "^0.0.3",
     "@tiptap/extension-character-count": "^2.0.0-beta.25",
     "@tiptap/extension-code-block-lowlight": "^2.0.0-beta.68",
@@ -47,6 +46,8 @@
     "qiniu-js": "^3.4.0",
     "vue": "^3.2.25",
     "vue-admin-template": "file:",
+    "vue-advanced-cropper": "^2.8.9",
+    "vue-clipboard3": "^2.0.0",
     "vue-i18n": "^9.3.0",
     "vue-router": "^4.4.3",
     "vuex": "^4.0.2",

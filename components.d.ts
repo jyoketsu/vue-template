@@ -7,7 +7,9 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Badge: typeof import('./src/components/common/Badge.vue')['default']
     Common: typeof import('./src/components/common/index.vue')['default']
+    Cropper: typeof import('./src/components/common/ImageCropUploader/Cropper.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
@@ -23,6 +25,7 @@ declare module 'vue' {
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInput: typeof import('element-plus/es')['ElInput']
+    ElLink: typeof import('element-plus/es')['ElLink']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElOption: typeof import('element-plus/es')['ElOption']
@@ -36,6 +39,9 @@ declare module 'vue' {
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElUpload: typeof import('element-plus/es')['ElUpload']
     IconButton: typeof import('./src/components/common/IconButton.vue')['default']
+    Iconfont: typeof import('./src/components/common/Iconfont.vue')['default']
+    IconFont: typeof import('./src/components/common/IconFont.vue')['default']
+    ImageCropUploader: typeof import('./src/components/common/ImageCropUploader/index.vue')['default']
     ImageUploader: typeof import('./src/components/common/ImageUploader.vue')['default']
     Pagination: typeof import('./src/components/pagination/index.vue')['default']
     RightToolbar: typeof import('./src/components/rightToolbar/index.vue')['default']
@@ -43,6 +49,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     Tab: typeof import('./src/components/common/Tab.vue')['default']
     TabNav: typeof import('./src/components/common/TabNav.vue')['default']
+    Tag: typeof import('./src/components/common/Tag.vue')['default']
     Webview: typeof import('./src/components/common/Webview.vue')['default']
   }
   export interface ComponentCustomProperties {

@@ -2,14 +2,21 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import "element-plus/es/components/message/style/css";
-import { computed, onMounted } from "vue";
-import { useI18n } from "vue-i18n";
+import { computed, onBeforeMount, onMounted } from "vue";
+import { useI18n } from "vue-i18n"; import setIntroduction from '@/utils/setIntroduction';
 
 const { messages, locale } = useI18n();
 
 // 获取全局 i18n
 const getGlobalI18n = computed(() => {
   return messages.value[locale.value];
+});
+
+onBeforeMount(() => {
+  // 设置批量第三方 icon 图标
+  setIntroduction.cssCdn();
+  // 设置批量第三方 js
+  setIntroduction.jsCdn();
 });
 </script>
 
