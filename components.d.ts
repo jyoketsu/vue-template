@@ -7,6 +7,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Common: typeof import('./src/components/common/index.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
@@ -35,11 +36,13 @@ declare module 'vue' {
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElUpload: typeof import('element-plus/es')['ElUpload']
     IconButton: typeof import('./src/components/common/IconButton.vue')['default']
-    ImageUploader: typeof import('./src/components/common/imageUploader.vue')['default']
+    ImageUploader: typeof import('./src/components/common/ImageUploader.vue')['default']
     Pagination: typeof import('./src/components/pagination/index.vue')['default']
     RightToolbar: typeof import('./src/components/rightToolbar/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Tab: typeof import('./src/components/common/Tab.vue')['default']
+    TabNav: typeof import('./src/components/common/TabNav.vue')['default']
     Webview: typeof import('./src/components/common/Webview.vue')['default']
   }
   export interface ComponentCustomProperties {

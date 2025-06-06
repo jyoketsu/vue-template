@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ImageUploader from '@/components/common/imageUploader.vue';
+import ImageUploader from '@/components/common/ImageUploader.vue';
 import { useAuthStore } from '@/stores/auth';
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';

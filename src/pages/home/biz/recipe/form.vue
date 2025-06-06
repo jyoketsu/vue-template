@@ -76,7 +76,7 @@ import { addObj, putObj, getObj } from '@/api/biz/recipe';
 import { nextTick, reactive, ref } from 'vue';
 import { useMessage } from '@/Hooks/message';
 import { Ingredient, Step } from '@/interface/Recipe';
-import ImageUploader from '@/components/common/imageUploader.vue';
+import ImageUploader from '@/components/common/ImageUploader.vue';
 
 const { t } = useI18n();
 
