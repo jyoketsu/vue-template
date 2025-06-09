@@ -9,30 +9,36 @@ import ImageCropUploader from '@/components/common/ImageCropUploader/index.vue';
 import ImageUploader from '@/components/common/ImageUploader.vue';
 import { useAuthStore } from '@/stores/auth';
 import { storeToRefs } from 'pinia';
+import { useDark, useToggle } from '@vueuse/core';
+import { useI18n } from 'vue-i18n';
+import { useCommonStore } from '@/stores/common';
 
-const { toClipboard } = useClipboard()
+const { t } = useI18n();
 const authStore = useAuthStore();
+const commonStore = useCommonStore();
 
 const { user } = storeToRefs(authStore);
 
+const { toClipboard } = useClipboard()
+
 const paths = [{
-	label: '镜像',
+	label: t("tools.image"),
 	name: '/images',
 }, {
-	label: '模型',
+	label: t("tools.model"),
 	name: '/models',
 }];
 
 const currentPath = ref('/images');
 
 const tabs = [{
-	label: '全部',
+	label: t("tools.all"),
 	name: 'all'
 }, {
-	label: "镜像",
+	label: t("tools.image"),
 	name: 'image',
 }, {
-	label: '模型',
+	label: t("tools.model"),
 	name: 'model'
 }];
 
@@ -51,6 +57,24 @@ const handleCopy2Clipboard = async () => {
 
 const avatar = ref(user.value?.avatar);
 const image = ref(user.value?.avatar || '')
+
+// ------------------------------暗色模式 ------------------------------
+const isDark = useDark({
+	onChanged(dark: boolean) {
+		// update the dom, call the API or something
+		console.log('------dark------', dark)
+	},
+})
+const toggleDark = useToggle(isDark);
+
+// ------------------------------多语言 ------------------------------
+const { locale } = useI18n();
+const { setLocale } = commonStore;
+const changeLocale = (type: string) => {
+	locale.value = type;
+	setLocale(type);
+}
+
 </script>
 
 <template>
@@ -79,7 +103,25 @@ const image = ref(user.value?.avatar || '')
 		</div>
 
 		<div :class="gridClass">
-			<p>Tab导航</p>
+			<p>{{ $t("tools.darkMode") }}</p>
+			<el-switch v-model="isDark" :active-action-icon="MoonIcon" :inactive-action-icon="SunIcon" @change="toggleDark" />
+		</div>
+
+		<div :class="gridClass">
+			<p>{{ $t("tools.i18n") }}</p>
+			<el-dropdown>
+				<LanguagesIcon class="size-5" />
+				<template #dropdown>
+					<el-dropdown-menu>
+						<el-dropdown-item @click="changeLocale('zh-CN')">简体中文</el-dropdown-item>
+						<el-dropdown-item @click="changeLocale('zh-TW')">繁體中文</el-dropdown-item>
+					</el-dropdown-menu>
+				</template>
+			</el-dropdown>
+		</div>
+
+		<div :class="gridClass">
+			<p>{{ $t("tools.tabNav") }}</p>
 			<div class="h-[45px] border-b border-[var(--el-border-color)]">
 				<TabNav :items="paths" :itemWidth="50" fontSize="16px" :activeName="currentPath"
 					@click="(name: string) => currentPath = name" />
@@ -92,25 +134,24 @@ const image = ref(user.value?.avatar || '')
 		</div>
 
 		<div :class="gridClass">
-			<p>内凹效果</p>
+			<p>{{ $t("tools.concave") }}</p>
 			<div class="flex gap-2">
 				<Badge type="1" />
 				<Badge type="2" />
 			</div>
 			<div class="flex items-center">
-				<p class="text-xs">其他形状：</p>
+				<p class="text-xs">{{ $t("tools.otherShape") }}</p>
 				<el-link href="https://css-shape.com/" target="_blank">https://css-shape.com/</el-link>
 			</div>
 		</div>
 
 		<div :class="gridClass">
-			<p>复制到剪贴板</p>
-			<el-button @click="handleCopy2Clipboard">复制</el-button>
+			<p>{{ $t("tools.cilpboard") }}</p>
+			<el-button @click="handleCopy2Clipboard">{{ $t("tools.copy") }}</el-button>
 		</div>
 
-
 		<div :class="gridClass">
-			<p>图片上传</p>
+			<p>{{ $t("tools.imageUpload") }}</p>
 			<div class="size-[92px]">
 				<ImageUploader :image-url="image" @success="(url: string) => image = url" />
 			</div>
@@ -133,7 +174,7 @@ const image = ref(user.value?.avatar || '')
 		</div>
 
 		<div :class="gridClass">
-			<p>图片懒加载</p>
+			<p>{{ $t("tools.imageLazyload") }}</p>
 			<div class="w-full h-[200px]">
 				<img v-lazy="`/images/6c7dfd47.jpeg`" class="size-full object-cover" />
 			</div>

@@ -14,6 +14,16 @@ export const routes = [
         component: () => import("@/pages/home/dashboard/index.vue"),
       },
       {
+        path: "/tools",
+        meta: { title: "tools", icon: "Hammer", isShow: true },
+        component: () => import("@/pages/home/tools/index.vue"),
+      },
+      {
+        path: "/tableForm",
+        meta: { title: "tableForm", icon: "Table", isShow: true },
+        redirect: "/biz/recipe",
+      },
+      {
         path: "/biz",
         meta: { title: "biz.index", icon: "Business", isShow: true },
         component: () => import("@/pages/home/biz/index.vue"),
@@ -34,16 +44,6 @@ export const routes = [
             component: () => import("@/pages/home/biz/recipe/index.vue"),
           },
         ],
-      },
-      {
-        path: "/tableForm",
-        meta: { title: "tableForm", icon: "Table", isShow: true },
-        redirect: "/biz/recipe",
-      },
-      {
-        path: "/tools",
-        meta: { title: "tools", icon: "Hammer", isShow: true },
-        component: () => import("@/pages/home/tools/index.vue"),
       },
       {
         path: "/component",

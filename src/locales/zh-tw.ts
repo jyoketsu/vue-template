@@ -6,6 +6,7 @@ export default {
       index: "組件實例",
       gantt: "甘特圖",
       editor: "Markdown編輯器",
+      preview: 'Markdown預覽',
       chart: "圖表",
     },
     tableForm: "表格表單",
@@ -25,7 +26,7 @@ export default {
     usernameInvalid: "用戶名只能包含英文和數字",
     password: "密碼",
     passwordPlaceholder: "請輸入密碼",
-    passwordValidater: "密碼長度必須在3-100之間",
+    passwordValidater: "密碼長度必須在8-100之間",
     login: "登錄",
     register: "註冊",
     noAccount: "沒有賬號？",
@@ -38,6 +39,9 @@ export default {
     registerSuccess: "註冊成功",
     welcome: "您好，歡迎回來!",
     toLogin: "請登錄",
+    captcha: "驗證碼",
+    captchaPlaceholder: "請輸入驗證碼",
+    changeCaptcha: "換一張",
   },
   common: {
     logout: "退出登錄",
@@ -63,6 +67,7 @@ export default {
     delSuccessText: "刪除成功",
     optSuccessText: "操作成功",
     index: "#",
+    options: "設置",
   },
   menu: {
     edit: "編輯",
@@ -86,12 +91,23 @@ export default {
     offline: "禁用",
   },
   tools: {
-    cilpboard: "複製到剪貼板",
+    cilpboard: "復製到剪貼板",
+    copy: '復製',
     fullscreen: "全屏",
     qrcode: "二維碼",
     pdf: "打印為PDF",
     downloadFile: "下載文件",
     importFile: "導入文件",
+    darkMode: '暗黑模式',
+    i18n: '多語言',
+    tabNav: 'Tab導航',
+    concave: '內凹效果',
+    otherShape: '其他形狀:',
+    imageUpload: '圖片上傳',
+    imageLazyload: '圖片懶加載',
+    image: '鏡像',
+    model: '模型',
+    all: '全部',
   },
   dictionary: {
     name: "字典名稱",
@@ -116,8 +132,18 @@ export default {
     addStep: "添加步驟",
     stepTip: "請輸入步驟做法",
     validate: {
-      duplicateIngredient: "食材重複！",
+      duplicateIngredient: "食材重復！",
     },
+  },
+  options: {
+    account: "賬號",
+    changePassword: "修改密碼",
+    changePasswordDesc: "更改您的密碼以登錄您的賬戶",
+    currentPassword: "當前密碼",
+    newPassword: "新密碼",
+    confirmPassword: "確認密碼",
+    changePasswordSuccess: "修改密碼成功",
+    newPasswordSame: "新密碼不能與當前密碼相同",
   },
   message: {
     box: {
@@ -143,29 +169,29 @@ export default {
     viteDesc: "Vite是一種新型前端構建工具，能夠顯著提升前端開發體驗。",
     piniaDesc: "一個擁有組合式 API 的 Vue 狀態管理庫。",
     tailwindDesc:
-      "Tailwind CSS 是一個功能類優先的 CSS 框架，提供高度可定制的實用工具，讓開發者通過簡潔的類名快速構建響應式、現代的用戶界面。",
+      "Tailwind CSS 是一個功能類優先的 CSS 框架，提供高度可定製的實用工具，讓開發者通過簡潔的類名快速構建響應式、現代的用戶界面。",
     i18nDesc: "Vue I18n 是 Vue.js 的國際化插件。",
     elementDesc:
       "Element Plus 是基於 Vue 3 的 UI 組件庫，提供豐富的高質量組件，幫助開發者快速構建現代化、響應式的網頁應用。",
     lucideDesc:
-      "Lucide 是一個開源的圖標庫，提供簡潔、現代的線性圖標，靈活可定制，適用於網頁和移動端應用。Lucide 以 SVG 格式為主，易於集成和使用。",
+      "Lucide 是一個開源的圖標庫，提供簡潔、現代的線性圖標，靈活可定製，適用於網頁和移動端應用。Lucide 以 SVG 格式為主，易於集成和使用。",
     javaDesc:
-      "Java是一種廣泛使用的面向對象編程語言，具有跨平台特性，常用於開發企業級應用。",
+      "Java是一種廣泛使用的面向對象編程語言，具有跨平臺特性，常用於開發企業級應用。",
     springDesc:
-      "Spring是一個開源的Java框架，用於構建企業級應用，提供了一套完整的解決方案，包括持久化數據、事務管理、安全控制、RESTful API等。",
+      "Spring是一個開源的Java框架，用於構建企業級應用，提供了一套完整的解決方案，包括持久化數據、事務管理、安全控製、RESTful API等。",
     mysqlDesc:
-      "MySQL是一個開源的關係數據庫管理系統，是世界上最流行的關係數據庫管理系統之一。",
+      "MySQL是一個開源的關系數據庫管理系統，是世界上最流行的關系數據庫管理系統之一。",
     redisDesc:
       "Redis是一個開源的高性能、高可用、內存數據庫，可以用作緩存、消息隊列、會話狀態等。",
     springSecurityDesc:
-      "Spring Security是Spring框架的安全模塊，提供了一套完整的解決方案，包括身份驗證、訪問控制、密碼加密等。",
+      "Spring Security是Spring框架的安全模塊，提供了一套完整的解決方案，包括身份驗證、訪問控製、密碼加密等。",
     mavenDesc:
       "Maven是一個基於Java的開源構建管理工具，用於管理Java項目的構建、依賴管理、插件管理等。",
     swaggerDesc:
       "Swagger是一個開源的API文檔工具，可以用於生成RESTful API的文檔，方便開發人員進行API調用和管理。",
     dockerDesc:
-      "Docker是一個開源的應用容器化平台，可以用於快速創建、部署和管理應用程序。",
+      "Docker是一個開源的應用容器化平臺，可以用於快速創建、部署和管理應用程序。",
     jwtDesc:
-      "JWT是一種安全的、可靠的、無狀態的、開放標準的、自主可信的令牌標準，用於在分佈式應用程序中進行身份驗證和權限控制。",
+      "JWT是一種安全的、可靠的、無狀態的、開放標準的、自主可信的令牌標準，用於在分布式應用程序中進行身份驗證和權限控製。",
   },
 };
