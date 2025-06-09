@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue'
 import Vditor from 'vditor'
 import "vditor/dist/index.css"
+import { useDark } from '@vueuse/core';
 import 'juejin-markdown-themes/dist/juejin.min.css'
 
 const props = defineProps<{
@@ -12,10 +13,23 @@ const emit = defineEmits<{
 	(e: 'change', value: string): void;
 }>();
 
+const vditorInstance = ref<Vditor>()
+
+const isDark = useDark({
+	onChanged(dark: boolean) {
+		// update the dom, call the API or something
+		if (vditorInstance.value) {
+			// 更新主题色
+			// https://ld246.com/article/1549638745630#API
+			vditorInstance.value.setTheme(dark ? 'dark' : 'classic', dark ? 'dark' : 'classic')
+		}
+	},
+})
+
 onMounted(() => {
-	const vditor = new Vditor('vditor', {
+	vditorInstance.value = new Vditor('vditor', {
 		mode: 'sv',
-		theme: 'classic',
+		theme: isDark.value ? 'dark' : 'classic',
 		minHeight: 240,
 		lang: 'zh_CN',
 		placeholder: '请输入内容...',
@@ -25,6 +39,7 @@ onMounted(() => {
 		},
 		preview: {
 			delay: 0,
+			theme: { current: isDark.value ? 'dark' : 'classic' },
 			hljs: {
 				style: 'monokai',
 				lineNumber: true
@@ -80,9 +95,10 @@ onMounted(() => {
 			}],
 		value: props.data,
 		blur: () => {
-			emit('change', vditor.getValue())
+			emit('change', vditorInstance.value!.getValue())
 		}
 	})
+
 })
 </script>
 

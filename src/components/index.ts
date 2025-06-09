@@ -14,6 +14,7 @@ import {
   Trash2,
   CirclePlus,
   ImageUp,
+  ViewIcon
 } from "lucide-vue-next";
 import Pagination from "@/components/pagination/index.vue";
 import RightToolbar from "@/components/rightToolbar/index.vue";
@@ -36,5 +37,6 @@ export default {
     app.component("Delete", Trash2);
     app.component("Add", CirclePlus);
     app.component("ImageUp", ImageUp);
+    app.component("ViewIcon", ViewIcon);
   },
 };

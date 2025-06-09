@@ -56,6 +56,11 @@ export const routes = [
             component: () => import("@/pages/home/editor/index.vue"),
           },
           {
+            path: "preview",
+            meta: { title: "component.preview", icon: "ViewIcon", isShow: true },
+            component: () => import("@/pages/home/editor/Preview.vue"),
+          },
+          {
             path: "gantt",
             meta: {
               title: "component.gantt",

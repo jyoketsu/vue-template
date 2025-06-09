@@ -44,6 +44,7 @@ declare module 'vue' {
     ImageCropUploader: typeof import('./src/components/common/ImageCropUploader/index.vue')['default']
     ImageUploader: typeof import('./src/components/common/ImageUploader.vue')['default']
     MarkdownEditor: typeof import('./src/components/common/MarkdownEditor.vue')['default']
+    MarkdownPreview: typeof import('./src/components/common/MarkdownPreview.vue')['default']
     Pagination: typeof import('./src/components/pagination/index.vue')['default']
     RightToolbar: typeof import('./src/components/rightToolbar/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

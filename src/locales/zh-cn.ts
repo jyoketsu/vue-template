@@ -1,5 +1,3 @@
-import { profile } from "console";
-
 export default {
   router: {
     dashboard: "首页",
@@ -8,6 +6,7 @@ export default {
       index: "组件实例",
       gantt: "甘特图",
       editor: "Markdown编辑器",
+      preview: 'Markdown预览',
       chart: "图表",
     },
     tableForm: "表格表单",

@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import MarkdownEditor from '@/components/common/MarkdownEditor.vue';
-import { ref } from 'vue';
+import MarkdownPreview from '@/components/common/MarkdownPreview.vue';
 
-const data = ref(`
+const data = `
 # 一级标题
 
 ## 二级标题
@@ -51,13 +50,11 @@ int main(int argc , char** argv){
     3. 右手向后用力
 2. 把大象放进冰箱
 3. 关上冰箱
-`)
+`;
 </script>
 
 <template>
 	<div>
-		<MarkdownEditor :data="data" />
+		<MarkdownPreview :data="data" />
 	</div>
 </template>
-
-<style scoped></style>
