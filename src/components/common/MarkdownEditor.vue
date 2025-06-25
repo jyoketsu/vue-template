@@ -4,6 +4,7 @@ import Vditor from 'vditor'
 import "vditor/dist/index.css"
 import { useDark } from '@vueuse/core';
 import 'juejin-markdown-themes/dist/juejin.min.css'
+import { useMessage } from '@/Hooks/message';
 
 const props = defineProps<{
 	data: string;
@@ -93,6 +94,39 @@ onMounted(() => {
 					'help',
 				],
 			}],
+		upload: {
+			url: '/upload',
+			accept: 'image/*',
+			fieldName: 'source',
+			multiple: false,
+			format(files, responseText) {
+				const response = JSON.parse(responseText);
+				console.log('---response---', response);
+				if (response.status_code === 200) {
+					let succMap: any = {};
+					succMap[files[0].name] = response.image?.url;
+					return JSON.stringify({
+						msg: '',
+						code: 0,
+						data: {
+							errFiles: [],
+							succMap: succMap
+						}
+					})
+				} else {
+					return JSON.stringify({
+						msg: '',
+						code: 1,
+						data: {
+							errFiles: [files[0].name],
+						}
+					})
+				}
+			},
+			error: (error) => {
+				useMessage().error('上传失败！')
+			}
+		},
 		value: props.data,
 		blur: () => {
 			emit('change', vditorInstance.value!.getValue())

@@ -50,6 +50,8 @@ int main(int argc , char** argv){
     3. 右手向后用力
 2. 把大象放进冰箱
 3. 关上冰箱
+
+![6c7dfd47.jpeg](https://img.picgo.net/2025/06/25/6c7dfd472fdecf6c244b23c4.avif)
 `;
 </script>
 

@@ -113,6 +113,8 @@ let pendingRequests: (() => void)[] = []; // 队列，存放待重试的请求
 axios.interceptors.response.use(
   (response) => response, // 请求成功直接返回
   async (error) => {
+    console.log('error', error);
+
     const originalRequest = error.config;
 
     // 如果返回 403，说明需要刷新 token
