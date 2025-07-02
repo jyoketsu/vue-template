@@ -10,6 +10,7 @@ import VueLazyLoad from 'vue3-lazyload'
 import "@/styles/light/css-vars.css";
 import "@/styles/dark/css-vars.css";
 import "@/styles/element/custom.css";
+import "@/styles/github-markdown.css";
 import "./navigationGuards";
 // import "./mock/index";
 

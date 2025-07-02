@@ -28,11 +28,14 @@ const data = ref(`
 
 这是行内代码：\`int a=1;\`。这是代码块：
 
-\`\`\`c++
-int main(int argc , char** argv){
-    std::cout << "Hello World!\n";
-    return 0;
-}
+\`\`\`python
+def calc(init_value, op_func, *args, **kwargs):
+    items = list(args) + list(kwargs.values())
+    result = init_value
+    for item in items:
+        if type(item) in (int, float):
+            result = op_func(result, item)
+    return result
 \`\`\`
 
 这是无序列表：
@@ -57,10 +60,7 @@ int main(int argc , char** argv){
 </script>
 
 <template>
-	<div>
-        <p class="text-xl font-bold mb-3">Markdown编辑器示例</p>
-		<MarkdownEditor :data="data" />
-	</div>
+    <div>
+        <MarkdownEditor :data="data" />
+    </div>
 </template>
-
-<style scoped></style>

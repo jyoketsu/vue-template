@@ -1,39 +1,49 @@
 <script setup lang="ts">
-// @ts-ignore
-import VditorPreview from 'vditor/dist/method.min';
-import "vditor/dist/index.css"
-import 'juejin-markdown-themes/dist/juejin.min.css'
-import { onMounted, ref } from 'vue';
-import { useDark } from '@vueuse/core';
+import { Viewer } from '@bytemd/vue-next'
+import { markRaw, reactive, toRefs, } from 'vue';
+import gfm from '@bytemd/plugin-gfm'
+import 'bytemd/dist/index.css'
+import frontmatter from '@bytemd/plugin-frontmatter'
+import theme from 'bytemd-plugin-theme'
+import mediumZoom from '@bytemd/plugin-medium-zoom'
+import breaks from '@bytemd/plugin-breaks'
+import gemoji from '@bytemd/plugin-gemoji'
+import highlight from '@bytemd/plugin-highlight'
 
 const props = defineProps<{
 	data: string;
-}>()
+}>();
 
-const inited = ref(false);
+const emit = defineEmits<{
+	(e: 'update:data', value: string): void;
+}>();
 
-const initPreview = (dark: boolean) => {
-	VditorPreview.preview(document.getElementById("vditor-preview"), props.data, {
-		theme: {
-			current: dark ? 'dark' : 'light',
-		}
-	})
-}
+const pluginsList = [
+	gfm(),
+	gemoji(),
+	highlight(),
+	frontmatter(),
+	mediumZoom(),
+	breaks(),
+	theme(),
+]
 
-const isDark = useDark({
-	onChanged(dark: boolean) {
-		if (inited.value) {
-			initPreview(dark)
-		}
-	},
+const state = reactive({
+	value: props.data,
+	plugins: markRaw(pluginsList),
 })
 
-onMounted(() => {
-	initPreview(isDark.value);
-	inited.value = true;
-})
+const { value, plugins, } = toRefs(state)
 </script>
 
 <template>
-	<div class="vditor-preview" id="vditor-preview"></div>
+	<div class="markdown-preview">
+		<Viewer :value="value" :plugins="plugins" />
+	</div>
 </template>
+
+<style>
+.markdown-preview .markdown-body {
+	padding: 32px;
+}
+</style>

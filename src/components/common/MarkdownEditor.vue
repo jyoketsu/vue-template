@@ -1,149 +1,107 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import Vditor from 'vditor'
-import "vditor/dist/index.css"
-import { useDark } from '@vueuse/core';
-import 'juejin-markdown-themes/dist/juejin.min.css'
-import { useMessage } from '@/Hooks/message';
+import { markRaw, reactive, ref, toRefs } from 'vue';
+import { Editor } from '@bytemd/vue-next'
+import gfm from '@bytemd/plugin-gfm'
+import 'bytemd/dist/index.css'
+import zhHans from 'bytemd/locales/zh_Hans.json'
+import pluginGfmZhHans from "@bytemd/plugin-gfm/locales/zh_Hans.json"
+import frontmatter from '@bytemd/plugin-frontmatter'
+import mermaid from "@bytemd/plugin-mermaid"
+import mediumZoom from '@bytemd/plugin-medium-zoom'
+import breaks from '@bytemd/plugin-breaks'
+import pluginMermaidZhHans from "@bytemd/plugin-mermaid/locales/zh_Hans.json"
+import gemoji from '@bytemd/plugin-gemoji'
+import highlight from '@bytemd/plugin-highlight'
+import 'highlight.js/styles/atom-one-dark.min.css'
+import { uploadImg } from '@/api/common';
+
 
 const props = defineProps<{
 	data: string;
-}>()
-
-const emit = defineEmits<{
-	(e: 'change', value: string): void;
 }>();
 
-const vditorInstance = ref<Vditor>()
+const emit = defineEmits<{
+	(e: 'update:data', value: string): void;
+}>();
 
-const isDark = useDark({
-	onChanged(dark: boolean) {
-		// update the dom, call the API or something
-		if (vditorInstance.value) {
-			// 更新主题色
-			// https://ld246.com/article/1549638745630#API
-			vditorInstance.value.setTheme(dark ? 'dark' : 'classic', dark ? 'dark' : 'classic')
-		}
-	},
+const pluginsList = [
+	gfm({ locale: pluginGfmZhHans }),
+	gemoji(),
+	highlight(),
+	frontmatter(),
+	mediumZoom(),
+	breaks(),
+	mermaid({ locale: pluginMermaidZhHans }),
+]
+
+const state = reactive({
+	value: props.data,
+	plugins: markRaw(pluginsList),
+	zh: zhHans,
 })
 
-onMounted(() => {
-	vditorInstance.value = new Vditor('vditor', {
-		mode: 'sv',
-		theme: isDark.value ? 'dark' : 'classic',
-		minHeight: 240,
-		lang: 'zh_CN',
-		placeholder: '请输入内容...',
-		counter: {
-			enable: true,
-			type: 'markdown'
-		},
-		preview: {
-			delay: 0,
-			theme: { current: isDark.value ? 'dark' : 'classic' },
-			hljs: {
-				style: 'monokai',
-				lineNumber: true
-			}
-		},
-		tab: '\t',
-		typewriterMode: true,
-		toolbarConfig: {
-			pin: true
-		},
-		cache: {
-			enable: false
-		},
-		toolbar: [
-			'emoji',
-			'headings',
-			'bold',
-			'italic',
-			'strike',
-			'link',
-			'|',
-			'list',
-			'ordered-list',
-			'check',
-			'outdent',
-			'indent',
-			'|',
-			'quote',
-			'line',
-			'code',
-			'inline-code',
-			'insert-before',
-			'insert-after',
-			'|',
-			'table',
-			'|',
-			'undo',
-			'redo',
-			'|',
-			'edit-mode',
-			'code-theme',
-			'fullscreen',
-			{
-				name: 'more',
-				toolbar: [
-					'export',
+const { value, plugins, zh } = toRefs(state)
 
-					'both',
-					'preview',
-					'info',
-					'help',
-				],
-			}],
-		upload: {
-			url: '/upload',
-			accept: 'image/*',
-			fieldName: 'source',
-			multiple: false,
-			format(files, responseText) {
-				const response = JSON.parse(responseText);
-				console.log('---response---', response);
-				if (response.status_code === 200) {
-					let succMap: any = {};
-					succMap[files[0].name] = response.image?.url;
-					return JSON.stringify({
-						msg: '',
-						code: 0,
-						data: {
-							errFiles: [],
-							succMap: succMap
-						}
-					})
-				} else {
-					return JSON.stringify({
-						msg: '',
-						code: 1,
-						data: {
-							errFiles: [files[0].name],
-						}
-					})
-				}
-			},
-			error: (error) => {
-				useMessage().error('上传失败！')
-			}
-		},
-		value: props.data,
-		blur: () => {
-			emit('change', vditorInstance.value!.getValue())
-		}
-	})
+const loading = ref(false)
 
-})
+const handleUploadFile = async (files: File[]) => {
+	let fromData = new FormData()
+	fromData.append('file', files[0])
+	loading.value = true;
+	const res: any = await uploadImg(files)
+	loading.value = false;
+	return [
+		{
+			title: files[0].name,
+			url: res.image.url,
+		},
+	]
+}
+
+const handleChange = (value: string) => {
+	state.value = value;
+	emit('update:data', value);
+}
 </script>
 
 <template>
-	<div id="vditor"></div>
+	<div v-loding="loading">
+		<Editor :value="value" :plugins="plugins" :locale="zhHans" :upload-images="handleUploadFile"
+			@change="handleChange" />
+	</div>
 </template>
 
-
-
 <style>
-.vditor-preview__action {
-	display: none;
+.bytemd {
+	height: calc(100vh - 80px);
+}
+
+.dark .bytemd {
+	color: var(--el-text-color-primary);
+	background: var(--el-bg-color);
+	border: var(--el-border-color);
+}
+
+.dark .bytemd-toolbar {
+	background: var(--el-bg-color)
+}
+
+.dark .bytemd-toolbar-icon:hover {
+	background-color: var(--el-border-color);
+}
+
+.dark .bytemd-status {
+	border: var(--el-border-color);
+}
+
+.dark .CodeMirror {
+	color: var(--el-text-color-primary);
+	background: var(--el-bg-color);
+}
+
+.dark .cm-s-default .cm-header,
+.dark .cm-link,
+.dark .cm-s-default .cm-variable-2 {
+	color: #9999ff
 }
 </style>
