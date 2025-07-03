@@ -8,7 +8,6 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Badge: typeof import('./src/components/common/Badge.vue')['default']
-    Common: typeof import('./src/components/common/index.vue')['default']
     Cropper: typeof import('./src/components/common/ImageCropUploader/Cropper.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
@@ -38,9 +37,7 @@ declare module 'vue' {
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElUpload: typeof import('element-plus/es')['ElUpload']
-    IconButton: typeof import('./src/components/common/IconButton.vue')['default']
     Iconfont: typeof import('./src/components/common/Iconfont.vue')['default']
-    IconFont: typeof import('./src/components/common/IconFont.vue')['default']
     ImageCropUploader: typeof import('./src/components/common/ImageCropUploader/index.vue')['default']
     ImageUploader: typeof import('./src/components/common/ImageUploader.vue')['default']
     MarkdownEditor: typeof import('./src/components/common/MarkdownEditor.vue')['default']
@@ -51,7 +48,6 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     Tab: typeof import('./src/components/common/Tab.vue')['default']
     TabNav: typeof import('./src/components/common/TabNav.vue')['default']
-    Tag: typeof import('./src/components/common/Tag.vue')['default']
     Webview: typeof import('./src/components/common/Webview.vue')['default']
   }
   export interface ComponentCustomProperties {

@@ -4,7 +4,6 @@ import { markRaw, reactive, toRefs, } from 'vue';
 import gfm from '@bytemd/plugin-gfm'
 import 'bytemd/dist/index.css'
 import frontmatter from '@bytemd/plugin-frontmatter'
-import theme from 'bytemd-plugin-theme'
 import mediumZoom from '@bytemd/plugin-medium-zoom'
 import breaks from '@bytemd/plugin-breaks'
 import gemoji from '@bytemd/plugin-gemoji'
@@ -25,7 +24,6 @@ const pluginsList = [
 	frontmatter(),
 	mediumZoom(),
 	breaks(),
-	theme(),
 ]
 
 const state = reactive({
