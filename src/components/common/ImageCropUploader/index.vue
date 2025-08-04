@@ -161,7 +161,8 @@ const uploadError = () => {
 
 const handleChange = (file: any) => {
 	const rawFile = file.raw;
-	beforeUpload(rawFile);
+	const check = beforeUpload(rawFile);
+	if (!check) return;
 	selectedFile.value = rawFile;
 }
 </script>
