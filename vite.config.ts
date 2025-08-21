@@ -3,6 +3,8 @@ import vue from "@vitejs/plugin-vue";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
+// gzip压缩
+import viteCompression from "vite-plugin-compression";
 // @ts-ignore
 import ElementPlus from "unplugin-element-plus/vite";
 import { resolve } from "path";
@@ -33,6 +35,9 @@ export default ({ mode }) => {
       viteMockServe({
         mockPath: "./src/mock",
         // localEnabled: true,
+      }),
+      viteCompression({
+        deleteOriginFile: false, // 压缩后删除原来的文件
       }),
     ],
     css: {
@@ -68,6 +73,19 @@ export default ({ mode }) => {
           },
         },
       },
+    },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            // 第三方库分组
+            vue: ['vue', 'vue-router', 'pinia'],
+            element: ['element-plus'],
+            // echarts: ['echarts'],
+            // 其他库...
+          }
+        }
+      }
     },
   });
 };

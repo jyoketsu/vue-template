@@ -1,10 +1,9 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import Home from "@/pages/home/index.vue";
 
 export const routes = [
   {
     path: "/",
-    component: Home,
+    component: () => import("@/pages/home/index.vue"),
     redirect: "dashboard",
     children: [
       {
