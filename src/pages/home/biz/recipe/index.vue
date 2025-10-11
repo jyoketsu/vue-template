@@ -8,6 +8,10 @@
 						<el-input class="!w-40" :placeholder="$t('recipe.inputNameTip')" @keyup.enter="getDataList" clearable
 							v-model="state.queryForm.name" />
 					</el-form-item>
+					<el-form-item :label="$t('dish.name')" prop="dishName">
+						<el-input class="!w-40" :placeholder="$t('dish.inputNameTip')" @keyup.enter="getDataList" clearable
+							v-model="state.queryForm.dishName" />
+					</el-form-item>
 					<el-form-item class="!w-80" :label="t('recipe.ingredients')" prop="ingredients">
 						<el-input :placeholder="$t('recipe.ingredientTip')" @keyup.enter="getDataList" clearable
 							v-model="state.queryForm.ingredients" />
@@ -40,6 +44,7 @@
 				:header-cell-style="tableStyle.headerCellStyle" class="!overflow-hidden">
 				<el-table-column align="center" type="selection" width="40" />
 				<el-table-column :label="$t('common.index')" type="index" width="60" />
+				<el-table-column :label="$t('dish.name')" prop="dishName" width="120" show-overflow-tooltip />
 				<el-table-column :label="$t('recipe.name')" prop="name" width="120" show-overflow-tooltip />
 				<el-table-column :label="$t('recipe.description')" prop="description" show-overflow-tooltip />
 				<el-table-column :label="$t('recipe.ingredients')" prop="ingredients" show-overflow-tooltip />
@@ -106,7 +111,8 @@ const multiple = ref(true);
 const state: BasicTableProps = reactive<BasicTableProps>({
 	queryForm: {
 		name: '',
-		ingredients: ''
+		ingredients: '',
+		dishName: ''
 	},
 	pageList: fetchList,
 	descs: ['weight'],
