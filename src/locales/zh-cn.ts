@@ -14,9 +14,10 @@ export default {
     time: "时间处理",
     tools: "小功能",
     biz: {
-      index: "业务示例",
+      index: "业务示例（食谱管理）",
       dictionary: "字典管理",
       ingredient: "食材管理",
+      dish: "菜品管理",
       recipe: "食谱管理",
     },
   },
@@ -120,6 +121,14 @@ export default {
     inputNameTip: "请输入食材名",
     unitName: "单位名",
     unitId: "单位",
+  },
+  dish: {
+    name: '菜品名',
+    inputNameTip: "请输入菜品名",
+    description: '简介',
+    categoryId: '类别',
+    categoryName: '类别',
+    cover: '封面',
   },
   recipe: {
     name: "食谱名",

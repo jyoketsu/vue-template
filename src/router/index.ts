@@ -38,6 +38,11 @@ export const routes = [
             component: () => import("@/pages/home/biz/ingredient/index.vue"),
           },
           {
+            path:'dish',
+            meta: { title: "biz.dish", icon: "Soup", isShow: true },
+            component: () => import("@/pages/home/biz/dish/index.vue"),
+          },
+          {
             path: "recipe",
             meta: { title: "biz.recipe", icon: "ChefHat", isShow: true },
             component: () => import("@/pages/home/biz/recipe/index.vue"),
