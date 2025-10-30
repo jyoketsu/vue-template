@@ -56,7 +56,6 @@ COPY --from=production-base /app/dist /usr/share/nginx/html
 
 # 复制维护页面到 Nginx 的 html 目录
 COPY docker/maintenance.html /usr/share/nginx/html/maintenance.html
-COPY docker/maintenance.png /usr/share/nginx/html/maintenance.png
 
 # 暴露端口
 EXPOSE 80
