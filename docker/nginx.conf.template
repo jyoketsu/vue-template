@@ -1,5 +1,7 @@
 worker_processes auto;
 
+env MAINTENANCE_MODE;
+
 events {
   worker_connections 1024;
 }
@@ -15,8 +17,6 @@ http {
   ssl_protocols TLSv1.2 TLSv1.3;
   ssl_prefer_server_ciphers on;
   ssl_ciphers HIGH:!aNULL:!MD5;
-
-  env MAINTENANCE_MODE;
 
   map $MAINTENANCE_MODE $maintenance_mode {
     default 0;
