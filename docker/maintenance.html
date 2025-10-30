@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>网站维护中</title>
+    <title>系统维护中</title>
     <style>
       body {
         display: flex;
@@ -13,35 +13,29 @@
         height: 100vh;
         font-family: "Helvetica", sans-serif;
         background: #f8f9fa;
-        color: #7E8495;
+        color: #7e8495;
         text-align: center;
       }
       h1 {
-        font-size: 2.2rem;
-        color: #198CFE;
-      }
-      p {
-        font-size: 1.1rem;
+        font-size: 1.8rem;
+        color: #212838;
         margin: 4px 0 30px;
       }
-      .loading {
-        width: 50px;
-        height: 50px;
-        border: 4px solid #ddd;
-        border-top-color: #198CFE;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
+      p {
+        font-size: 1rem;
+        margin: 4px 0 30px;
       }
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
+      .icon {
+        width: 13rem;
+        height: 13rem;
+        background: url(./maintenance.png) no-repeat center center;
+        background-size: cover;
       }
     </style>
   </head>
   <body>
-    <h1>🚧 网站维护中</h1>
-    <p>我们正在升级系统，请稍后再试...</p>
-    <div class="loading"></div>
+    <div class="icon"></div>
+    <h1>系统维护中</h1>
+    <p>升级正在升级中，请稍后再试...</p>
   </body>
 </html>
