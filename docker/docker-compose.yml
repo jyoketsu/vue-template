@@ -4,9 +4,6 @@ services:
     ports:
       - "5173:80"
     restart: unless-stopped
-    # 添加维护模式环境变量，默认为 0（禁用）
-    environment:
-      - MAINTENANCE_MODE=1
     networks:
       - xujie_template_default
     
