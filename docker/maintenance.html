@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>网站维护中</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        font-family: "Helvetica", sans-serif;
+        background: #f8f9fa;
+        color: #7E8495;
+        text-align: center;
+      }
+      h1 {
+        font-size: 2.2rem;
+        color: #198CFE;
+      }
+      p {
+        font-size: 1.1rem;
+        margin: 4px 0 30px;
+      }
+      .loading {
+        width: 50px;
+        height: 50px;
+        border: 4px solid #ddd;
+        border-top-color: #198CFE;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🚧 网站维护中</h1>
+    <p>我们正在升级系统，请稍后再试...</p>
+		<p>感谢您的耐心等待！</p>
+    <div class="loading"></div>
+  </body>
+</html>

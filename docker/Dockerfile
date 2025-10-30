@@ -54,6 +54,9 @@ RUN envsubst '${VITE_PIC_GO_KEY}' < /etc/nginx/nginx.conf.template > /etc/nginx/
 # 复制构建输出到 Nginx 的 html 目录
 COPY --from=production-base /app/dist /usr/share/nginx/html
 
+# 复制维护页面到 Nginx 的 html 目录
+COPY docker/maintenance.html /usr/share/nginx/html/maintenance.html
+
 # 暴露端口
 EXPOSE 80
 
