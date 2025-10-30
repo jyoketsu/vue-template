@@ -16,29 +16,28 @@ http {
   ssl_prefer_server_ciphers on;
   ssl_ciphers HIGH:!aNULL:!MD5;
 
+  env MAINTENANCE_MODE;
+
+  map $MAINTENANCE_MODE $maintenance_mode {
+    default 0;
+    "1" 1;
+  }
+
   server {
     listen 80;
     server_name localhost;
 
-    # 默认不启用维护模式，可通过环境变量控制
-    set $maintenance_mode 0;
-    # 如果设置了 MAINTENANCE_MODE 环境变量且值为 1，则启用维护模式
-    if ($env MAINTENANCE_MODE = 1) {
-      set $maintenance_mode 1;
-    }
-    # 当维护模式启用时，返回 503 错误
     error_page 503 @maintenance;
+
+    if ($maintenance_mode) {
+      return 503;
+    }
 
     # 维护模式处理
     location @maintenance {
       root /usr/share/nginx/html;
-      rewrite ^(.*)$ /maintenance.html break;
+      rewrite ^ /maintenance.html break;
       add_header Cache-Control no-cache;
-    }
-
-    # 在主 location / 块前添加
-    if ($maintenance_mode = 1) {
-      return 503;
     }
 
     location / {
