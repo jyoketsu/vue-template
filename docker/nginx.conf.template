@@ -85,3 +85,6 @@ http {
     # 进行压缩的文件类型
     gzip_types text/plain application/javascript text/css application/xml;
     # 是否在http header中添加Vary: Accept-Encoding，建议开启
+    gzip_vary on;
+  }
+}
