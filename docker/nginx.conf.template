@@ -21,7 +21,7 @@ http {
     server_name localhost;
 
     # 默认为 0（禁用）
-    set $maintenance_mode 1;
+    set $maintenance_mode 0;
 
     error_page 503 @maintenance;
 
