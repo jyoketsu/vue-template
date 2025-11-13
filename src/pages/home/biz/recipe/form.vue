@@ -117,7 +117,7 @@ const getData = async (id: string) => {
 		const { data } = await getObj(id);
 		ingredients.value = data.ingredients;
 		try {
-			content.value = JSON.parse(data.content);
+			content.value = JSON.parse(data.content) || [];
 		} catch (error) {
 			content.value = [];
 		}

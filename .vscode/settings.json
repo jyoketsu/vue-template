@@ -3,5 +3,7 @@
 		"enableCodeCompletionPro": false
 	},
 	"marscode.enableInlineCommand": true,
-	"marscode.chatLanguage": "cn"
+	"marscode.chatLanguage": "cn",
+	"trae.tab.enableRename": false,
+	"trae.tab.enableAutoImport": false
 }
